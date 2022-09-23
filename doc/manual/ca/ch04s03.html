@@ -1,0 +1,182 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.3. Preparació dels fitxers per arrencar amb el llapis de memòria USB</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guia d'instal·lació de Debian GNU/Linux">
+<link rel="up" href="ch04.html" title="Capítol 4. Obtenir el suport d'instal·lació del sistema">
+<link rel="prev" href="ch04s02.html" title="4.2. Descarregar fitxers de les rèpliques de Debian">
+<link rel="next" href="ch04s04.html" title="4.4. Preparació dels fitxers per arrencar des del disc dur">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.3. Preparació dels fitxers per arrencar amb el llapis de memòria USB</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítol 4. Obtenir el suport d'instal·lació del sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Següent"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-usb-files"></a>4.3. Preparació dels fitxers per arrencar amb el llapis de memòria USB</h2></div></div></div>
+<p>Per preparar el llapis USB, us recomanem usar un sistema amb GNU/Linux ja funcionant i que suporti dispositius USB. Els sistemes GNU/Linux actuals normalment reconeixen automàticament els llapis USB així que es connecten. Si no és el cas, hauríeu de comprovar que estigui carregat el mòdul «usb-storage» del nucli. Quan connecteu el llapis USB, aquest estarà representat per un dispositiu anomenat <code class="filename">/dev/sdX</code>, on la <span class="quote">«<span class="quote">X</span>»</span> és una lletra en minúscules (a-z). Hauríeu de poder veure de quin dispositiu es tracta més exactament executant l'ordre <span class="command"><strong>lsblk</strong></span> abans i després de connectar-lo (La resposta de <span class="command"><strong>dmesg</strong></span> (executat com a «root») és una manera alternativa. Per escriure-hi, és possible que calgui desactivar la protecció d'escriptura del llapis USB. </p>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Avís]" src="images/warning.png"></td>
+<th align="left">Avís</th>
+</tr>
+<tr><td align="left" valign="top"><p>Els procediments que es descriuen en aquesta secció destruiran tot el que hi hagi al dispositiu! Assegureu-vos que esteu utilitzant el nom de dispositiu corresponent al llapis USB. Si utilitzeu un nom de dispositiu incorrecte podeu arribar a perdre les dades de, per exemple, un disc dur. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-isohybrid"></a>4.3.1. Preparar una memòria USB fent servir una imatge híbrida de CD/DVD</h3></div></div></div>
+<p>Les imatges d'instal·lació de Debian per a aquesta arquitectura es creen amb la tecnologia <span class="command"><strong>isohybrid</strong></span>; això vol dir que es poden escriure directament a una memòria USB, que resulta ésser un sistema molt senzill d'obtenir un medi d'instal·lació. Seleccioneu una imatge (ja sigui la d'instal·lació per xarxa, «netinst», CD o DVD-1) que càpiga a la vostra memòria USB. Vegeu <a class="xref" href="ch04s01.html" title="4.1. Imatges oficials d'instal·lació de Debian GNU/Linux">Secció 4.1, «Imatges oficials d'instal·lació de Debian GNU/Linux»</a> per a obtenir una imatge d'instal·lació. </p>
+<p>Una altra opció, per a memòries USB molt petites, només d'alguns megabits de capacitat, és descarregar la imatge <a class="ulink" href="http://ftp.es.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/netboot/mini.iso" target="_top">mini.iso</a> des del directori <code class="filename">netboot</code> (a l'adreça citada a <a class="xref" href="ch04s02.html#where-files" title="4.2.1. On trobar arxius d'instal·lació">Secció 4.2.1, «On trobar arxius d'instal·lació»</a>). </p>
+<p>La imatge d'instal·lació que heu seleccionat es pot escriure directament en la memòria USB, reemplaçant el seu contingut actual. Per exemple, fent servir un sistema GNU/Linux ja operatiu, es pot escriure el fitxer d'imatge en una memòria USB com s'indica a continuació, després d'assegurar-vos que la memòria USB no està muntada: </p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>cp <em class="replaceable"><code>debian.iso</code></em> /dev/<em class="replaceable"><code>sdX</code></em></code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>sync</code></strong>
+</pre></div>
+<p> Informació sobre com fer-ho en altres sistemes operatius es pot trobar a les <a class="ulink" href="https://www.debian.org/CD/faq/index.en.html#write-usb" target="_top">Debian CD FAQ</a>. </p>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Important]" src="images/important.png"></td>
+<th align="left">Important</th>
+</tr>
+<tr><td align="left" valign="top"><p>La imatge s'ha d'escriure en un disc sencer i no en una partició, p. ex. /dev/sdb and not /dev/sdb1. No faceu servir eines del tipus <span class="command"><strong>unetbootin</strong></span> que modifiquen la imatge. </p></td></tr>
+</table></div>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Important]" src="images/important.png"></td>
+<th align="left">Important</th>
+</tr>
+<tr><td align="left" valign="top"><p>Escrivint la imatge d'instal·lació en una memòria USB hauria d'ésser suficient per a la majoria d'usuaris. Les altres opcions descrites a continuació, són més complexes i van dirigides a aquelles persones amb exigències especials. </p></td></tr>
+</table></div>
+<p>La imatge híbrida en una memòria USB no ocupa tota la capacitat disponible, de manera que pot valer la pena fer servir l'espai lliure per a fitxers de microprogramari («firmware») o paquets o altres fitxers de la vostra elecció. Vos pot ésser útil si només disposau d'una memòria USB o bé voleu fer servir la memòria per altres coses. </p>
+<p>Per fer-ho, useu cfdisk o una eina de particionat alternativa per crear una partició addicional al llapis de memòria. Tot seguit, creeu un sistema de fitxers (FAT) a la partició, monteu-la i copieu-hi o descomprimiu-hi el «firmware», per exemple amb: </p>
+<div class="informalexample"><pre class="screen">
+# mkdosfs -n FIRMWARE /dev/sdX3
+# mount /dev/<em class="replaceable"><code>sdX3</code></em> /mnt
+# cd /mnt
+# tar zxvf <em class="replaceable"><code>/directori/de/</code></em>firmware.tar.gz
+# cd /
+# umount /mnt
+</pre></div>
+<p> Vigileu que useu el nom de dispositiu correcte del llapis USB. L'ordre <span class="command"><strong>mkdosfs</strong></span> es troba al paquet Debian <code class="classname">dosfstools</code>. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>Si heu triat el <code class="filename">mini.iso</code> per escriure'l a la memòria USB, la segona partició no s'ha de generar atès que - molt agradablement - ja hi estarà present. Desconnectant i tornant a connectar la memòria USB es podrà fer visibles les dues particions. </p></td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-easy"></a>4.3.2. Copiar manualment els fitxers en la memòria USB</h3></div></div></div>
+<p>Abans que la tecnologia «isohybrid» s'utilitzés per a les imatges d'instal·lació Debian, els mètodes documentats en els capítols següents s'utilitzaven per preparar mitjans per arrencar des de dispositius USB. Aquests han estat substituïts per la tècnica de <a class="xref" href="ch04s03.html#usb-copy-isohybrid" title="4.3.1. Preparar una memòria USB fent servir una imatge híbrida de CD/DVD">Secció 4.3.1, «Preparar una memòria USB fent servir una imatge híbrida de CD/DVD»</a>, però s'han deixat aquí amb propòsit informatiu i històric en cas que siguin útils per a algun usuari. </p>
+<p>Una alternativa al mètode descrit a <a class="xref" href="ch04s03.html#usb-copy-isohybrid" title="4.3.1. Preparar una memòria USB fent servir una imatge híbrida de CD/DVD">Secció 4.3.1, «Preparar una memòria USB fent servir una imatge híbrida de CD/DVD»</a> és copiar manualment els fitxers de l'instal·lador, i també una imatge d'instal·lació, al llapis. Fixeu-vos que el llapis USB ha de tenir una mida mínima de 1 GiB (és possible configurar un llapis amb menys capacitat usant els arxius del «netboot», com es descriu a la <a class="xref" href="ch04s03.html#usb-copy-flexible" title="4.3.3. Còpia dels fitxers — la manera flexible">Secció 4.3.3, «Còpia dels fitxers — la manera flexible»</a>). </p>
+<p>Hi ha un fitxer complet <a class="ulink" href="http://ftp.es.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/hd-media/boot.img.gz" target="_top">hd-media/boot.img.gz</a> que conté tots el fitxers de l'instal·lador (incloent el nucli) <span class="phrase"> així com <span class="command"><strong>syslinux</strong></span> i el seu fitxer de configuració</span>. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>Fixeu-vos que, tot i semblar còmode, aquest mètode té un desavantatge: la mida lògica del dispositiu estarà limitada a 1 GiB, encara que la capacitat del llapis USB sigui superior. Si voleu utilitzar-lo per a altres propòsits haureu de tornar a partir el llapis USB i generar nous sistemes de fitxers per disposar de tota la seva capacitat. </p></td></tr>
+</table></div>
+<p>Simplement descomprimiu aquesta imatge directament al llapis USB: </p>
+<div class="informalexample"><pre class="screen"># zcat boot.img.gz &gt; /dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p>
+
+</p>
+<p>Després d'això, munteu el llapis de memòria USB <span class="phrase">(<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX</code></em> /mnt</code></strong>),</span> que ara tindrà <span class="phrase">un sistema de fitxers FAT,</span> i copieu-hi una imatge ISO Debian («netinst» o un CD complet; vegeu <a class="xref" href="ch04s01.html" title="4.1. Imatges oficials d'instal·lació de Debian GNU/Linux">Secció 4.1, «Imatges oficials d'instal·lació de Debian GNU/Linux»</a>). Finalment, desmunteu el llapis (<strong class="userinput"><code>umount /mnt</code></strong>) i ja esteu preparats. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-flexible"></a>4.3.3. Còpia dels fitxers — la manera flexible</h3></div></div></div>
+<p>Si voleu més flexibilitat o voleu saber què esteu fent, heu de seguir aquest mètode per posar els fitxers al vostre llapis. Un avantatge d'utilitzar aquest mètode és que — si el llapis USB té prou capacitat — podreu copiar-hi una imatge ISO, fins i tot una imatge DVD. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm834"></a>4.3.3.1. Particionar i afegir un gestor d'engegada</h4></div></div></div>
+<p>Mostrarem com configurar un llapis de memòria per utilitzar la primera partició d'aquest, en comptes del dispositiu complet. </p>
+<p>Per arrencar el nucli després d'arrencar des del llapis USB, posarem un carregador d'arrencada al llapis. Malgrat que hauria de funcionar qualsevol carregador, és convenient utilitzar <code class="classname">syslinux</code>, ja que utilitza una partició FAT16 i pot reconfigurar-se editant tan sols un fitxer de text. Qualsevol sistema operatiu que suporti el sistema de fitxers FAT pot utilitzar-se per canviar la configuració del carregador d'arrencada. </p>
+<p>Primer, necessiteu instal·lar els paquets <code class="classname">syslinux</code> i <code class="classname">mtools</code> al sistema. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>La major part dels llapis USB venen preconfigurats amb una única partició FAT16, així que en general no serà necessari tornar a partir o tornar a formatar-lo. Si heu de fer-ho, utilitzeu el <span class="command"><strong>cfdisk</strong></span> o qualsevol altra eina per fer la partició FAT16 ara<a href="#ftn.idm845" class="footnote" name="idm845"><sup class="footnote">[3]</sup></a>, i aleshores generau un MBR fent: </p>
+<div class="informalexample"><pre class="screen">
+# cat /usr/lib/syslinux/mbr/mbr.bin 
+&gt;/dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p> Ara, per a generar el sistema de fitxers, feu servir: </p>
+<div class="informalexample"><pre class="screen">
+# mkdosfs /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> Aneu amb compte d'utilitzar el nom del dispositiu correcte pel vostre llapis USB. L'ordre <span class="command"><strong>mkdosfs</strong></span> és al paquet Debian <code class="classname">dosfstools</code>. </p>
+</td></tr>
+</table></div>
+<p>Tenint el llapis USB correctament particionat (ara), heu de posar el <code class="classname">syslinux</code> a la partició FAT16 amb: </p>
+<div class="informalexample"><pre class="screen">
+# syslinux /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> Altra vegada, aneu amb compte i utilitzeu el nom correcte per al dispositiu. La partició no ha d'estar muntada quan executeu l'ordre <span class="command"><strong>syslinux</strong></span>. Aquest procediment escriu un sector d'arrencada a la partició i genera el fitxer <code class="filename">ldlinux.sys</code> que conté el codi del carregador d'arrencada. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm863"></a>4.3.3.2. Afegir els arxius de l'instal·lador</h4></div></div></div>
+<p>Hi ha dues variants d'instal·lació diferents per triar aquí: La variant «hd-media» necessita un fitxer ISO d'instal·lació al llapis per carregar mòduls d'instal·lació i el sistema base. L'instal·lador «netboot», en canvi, ho descarregarà tot des d'un mirall Debian. </p>
+<p>D'acord amb la vostra tria, heu de descarregar alguns arxius de l'instal·lador del subdirectori «hd-media» o «netboot» a <a class="ulink" href="http://ftp.es.debian.org/debian/dists/bullseye/main/installer-amd64/current/images" target="_top">debian/dists/bullseye/main/installer-amd64/current/images/</a> de qualsevol mirall Debian: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p> <code class="filename">vmlinuz</code> o <code class="filename">linux</code> (imatge del nucli) </p></li>
+<li class="listitem"><p> <code class="filename">initrd.gz</code> (imatge inicial del disc RAM) </p></li>
+</ul></div>
+<p> Podeu escollir entre la versió en mode text de l'instal·lador (els arxius es poden trobar directament a «hd-media» o «netboot») o en la seua versió gràfica (busqueu-la en el corresponent subdirectori <code class="filename">gtk</code>. </p>
+<p>Després munteu la partició (<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX1</code></em> /mnt</code></strong>) i copieu els fitxers descarregats al directori arrel del llapis USB. </p>
+<p>A continuació heu de generar un fitxer de text anomenat <code class="filename">syslinux.cfg</code> al directori arrel del llapis com a arxiu de configuració per al «syslinux», que haurà de contenir com a mínim la línia següent: </p>
+<div class="informalexample"><pre class="screen">
+default vmlinuz initrd=initrd.gz
+</pre></div>
+<p> Canvieu el nom del binari del nucli per<span class="quote">«<span class="quote"><code class="filename">linux</code></span>»</span> si heu usat arxius del <code class="filename">netboot</code>. </p>
+<p>Per a l'instal·lador gràfic (de <code class="filename">gtk</code>) haureu d'afegir <strong class="userinput"><code>vga=788</code></strong> al final de la línia. Es poden afegir altres paràmetres si fes falta. </p>
+<p>Per habilitat l'indicador d'arrencada per a permetre afegir paràmetres addicionals, afegiu la línia <strong class="userinput"><code>prompt 1</code></strong>. </p>
+<p>Si heu utilitzat fitxers de <code class="filename">hd-media</code>, ara haureu de copiar el fitxer ISO d'una imatge d'instal·lació Debian al llapis. (Això no fa falta amb la variant <code class="filename">netboot</code>.) </p>
+<p>Podeu emprar una imatge «netinst» o una de CD/DVD complet (vegeu <a class="xref" href="ch04s01.html" title="4.1. Imatges oficials d'instal·lació de Debian GNU/Linux">Secció 4.1, «Imatges oficials d'instal·lació de Debian GNU/Linux»</a>). Assegureu-vos d'emprar-ne una que hi càpiga. Adoneu-vos que la imatge <span class="quote">«<span class="quote">netboot <code class="filename">mini.iso</code></span>»</span> no és vàlida per a aquest propòsit. </p>
+<p>Quan esteu llestos, desmunteu el llapis de memòria USB (<strong class="userinput"><code>umount /mnt</code></strong>). </p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div id="ftn.idm845" class="footnote"><p><a href="#idm845" class="para"><sup class="para">[3] </sup></a>Recordeu-vos d'activar l’indicador de partició arrencable <span class="quote">«<span class="quote">bootable</span>»</span>.</p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch04.html"><img src="images/up.png" alt="Pujar"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Següent"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.2. Descarregar fitxers de les rèpliques de Debian </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inici"></a></td>
+<td width="40%" align="right" valign="top"> 4.4. Preparació dels fitxers per arrencar des del disc dur</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.4. Splnění minimálních hardwarových požadavků</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux — instalační příručka">
+<link rel="up" href="ch03.html" title="Kapitola 3. Než začnete s instalací">
+<link rel="prev" href="ch03s03.html" title="3.3. Dále budete potřebovat">
+<link rel="next" href="ch03s05.html" title="3.5. Předrozdělení disku pro více operačních systémů">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.4. Splnění minimálních hardwarových požadavků</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s03.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<th width="60%" align="center">Kapitola 3. Než začnete s instalací</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch03s05.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="minimum-hardware-reqts"></a>3.4. Splnění minimálních hardwarových požadavků</h2></div></div></div>
+<p>Porovnejte seznam svého hardware s následující tabulkou, ve které zjistíte, zda můžete použít zamýšlený typ instalace. </p>
+<p>Skutečné minimální požadavky mohou být nižší než uvádí tabulka, ale většina uživatelů by asi nebyla spokojena s rychlostí systému. Vždy záleží na konkrétních požadavcích a možnostech. </p>
+<p>Pro pracovní stanice je minimální doporučený procesor Pentium 4 na 1GHz. </p>
+<div class="table">
+<a name="idm605"></a><p class="title"><b>Tabulka 3.2. Doporučené minimální požadavky</b></p>
+<div class="table-contents"><table class="table" summary="Doporučené minimální požadavky" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Typ instalace</th>
+<th>RAM (minimální)</th>
+<th>RAM (doporučená)</th>
+<th>Pevný disk</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Bez desktopového prostředí</td>
+<td>256 MB</td>
+<td>512 MB</td>
+<td>2 GB</td>
+</tr>
+<tr>
+<td>Desktopové prostředí</td>
+<td>1 gigabytes</td>
+<td>2 GB</td>
+<td>10 GB</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break"><p>The minimum values assumes that swap will be enabled and a non-liveCD image is used. The <span class="quote">„<span class="quote">No desktop</span>“</span> value assumes that the non-graphical (text-based) installer is used. </p>
+<p>The actual minimum memory requirements are a lot less than the numbers listed in this table. With swap enabled, it is possible to install Debian with as little as 350MB. The same goes for the disk space requirements, especially if you pick and choose which applications to install; see <a class="xref" href="apds02.html" title="D.2. Místo potřebné pro úlohy">D.2 – „Místo potřebné pro úlohy“</a> for additional information on disk space requirements. </p>
+<p>I na starších systémech je možné provozovat grafické desktopové prostředí, ale v takovém případě je doporučeno nainstalovat méně náročné prostředí než KDE Plasma nebo GNOME. Mezi populární alternativy patří <code class="classname">xfce4</code>, <code class="classname">icewm</code> a <code class="classname">wmaker</code>, ale na výběr máte i přehršle dalších. </p>
+<p>Pro serverové nasazení je téměř nemožné určit paměťové nebo diskové požadavky, protože ty se liší podle konkrétního nasazení. </p>
+<p>Pamatujte, že všechny uvedené velikosti jsou orientační a že neobsahují další věci, které obvykle v systému bývají (jako třeba pošta, soubory uživatelů, data). Při přidělování místa pro své vlastní soubory a data je vždy lepší být velkorysý. </p>
+<p>Dále je potřeba dávat pozor na oblast <code class="filename">/var</code>, která obsahuje hodně dat závislých na konkrétní situaci. Například soubory programu <span class="command"><strong>dpkg</strong></span> mohou klidně zabrat 40MB, ani nevíte jak. Dále sem zapisuje třeba <span class="command"><strong>apt</strong></span>, který zde odkládá stažené balíky před samotnou instalací. Pokud přidáme velikost logovacích souborů (většinou v řádech MB) a ostatní proměnlivá data, měli byste pro <code class="filename">/var</code> uvažovat o alokování minimálně 200MB. Plánujete-li instalaci grafického desktopového prostředí, tak i mnohem více. Do <code class="filename">/var</code> také implicitně ukládají své databáze databázové systémy. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s03.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Nahoru"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch03s05.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.3. Dále budete potřebovat </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Domů"></a></td>
+<td width="40%" align="right" valign="top"> 3.5. Předrozdělení disku pro více operačních systémů</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

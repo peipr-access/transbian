@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C.5. Debian 分区程序</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux 安装手册">
+<link rel="up" href="apc.html" title="附录 C. 为 Debian 准备分区">
+<link rel="prev" href="apcs04.html" title="C.4. Linux 里面的设备名称">
+<link rel="next" href="apd.html" title="附录 D. 其他">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">C.5. Debian 分区程序</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="上一页"></a> </td>
+<th width="60%" align="center">附录 C. 为 Debian 准备分区</th>
+<td width="20%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="下一页"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="partition-programs"></a>C.5. Debian 分区程序</h2></div></div></div>
+<p>Debian 开发人员选用了几种在不同硬盘和不同体系结构上的分区程序。下面是一个适合您的体系的程序列表。 </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term"><span class="command"><strong>partman</strong></span></span></dt>
+<dd><p>推荐的 Debian 分区工具。这把瑞士军刀可以修改分区大小，创建文件系统<span class="phrase">(Windows 下的说法是 <span class="quote">“<span class="quote">format</span>”</span>)</span>和关联分区至挂接点。 </p></dd>
+<dt><span class="term"><span class="command"><strong>fdisk</strong></span></span></dt>
+<dd>
+<p>最早的 Linux 磁盘分区工具，对于老手很好用。 </p>
+<p>请注意，如果您的机器上有一个 FreeBSD 分区。安装内核包含对这些分区的支持，但是 <span class="command"><strong>fdisk</strong></span> 表示他们的设备名称方式可能有所不同(也可能不是)。参阅 <a class="ulink" href="http://www.tldp.org/HOWTO/Linux+FreeBSD-2.html" target="_top">Linux+FreeBSD HOWTO</a>。 </p>
+</dd>
+<dt><span class="term"><span class="command"><strong>cfdisk</strong></span></span></dt>
+<dd>
+<p>一个简单易用、全屏幕的磁盘分区程序。供其他人员使用。 </p>
+<p>请注意 <span class="command"><strong>cfdisk</strong></span> 完全不了解 FreeBSD 的分区，因此，再说一次，设备名称与结果可能不同。 </p>
+</dd>
+</dl></div>
+<p>当您选择了 <span class="guimenuitem">Partition disks</span> (或类似的)，默认会执行其中的一个程序。在 VT2 命令行上也可以使用其他的分区工具，但不推荐采用这种方式。 </p>
+<p>要记得标记您的引导分区为 <span class="quote">“<span class="quote">Bootable</span>”</span>。 </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4098"></a>C.5.1. 为 <span class="phrase">64-bit PC</span> 分区</h3></div></div></div>
+<p>如果使用新的硬盘（或者想要擦除硬盘上的整个分区表），那么需要创建新的分区表。<span class="quote">“<span class="quote">Guided partitioning</span>”</span> 会自动做这件事，但当手动分区时，需要在磁盘的顶层入口移动选项并点击 <span class="keycap"><strong>Enter</strong></span> 按键。这会在磁盘上创建新的分区表。在专家模式中，然后您会被询问分区表的类型。基于 UEFI 系统默认为 <span class="quote">“<span class="quote">gpt</span>”</span>，而对于较旧的 BIOS 默认值为 <span class="quote">“<span class="quote">msdos</span>”</span>。在标准的优先安装中，会自动使用这些默认值。 </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>当选择 <span class="quote">“<span class="quote">gpt</span>”</span> 类型（对于 UEFI 系统是默认的）的分区表时，在磁盘的开始部分自动创建空余的 1MB 空间。这会要求用于嵌入 GRUB2 启动引导程序。 </p></td></tr>
+</table></div>
+<p>如果您已经有 DOS 或 Windows 这样的其他操作系统存在，并想在安装 Debian 时保留它们，应该重新设置分区大小，释放空间给 Debian 安装程序。安装程序支持修改 FAT 和 NTFS 文件系统的尺寸；当您进入安装程序的分区步骤，选择 <span class="guimenuitem">Manual</span> 选项，然后只需选择已有的分区，更改其尺寸。 </p>
+<p>现代的 UEFI 系统没有下面列出的这样的限制，旧的 PC BIOS 通常会对磁盘分区加入一些额外约束。一个是限制单一磁盘可以包含多少个<span class="quote">“<span class="quote">主分区</span>”</span>和<span class="quote">“<span class="quote">逻辑分区</span>”</span>。还有，在 1994–98 前的 BIOS 里，限制 BIOS 可以引导的磁盘。详细的信息可以在 <a class="ulink" href="http://www.tldp.org/HOWTO/Partition/" target="_top">Linux Partition HOWTO</a> 找到，但是本节将包含一个简单的介绍，帮助您在大多数情况下进行规划。 </p>
+<p><span class="quote">“<span class="quote">主</span>”</span>分区是 PC 磁盘上最早的分区方案。但是，每个磁盘只能含有四个主分区。为了突破这个限制，发明了<span class="quote">“<span class="quote">扩展(extended)</span>”</span>和<span class="quote">“<span class="quote">逻辑</span>”</span>分区。通过将一个主分区设置为扩展分区，您可以把其他的空间分配到其中划分成逻辑分区。您可以为每个扩展分区分配多至 60 个逻辑分区；但是每个磁盘只能含有一个扩展分区。 </p>
+<p>对于 SCSI 来说，Linux 限制每个驱动器最多有 255 个分区(3 个可用的主分区，252 个逻辑分区)。对于 IDE 来说可以有 63 个分区(3 个可用的主分区，60 个逻辑分区)。但是对于普通的 Debian GNU/Linux 版本，系统只支持 20 个分区设备，因此您不能安装超过 20 个的分区，除非您首先为这些分区手工创建了设备文件。 </p>
+<p>如果您有一个大的 IDE 磁盘，并且既没有使用 LBA 寻址，也没有覆盖(overlay)驱动(硬盘制造商有时候提供此功能)，那么引导分区(含有您内核映像的分区)必须放置在硬盘第一个 1024 柱面内(在没有 BIOS 转换的情况下，大约有 524MB)。 </p>
+<p>如果您的 BIOS 在 1995–98 年之后出现(取决于制造商)，并且支持 <span class="quote">“<span class="quote">Enhanced Disk Drive Support Specification</span>”</span>，就没有这个限制。 Debian 的 Lilo <span class="command"><strong>mbr</strong></span> 必须使用 BIOS 来从磁盘读取内核至内存。如果 BIOS int 0x13 大硬盘访问拓展被打开，则将被使用。否则会使用旧的传统磁盘访问接口，而且不能找到任何大于 1023 的柱面。一旦 Linux 引导后，不管您的计算机 BIOS 是什么，这些限制都不再起任何作用，因为 Linux 并不使用 BIOS 来进行磁盘寻址。 </p>
+<p>如果您有一个大硬盘，您也许必须使用柱面转换(cylinder translation)技术。它可以在 BIOS 设置程序中打开，比如 LBA (Logical Block Addressing) 或者 CHS 转换模式(<span class="quote">“<span class="quote">Large</span>”</span>)。关于大硬盘的各种问题可以在 <a class="ulink" href="http://www.tldp.org/HOWTO/Large-Disk-HOWTO.html" target="_top">Large Disk HOWTO</a> 下找到。如果您正在使用一个柱面转换方案，并且 BIOS 并不支持大硬盘访问拓展，您的引导分区必须放置在<span class="emphasis"><em>转换后</em></span>的 1024 柱面内。 </p>
+<p>解决这个问题的推荐方法，是在磁盘开始处创建一个小的(25–50MB 足矣)分区来作为引导分区。并且在其余地方创建另外的分区。这个引导分区<span class="emphasis"><em>必须</em></span>挂载到 <code class="filename">/boot</code> 下，因为它是放置 Linux 内核的地方。这样的设置将可以在任意系统上工作，不管 LBA 或者大硬盘 CHS 转换是否起作用，甚至也不管您的 BIOS 是否支持大硬盘访问扩展。 </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="上一页"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apc.html"><img src="images/up.png" alt="上一级"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="下一页"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">C.4. Linux 里面的设备名称 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="起始页"></a></td>
+<td width="40%" align="right" valign="top"> 附录 D. 其他</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

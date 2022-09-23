@@ -1,0 +1,206 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. Maskinvara som stöds</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installationsguide">
+<link rel="up" href="ch02.html" title="Kapitel 2. Systemkrav">
+<link rel="prev" href="ch02.html" title="Kapitel 2. Systemkrav">
+<link rel="next" href="ch02s02.html" title="2.2. Enheter som kräver fast programvara">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. Maskinvara som stöds</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<th width="60%" align="center">Kapitel 2. Systemkrav</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. Maskinvara som stöds</h2></div></div></div>
+<p>Debian ställer inga maskinvarukrav utöver kraven ställda för Linux- eller kFreeBSD-kärnan och GNU:s verktyg. Därför kan alla arkitekturer eller plattformar till vilka Linuxkärnan, libc, <span class="command"><strong>gcc</strong></span> och så vidare, blivit porterade, och för vilken en portering till Debian finns, köra Debian. Referera till ports-sidorna på <a class="ulink" href="https://www.debian.org/ports/amd64/" target="_top">https://www.debian.org/ports/amd64/</a> för mera detaljer om <span class="phrase">64-bit PC</span>-arkitektursystem som har blivit testade med Debian GNU/Linux. </p>
+<p>Hellre än att försöka att beskriva alla de olika maskinvarukonfigurationerna som finns stöd för i <span class="phrase">64-bit PC</span> innehåller det här avsnittet allmän information och pekar till källor för ytterligare information. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm195"></a>2.1.1. Arkitekturer som stöds</h3></div></div></div>
+<p>Debian GNU/Linux 11 har stöd för 9 större arkitekturer och ett flertal variationer av varje arkitektur kända som <span class="quote">”<span class="quote">varianter</span>”</span>. </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Arkitektur</th>
+<th>Debian-beteckning</th>
+<th>Underarkitektur</th>
+<th>Variant</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 &amp; Intel 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">Intel x86-baserad</td>
+<td rowspan="2">i386</td>
+<td>standard x86-maskiner</td>
+<td>standard</td>
+</tr>
+<tr>
+<td>Endast Xen PV-domäner</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood och Orion</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>ARM med hårdvara FPU</td>
+<td>armhf</td>
+<td>multiplatform</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>64bit ARM</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">64bit MIPS (little-endian)</td>
+<td rowspan="3">mips64el</td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">32bit MIPS (little-endian)</td>
+<td rowspan="3">mipsel</td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Power Systems</td>
+<td>ppc64el</td>
+<td>IBM POWER8 eller nyare maskiner</td>
+<td> </td>
+</tr>
+<tr>
+<td>64bit IBM S/390</td>
+<td>s390x</td>
+<td>IPL från VM-läsare och DASD</td>
+<td>generisk</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>Det här dokumentet täcker in installationen för <span class="emphasis"><em><span class="phrase">64-bit PC</span></em></span>--arkitekturen med <span class="emphasis"><em>Linux</em></span>-kärnan. Om du letar efter information om någon av de andra arkitekturerna som Debian stöder kan du se på sidorna för <a class="ulink" href="http://www.debian.org/ports/" target="_top">Debian-porteringar</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm274"></a>2.1.2. CPU-stöd</h3></div></div></div>
+<p>Både AMD64 och Intel 64-processorer stöds. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="laptops"></a>2.1.3. Bärbara datorer</h3></div></div></div>
+<p>From a technical point of view, laptops are normal PCs, so all information regarding PC systems applies to laptops as well. Installations on laptops nowadays usually work out of the box, including things like automatically suspending the system on closing the lid and laptop specfic hardware buttons like those for disabling the wifi interfaces (<span class="quote">”<span class="quote">airplane mode</span>”</span>). Nonetheless sometimes the hardware vendors use specialized or proprietary hardware for some laptop-specific functions which might not be supported. To see if your particular laptop works well with GNU/Linux, see for example the <a class="ulink" href="https://www.linux-laptop.net/" target="_top">Linux Laptop pages</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm282"></a>2.1.4. Flera processorer</h3></div></div></div>
+<p>Multiprocessor support — also called <span class="quote">”<span class="quote">symmetric multiprocessing</span>”</span> or SMP — is available for this architecture. The standard Debian 11 kernel image has been compiled with <em class="firstterm">SMP-alternatives</em> support. This means that the kernel will detect the number of processors (or processor cores) and will automatically deactivate SMP on uniprocessor systems. </p>
+<p>Having multiple processors in a computer was originally only an issue for high-end server systems but has become common in recent years nearly everywhere with the introduction of so called <span class="quote">”<span class="quote">multi-core</span>”</span> processors. These contain two or more processor units, called <span class="quote">”<span class="quote">cores</span>”</span>, in one physical chip. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.5. Stöd för grafikhårdvara</h3></div></div></div>
+<p>Debian's support for graphical interfaces is determined by the underlying support found in X.Org's X11 system, and the kernel. Basic framebuffer graphics is provided by the kernel, whilst desktop environments use X11. Whether advanced graphics card features such as 3D-hardware acceleration or hardware-accelerated video are available, depends on the actual graphics hardware used in the system and in some cases on the installation of additional <span class="quote">”<span class="quote">firmware</span>”</span> blobs (see <a class="xref" href="ch02s02.html" title="2.2. Enheter som kräver fast programvara">Avsnitt 2.2, ”Enheter som kräver fast programvara”</a>). </p>
+<p>On modern PCs, having a graphical display usually works out of the box. For quite a lot of hardware, 3D acceleration also works well out of the box, but there is still some hardware that needs binary firmware blobs to work well. In some cases there have been reports about hardware on which installation of additional graphics card firmware was required even for basic graphics support. </p>
+<p>Detaljer om grafikhårdvaraoch pekenheter kan hittas på <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a>. Debian 11 skickar med X.Org version 7.7. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.6. Maskinvara för anslutning till nätverk</h3></div></div></div>
+<p>Nästan alla nätverkskort (NIC) som stöds av Linux-kärnan stöds även av installationssystemet; modulära drivrutiner ska vanligtvis läsas in automatiskt. <span class="phrase">Det här inkluderat de flesta PCI/PCI-Express-kort samt PCMCIA / Express-kort på bärbara datorer</span>  </p>
+<p>ISDN stöds men inte under installationen. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="nics-wireless"></a>2.1.6.1. Trådlösa nätverkskort</h4></div></div></div>
+<p>Trådlösa nätverk stöds i allmänhet också och ett växande antal av trådlösa nätverkskort stöds av den officiella Linux-kärnan, även om många av dem kräver att fast programvara läses in. </p>
+<p>Om fast programvara krävs så kommer installationsprogrammet att fråga dig om att läsa in den fasta programvaran. Se <a class="xref" href="ch06s04.html" title="6.4. Läsa in saknad fast programvara">Avsnitt 6.4, ”Läsa in saknad fast programvara”</a> för ytterligare information om hur man läser in fast programvara under installationen. </p>
+<p>Trådlösa nätverkskort som inte stöds av den officiella Linux-kärnan går i allmänhet att få igång under Debian GNU/Linux men de stöds inte under installationen. </p>
+<p>Om det uppstår ett problem med det trådlösa och det inte finns något annat nätverkskort som du kan använda under installationen så är det fortfarande möjligt att installera Debian GNU/Linux med en komplett cd-rom- eller dvd-avbildning. Välj alternativet att inte konfigurera ett nätverk och installera endast de paket som finns tillgängliga på cd/dvd-skivan. Du kan sedan installera drivrutinen och den fasta programvara som du behöver efter att installationen är färdigställd (efter omstarten) och konfigurera ditt nätverk manuellt. </p>
+<p>I vissa fall finns drivrutinen du behöver inte tillgänglig som ett Debian-paket. Du kommer då att behöva leta om det finns källkod tillgänglig på Internet och själv bygga drivrutinen. Hur man gör det här är utanför omfånget för den här handboken. <span class="phrase">Om ingen Linux-drivrutin finns tillgänglig, är din sista utväg att använda paketet <code class="classname">ndiswrapper</code>, vilket tillåter att du använder en drivrutin från Windows.</span> </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="braille-displays"></a>2.1.7. Punktskriftsskärmar</h3></div></div></div>
+<p>Stöd för punktskriftsskärmar bestäms av det underliggande stödet som finns i <code class="classname">brltty</code>. De flesta skärmar fungerar under <code class="classname">brltty</code>, anslutna via antingen en serieport, USB eller Bluetooth. Information om vilka punktskriftsenheter som stöds kan hittas på <a class="ulink" href="https://brltty.app/" target="_top"><code class="classname">webbplatsen för </code>brltty</a>. Debian GNU/Linux 11 levereras med <code class="classname">brltty</code> version 6.3. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="hardware-speech-synthesis"></a>2.1.8. Talsyntes (maskinvara)</h3></div></div></div>
+<p>Stöd för talsyntes (maskinvara) bestäms av det underliggande stödet som finns i <code class="classname">speakup</code>. <code class="classname">speakup</code> har endast stöd för integrerade kort och external enheter anslutnas till en serieport (inga USB-, serie-till-USB- eller PCI-adaptrar stöds). Information om stöd för talsyntesenheter (maskinvara) kan hittas på <a class="ulink" href="http://www.linux-speakup.org/" target="_top"><code class="classname">webbplatsen</code> för <code class="classname">speakup</code></a>. Debian GNU/Linux 11 levereras med <code class="classname">speakup</code> version 3.1.6. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.9. Kringutrustning och annan maskinvara</h3></div></div></div>
+<p>Linux har stöd för ett stort antal maskinvaruenheter såsom möss, skrivare, skannrar, PCMCIA/CardBus/ExpressCard och USB-enheter. Dock krävs inte de flesta av dessa enheter vid installation av systemet. </p>
+<p>USB hardware generally works fine. On some very old PC systems some USB keyboards may require additional configuration (see <a class="xref" href="ch03s06.html#hardware-issues" title="3.6.6. Maskinvaruproblem att se upp för">Avsnitt 3.6.6, ”Maskinvaruproblem att se upp för”</a>). On modern PCs, USB keyboards and mice work without requiring any specific configuration. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="Upp"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Kapitel 2. Systemkrav </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Hem"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. Enheter som kräver fast programvara</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

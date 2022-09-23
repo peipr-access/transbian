@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>6.1. Funcionamiento del instalador</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guía Debian GNU/Linux de instalación">
+<link rel="up" href="ch06.html" title="Capítulo 6. Usar el instalador de Debian">
+<link rel="prev" href="ch06.html" title="Capítulo 6. Usar el instalador de Debian">
+<link rel="next" href="ch06s02.html" title="6.2. Introducción a los componentes">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">6.1. Funcionamiento del instalador</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch06.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítulo 6. Usar el instalador de Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch06s02.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm1793"></a>6.1. Funcionamiento del instalador</h2></div></div></div>
+<p>For this architecture the <code class="classname">debian-installer</code> supports two different user interfaces: a graphical one and a text-based one. The graphical interface is used by default unless you select an <span class="quote">“<span class="quote">Install</span>”</span> option in the boot menu. For more information about booting the graphical installer, please refer to <a class="xref" href="ch05s01.html#graphical" title="5.1.8. El Instalador Gráfico">Sección 5.1.8, “El Instalador Gráfico”</a>. </p>
+<p>El instalador de Debian está compuesto por un conjunto de componentes de propósito específico para realizar cada tarea de la instalación. Cada componente realiza una tarea, formulando al usuario las preguntas que sean necesarias para realizar su trabajo. Se asignan prioridades a cada una de las preguntas, definiendo al arrancar el instalador la prioridad de las preguntas a mostrar. </p>
+<p>Cuando se realiza una instalación estándar, solamente se formularán las preguntas esenciales (prioridad alta). Esto tiene como consecuencia un proceso de instalación altamente automatizado y con poca interacción del usuario. Los componentes son ejecutados automáticamente en una secuencia predeterminada. Los componentes a ejecutar dependerán del método de instalación que use y de su hardware. El instalador usará los valores predeterminados para las preguntas que no son formuladas. </p>
+<p>Cuando exista un problema, el usuario verá el error en pantalla, y es posible que se muestre el menú del instalador para que elija de éste alguna acción alternativa. El usuario no verá el menú del instalador si no se produce ningún problema, simplemente tendrá que responder las preguntas formuladas por cada componente en cada paso. Se fija prioridad crítica (<span class="quote">“<span class="quote">critical</span>”</span>) para cualquier notificación de un error serio, por lo que el usuario siempre será notificado de estos. </p>
+<p>Algunos de los valores predeterminados que usa el instalador pueden ser modificados mediante la introducción de argumentos de arranque en el inicio del <code class="classname">debian-installer</code>. Si, por ejemplo, desea forzar la configuración de red estática (se usa autoconfiguración IPv6 y DHCP como opción predeterminada si este protocolo está disponible), puede utilizar el parámetro de arranque <strong class="userinput"><code>netcfg/disable_autoconfig=true</code></strong>. Puede consultar todas las opciones disponibles en <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Parámetros del instalador de Debian">Sección 5.3.2, “Parámetros del instalador de Debian”</a>. </p>
+<p>Es posible que los usuarios avanzados estén más cómodos si utilizan la interfaz basada en menú, donde el control de cada paso lo tiene el usuario en lugar de que éstos se ejecuten de forma automática en una secuencia predeterminada por el instalador. Para usar el instalador en el modo manual, gestionado a través de un menú, añada el argumento de arranque <strong class="userinput"><code>priority=medium</code></strong>. </p>
+<p>Deberá iniciar el instalador en modo <span class="quote">“<span class="quote">expert</span>”</span> si para hacer funcionar o detectar su hardware es necesario que indique opciones para los módulos del núcleo conforme se instalen. Esto puede realizarse ya sea usando la orden <span class="command"><strong>expert</strong></span> al iniciar el instalador o bien añadiendo el argumento de arranque <strong class="userinput"><code>priority=low</code></strong>. El modo experto le da control total del <code class="classname">debian-installer</code>. </p>
+<p>In the text-based environment the use of a mouse is not supported. Here are the keys you can use to navigate within the various dialogs. The <span class="keycap"><strong>Tab</strong></span> or <span class="keycap"><strong>right</strong></span> arrow keys move <span class="quote">“<span class="quote">forward</span>”</span>, and the <span class="keycap"><strong>Shift</strong></span>+<span class="keycap"><strong>Tab</strong></span> or <span class="keycap"><strong>left</strong></span> arrow keys move <span class="quote">“<span class="quote">backward</span>”</span> between displayed buttons and selections. The <span class="keycap"><strong>up</strong></span> and <span class="keycap"><strong>down</strong></span> arrow select different items within a scrollable list, and also scroll the list itself. In addition, in long lists, you can type a letter to cause the list to scroll directly to the section with items starting with the letter you typed and use <span class="keycap"><strong>Pg-Up</strong></span> and <span class="keycap"><strong>Pg-Down</strong></span> to scroll the list in sections. The <span class="keycap"><strong>space bar</strong></span> selects an item such as a checkbox. Use <span class="keycap"><strong>Enter</strong></span> to activate choices. </p>
+<p>Puede que algunos diálogos ofrezcan información de ayuda adicional. Si se ofrece ayuda, se indicará en la parte inferior de la pantalla mostrando que puede acceder a la información de ayuda pulsando la tecla <span class="keycap"><strong>F1</strong></span>. </p>
+<p>Los mensajes de error y de registro se redireccionan a la cuarta consola. Puede acceder a ésta pulsando <span class="keycap"><strong>Alt Izq</strong></span>+<span class="keycap"><strong>F4</strong></span> (mantenga presionada la tecla <span class="keycap"><strong>Alt</strong></span> mientras presiona la tecla de función <span class="keycap"><strong>F4</strong></span>). Para volver al proceso de instalación principal pulse <span class="keycap"><strong>Alt Izq</strong></span>+<span class="keycap"><strong>F1</strong></span>. </p>
+<p>También puede encontrar los mensajes de error en <code class="filename">/var/log/syslog</code>. Este registro se copia a <code class="filename">/var/log/installer/syslog</code> en su nuevo sistema una vez finalizada la instalación. Durante el proceso de instalación puede encontrar otros mensajes en <code class="filename">/var/log/</code>, y en <code class="filename">/var/log/installer/</code> después de que el ordenador haya sido iniciado con el sistema instalado. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gtk-using"></a>6.1.1. Usar el instalador gráfico</h3></div></div></div>
+<p>El instalador gráfico funciona básicamente de la misma manera que el instalador en modo texto y por lo tanto, puede utilizar el resto de este manual para que le guíe durante el proceso de instalación. </p>
+<p>Si prefiere utilizar el teclado en lugar del ratón, hay dos cosas que debe saber. Para expandir una lista reducida (como la usada en la selección de países dentro de cada continente), puede utilizar las teclas <span class="keycap"><strong>+</strong></span> y <span class="keycap"><strong>-</strong></span>. En las preguntas que permiten seleccionar más de un elemento (p. ej., la selección de tareas), primero tiene que ubicarse con el tabulador en el botón <span class="guibutton">Continue</span> antes de seleccionar los elementos; si pulsa Enter se cambiará el estado de la selección pero no se activará <span class="guibutton">Continue</span>. </p>
+<p>Si algún cuadro de diálogo ofrece información de ayuda adicional, se le mostrará el botón <span class="guibutton">Ayuda</span>. En ese caso, podrá acceder a la información de ayuda activando el botón o pulsando la tecla <span class="keycap"><strong>F1</strong></span>. </p>
+<p>Para cambiar a otra consola, también tendrá que utilizar la tecla <span class="keycap"><strong>Ctrl</strong></span>, como si se tratara del Sistema de Ventanas X. Por ejemplo, para cambiar a la VT2 (el primer intérprete de depuración) tendría que utilizar la siguiente combinación de teclas: <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>Alt Izq</strong></span>+<span class="keycap"><strong>F2</strong></span>. El instalador gráfico se ejecuta en la VT5, por lo que para volver al instalador puede utilizar la siguiente combinación <span class="keycap"><strong>Alt Izq</strong></span>+<span class="keycap"><strong>F5</strong></span>. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch06.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch06.html"><img src="images/up.png" alt="Subir"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch06s02.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Capítulo 6. Usar el instalador de Debian </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inicio"></a></td>
+<td width="40%" align="right" valign="top"> 6.2. Introducción a los componentes</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

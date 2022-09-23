@@ -1,0 +1,235 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.1. Starta upp installationsprogrammet på 64-bit PC</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installationsguide">
+<link rel="up" href="ch05.html" title="Kapitel 5. Starta upp installationssystemet">
+<link rel="prev" href="ch05.html" title="Kapitel 5. Starta upp installationssystemet">
+<link rel="next" href="ch05s02.html" title="5.2. Hjälpmedel">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.1. Starta upp installationsprogrammet på <span class="phrase">64-bit PC</span>
+</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<th width="60%" align="center">Kapitel 5. Starta upp installationssystemet</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm1096"></a>5.1. Starta upp installationsprogrammet på <span class="phrase">64-bit PC</span>
+</h2></div></div></div>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Varning]" src="images/warning.png"></td>
+<th align="left">Varning</th>
+</tr>
+<tr><td align="left" valign="top"><p>Om du har andra operativsystem på din dator som du önskar att behålla (via en uppstartsmeny), bör du försäkra dig om att de har stängts av på ett korrekt sätt <span class="emphasis"><em>innan</em></span> du startar installationsprogrammet. Installation av ett operativsystem under tiden ett annat operativsystem står i viloläge (har växlats ut till disk) kan resultera i att tillståndsinformationen om operativsystemet går förlorad eller skadas, vilket kan leda till problem vid en omstart. </p></td></tr>
+</table></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notera]" src="images/note.png"></td>
+<th align="left">Notera</th>
+</tr>
+<tr><td align="left" valign="top"><p>För information om hur man startar upp det grafiska installationsprogrammet, se <a class="xref" href="ch05s01.html#graphical" title="5.1.8. Det grafiska installationsprogrammet">Avsnitt 5.1.8, ”Det grafiska installationsprogrammet”</a>. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-boot-x86"></a>5.1.1. Uppstart från USB-minne</h3></div></div></div>
+<p>If your computer will boot from USB, this will probably be the easiest route for installation. Assuming you have prepared everything from <span class="phrase"><a class="xref" href="ch03s06.html#boot-dev-select-x86" title="3.6.2. Val av uppstartsenhet">Avsnitt 3.6.2, ”Val av uppstartsenhet”</a></span> and <a class="xref" href="ch04s03.html" title="4.3. Förbereda filer för uppstart med USB-minne">Avsnitt 4.3, ”Förbereda filer för uppstart med USB-minne”</a>, just plug your USB stick into some free USB connector and reboot the computer. The system should boot up, and unless you have used the flexible way to build the stick and not enabled it, you should be presented with a graphical boot menu (on hardware that supports it). Here you can select various installer options, or just hit <span class="keycap"><strong>Enter</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1112"></a>5.1.2. Starta upp från optiskt media (CD/DVD)</h3></div></div></div>
+<p>If you have a set of optical discs, and your machine supports booting directly off those, great! Simply <span class="phrase"> configure your system for booting off an optical disc as described in <a class="xref" href="ch03s06.html#boot-dev-select-x86" title="3.6.2. Val av uppstartsenhet">Avsnitt 3.6.2, ”Val av uppstartsenhet”</a>, </span> insert the disc, reboot, and proceed to the next chapter. </p>
+<p>Observera att vissa optiska-enheter kan kräva speciella drivrutiner och kan därför vara otillgängliga i de tidiga stegen av installationen. Om det visar sig att det vanliga sättet att starta upp från en optisk skiva inte fungerar på din maskinvara, besök det här kapitlet igen och läs om alternativa kärnor och installationsmetoder som kan fungera för dig. </p>
+<p>Even if you cannot boot from optical disc, you can probably install the Debian system components and any packages you want from such disc. Simply boot using a different medium and when it's time to install the operating system, base system, and any additional packages, point the installation system at the optical drive. </p>
+<p>Om du har problem att starta upp, se <a class="xref" href="ch05s04.html" title="5.4. Felsök installationsprocessen">Avsnitt 5.4, ”Felsök installationsprocessen”</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-win32"></a>5.1.3. Starta upp från Windows</h3></div></div></div>
+<p>För att starta installationen från Windows, så kan du antingen </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Hämta installation media som beskrivet i <a class="xref" href="ch04s01.html" title="4.1. Officiella Debian GNU/Linux installationsavbildningar">Avsnitt 4.1, ”Officiella Debian GNU/Linux installationsavbildningar”</a> <span class="phrase">och <a class="xref" href="ch04s03.html" title="4.3. Förbereda filer för uppstart med USB-minne">Avsnitt 4.3, ”Förbereda filer för uppstart med USB-minne”</a></span> eller </p></li>
+<li class="listitem"><p>download a standalone Windows executable, which is available as <a class="ulink" href="http://ftp.se.debian.org/debian/tools/win32-loader/stable/win32-loader.exe" target="_top">tools/win32-loader/stable/win32-loader.exe</a> on the Debian mirrors. </p></li>
+</ul></div>
+<p>
+
+</p>
+<p>Om du ett optiskt installationsmedia, kommer ett förinstallationsprogram att startas automatiskt när du matar in skivan. I fall att Windows inte startar det automatiskt eller om du använder en USB-minnespinne, kan du starta det manuellt genom att gå in på enheten och starta <span class="command"><strong>setup.exe</strong></span>. </p>
+<p>Efter att programmet har startats så kommer ett par inledande frågor att ställas och systemet kommer att förberedas för att starta om till Debian GNU/Linux installationsprogrammet. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="install-from-dos"></a>5.1.4. Starta upp från DOS genom att använda loadlin</h3></div></div></div>
+<p>Starta i DOS (inte Windows). För att göra detta kan du till exempel starta från en återställnings-eller diagnos disk. </p>
+<p>If you can access the installation CD, change the current drive to the CD-ROM drive, e.g. </p>
+<div class="informalexample"><pre class="screen">
+d:
+</pre></div>
+<p> else make sure you have first prepared your hard disk as explained in <a class="xref" href="ch04s04.html#files-loadlin" title="4.4.2. Starta upp hårddiskinstalleraren från DOS genom att använda loadlin">Avsnitt 4.4.2, ”Starta upp hårddiskinstalleraren från DOS genom att använda <span class="command"><strong>loadlin</strong></span>”</a>, and change the current drive to it if needed. </p>
+<p>Enter the subdirectory for the flavor you chose, e.g., </p>
+<div class="informalexample"><pre class="screen">
+cd \install.<code class="filename">amd</code>
+</pre></div>
+<p> If you prefer using the graphical installer, enter the <code class="filename">gtk</code> sub-directory. </p>
+<div class="informalexample"><pre class="screen">
+cd gtk
+</pre></div>
+<p> Next, execute <span class="command"><strong>install.bat</strong></span>. The kernel will load and launch the installer system. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-initrd"></a>5.1.5. Uppstart från Linux med <span class="command"><strong>GRUB</strong></span>
+</h3></div></div></div>
+<p>För att starta upp installationsprogrammet från hårddisk måste du första hämta och placera de nödvändiga filerna som beskrivs i <a class="xref" href="ch04s04.html" title="4.4. Förbereda filer för uppstart med hårddisk">Avsnitt 4.4, ”Förbereda filer för uppstart med hårddisk”</a>. </p>
+<p>För <span class="command"><strong>GRUB2</strong></span>, så behöver du konfigurera två grundläggande saker i <code class="filename">/boot/grub/grub.cfg</code>: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>för att ladda <code class="filename">initrd.gz</code> installationsprogrammet vid uppstart; </p></li>
+<li class="listitem"><p>ha <code class="filename">vmlinuz</code> kärna som en RAM-disk som dess rotpartition. </p></li>
+</ul></div>
+<p>
+
+</p>
+<p>An entry for the installer would be for example: </p>
+<div class="informalexample"><pre class="screen">menuentry 'New Install' {
+insmod part_msdos
+insmod ext2
+set root='(hd0,msdos1)'
+linux /boot/newinstall/vmlinuz
+initrd /boot/newinstall/initrd.gz
+}
+</pre></div>
+<p>
+
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-tftp-x86"></a>5.1.6. Uppstart via TFTP</h3></div></div></div>
+<p>Uppstart från nätverket kräver att du har en nätverksanslutning och en TFTP-server konfigurerad för uppstarter (och antagligen även en DHCP-, RARP- eller BOOTP-server för automatisk närverkskonfiguration). </p>
+<p>The server-side setup to support network booting is described in <a class="xref" href="ch04s05.html" title="4.5. Förbered filerna för nätverksuppstart via TFTP">Avsnitt 4.5, ”Förbered filerna för nätverksuppstart via TFTP”</a>. </p>
+<p>Det finns olika sätt att göra en TFTP-uppstart på i386. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm1175"></a>5.1.6.1. Nätverkskort eller moderkort med stöd för PXE</h4></div></div></div>
+<p>Det kan vara så att ditt nätverkskort eller moderkort tillhandahåller funktionalitet för uppstart via PXE. Det är en återimplementation av TFTP-uppstart från <span class="trademark">Intel</span>™. Om så är fallet kan du konfigurera ditt BIOS/UEFI att starta upp från nätverket. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm1179"></a>5.1.6.2. Nätverkskort med Network BootROM</h4></div></div></div>
+<p>Det kan vara så att ditt nätverkskort erbjuder funktionalitet för att starta upp via TFTP. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm1182"></a>5.1.6.3. Etherboot</h4></div></div></div>
+<p><a class="ulink" href="http://www.etherboot.org" target="_top">Etherboot-projektet</a> erbjuder startdisketter och även ROM-filer som kan göra uppstarter via TFTP. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-screen"></a>5.1.7. Uppstartsskärmen</h3></div></div></div>
+<p>När installationsprogrammet startar bör du presenteras med en vänlig grafisk skärm som visar Debian logotypen och en meny: </p>
+<div class="informalexample"><pre class="screen">Debian GNU/Linux installer boot menu
+
+Graphical install
+Install
+Advanced options                            &gt;
+Accessible dark contrast installer menu     &gt;
+Help
+Install with speech synthesis
+</pre></div>
+<p>
+
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notera]" src="images/note.png"></td>
+<th align="left">Notera</th>
+</tr>
+<tr><td align="left" valign="top"><p>Den här grafiska skärmen kommer att se väldigt annorlunda ut beroende på hur din dator har startats (BIOS eller UEFI), men samma alternativ kommer att visas. </p></td></tr>
+</table></div>
+<p>Depending on the installation method you are using, the <span class="quote">”<span class="quote">Graphical install</span>”</span> option may not be available. Bi-arch images additionally have a 64 bit variant for each install option, right below it, thus almost doubling the number of options. </p>
+<p>For a normal installation, select either the <span class="quote">”<span class="quote">Graphical install</span>”</span> or the <span class="quote">”<span class="quote">Install</span>”</span> entry — using either the arrow keys on your keyboard or by typing the first (highlighted) letter — and press <span class="keycap"><strong>Enter</strong></span> to boot the installer. The <span class="quote">”<span class="quote">Graphical install</span>”</span> entry is already selected by default. </p>
+<p>Alternativet <span class="quote">”<span class="quote">Advanced options</span>”</span> ger dig åtkomst till en annan meny som låter dig starta upp installationsprogrammet i expertläge, räddningsläge och för automatiserade installationer. </p>
+<p>If you wish or need to add any boot parameters for either the installer or the kernel, press <span class="keycap"><strong>Tab</strong></span> (BIOS boot), or <span class="keycap"><strong>e</strong></span> then <span class="keycap"><strong>down arrow</strong></span> three times then <span class="keycap"><strong>end</strong></span> (UEFI boot). This will bring the boot command for the selected menu entry and allow you to edit it to suit your needs. Note that the keyboard layout at this point is still QWERTY. The help screens (see below) list some common possible options. Press <span class="keycap"><strong>Enter</strong></span> (BIOS boot) or <span class="keycap"><strong>F10</strong></span> (UEFI boot) to boot the installer with your options; pressing <span class="keycap"><strong>Esc</strong></span> will return you to the boot menu and undo any changes you made. </p>
+<p>Choosing the <span class="quote">”<span class="quote">Help</span>”</span> entry will result in the first help screen being displayed which gives an overview of all available help screens. To return to the boot menu after the help screens have been displayed, type <span class="quote">”<span class="quote">menu</span>”</span> at the boot prompt and press <span class="keycap"><strong>Enter</strong></span>. All help screens have a boot prompt at which the boot command can be typed: </p>
+<div class="informalexample"><pre class="screen">
+Press F1 for the help index, or ENTER to boot:
+</pre></div>
+<p> At this boot prompt you can either just press <span class="keycap"><strong>Enter</strong></span> to boot the installer with default options or enter a specific boot command and, optionally, boot parameters. A number of boot parameters which might be useful can be found on the various help screens. If you do add any parameters to the boot command line, be sure to first type the boot method (the default is <strong class="userinput"><code>install</code></strong>) and a space before the first parameter (e.g., <strong class="userinput"><code>install fb=false</code></strong>). </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notera]" src="images/note.png"></td>
+<th align="left">Notera</th>
+</tr>
+<tr><td align="left" valign="top"><p>Tangentbordet antas ha standardlayouten Amerikansk engelska vid det här tillfället. Detta betyder att om ditt tangentbord har en annan (språkspecifik) layout kan bokstäverna som visas på skärmen att vara olika från vad du förväntar dig när du anger parametrar. Wikipedia har ett <a class="ulink" href="https://en.wikipedia.org/wiki/Keyboard_layout#United_States" target="_top">schema över den amerikanska tangentbordslayouten</a> som kan användas som en referens för att hitta de korrekta tangenterna. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notera]" src="images/note.png"></td>
+<th align="left">Notera</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Om du använder ett system som har BIOS konfigurerat att använda en seriell konsoll så kanske du inte kan se den initiala startbilden vid uppstart av installationsprogrammet; du kanske inte ens ser uppstartsmenyn. Det samma kan ske om du installerar systemet via en fjärrhanteringsenhet som tillhandahåller ett textgränssnitt till VGA-konsollen. Exempel på dessa enheter inkluderar textkonsollen för Compaqs <span class="quote">”<span class="quote">integrated Lights Out</span>”</span> (iLO) och HP:s <span class="quote">”<span class="quote">Integrated Remote Assistant</span>”</span> (IRA). </p>
+<p>För att komma förbi den grafiska uppstartsskärmen kan du antingen i blindo trycka på <span class="keycap"><strong>Esc</strong></span> för att få en textuppstartsprompt eller (lika blint) trycka på <span class="quote">”<span class="quote">H</span>”</span> följt av <span class="keycap"><strong>Enter</strong></span> för att välja alternativet <span class="quote">”<span class="quote">Help</span>”</span>, som beskrivs här ovan. Efter det bör dina tangenttryckningar att ekas på prompten. För att förhindra installationsprogrammet från att använda framebufferten för resten av installationen kan du lägga till <strong class="userinput"><code>vga=normal fb=false</code></strong> till uppstartsprompten, som beskrivet i hjälptexten. </p>
+</td></tr>
+</table></div>
+<p>
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="graphical"></a>5.1.8. Det grafiska installationsprogrammet</h3></div></div></div>
+<p>The graphical version of the installer is only available for a limited number of architectures, including <span class="phrase">64-bit PC</span>. The functionality of the graphical installer is essentially the same as that of the text-based installer as it basically uses the same programs, but with a different frontend. </p>
+<p>Although the functionality is identical, the graphical installer still has a few significant advantages. The main advantage is that it supports more languages, namely those that use a character set that cannot be displayed with the text-based <span class="quote">”<span class="quote">newt</span>”</span> frontend. It also has a few usability advantages such as the option to use a mouse, and in some cases several questions can be displayed on a single screen. </p>
+<p>The graphical installer is available with all CD/DVD images and with the hd-media installation method. To boot the graphical installer simply select the relevant option from the boot menu. Expert and rescue mode for the graphical installer can be selected from the <span class="quote">”<span class="quote">Advanced options</span>”</span> menu. The previously used boot methods <strong class="userinput"><code>installgui</code></strong>, <strong class="userinput"><code>expertgui</code></strong> and <strong class="userinput"><code>rescuegui</code></strong> can still be used from the boot prompt which is shown after selecting the <span class="quote">”<span class="quote">Help</span>”</span> option in the boot menu. </p>
+<p>There is also a graphical installer image that can be netbooted. And there is a special <span class="quote">”<span class="quote">mini</span>”</span> ISO image<a href="#ftn.gtk-miniiso-x86" class="footnote" name="gtk-miniiso-x86"><sup class="footnote">[4]</sup></a>, which is mainly useful for testing. </p>
+<p>Precis som med det textbaserade installationsprogrammet är det möjligt att lägga till startparametrar när du startar det grafiska installationsprogrammet. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notera]" src="images/note.png"></td>
+<th align="left">Notera</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>The graphical installer requires significantly more memory to run than the text-based installer: 810MB. If insufficient memory is available, it will automatically fall back to the text-based <span class="quote">”<span class="quote">newt</span>”</span> frontend. </p>
+<p>If the amount of memory in your system is below 780MB, the graphical installer may fail to boot at all while booting the text-based installer would still work. Using the text-based installer is recommended for systems with little available memory. </p>
+</td></tr>
+</table></div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div id="ftn.gtk-miniiso-x86" class="footnote"><p><a href="#gtk-miniiso-x86" class="para"><sup class="para">[4] </sup></a> The mini ISO image can be downloaded from a Debian mirror as described in <a class="xref" href="ch04s02.html" title="4.2. Hämta filer från Debian-speglar">Avsnitt 4.2, ”Hämta filer från Debian-speglar”</a>. Look for <code class="filename">netboot/gtk/mini.iso</code>. </p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Upp"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Kapitel 5. Starta upp installationssystemet </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Hem"></a></td>
+<td width="40%" align="right" valign="top"> 5.2. Hjälpmedel</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

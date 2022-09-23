@@ -1,0 +1,182 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.3. Preparazione dei file per l'avvio da chiavetta USB</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guida all'installazione di Debian GNU/Linux">
+<link rel="up" href="ch04.html" title="Capitolo 4. Recupero dei supporti per l'installazione">
+<link rel="prev" href="ch04s02.html" title="4.2. Recupero dei file dai mirror Debian">
+<link rel="next" href="ch04s04.html" title="4.4. Preparazione dei file per l'avvio da disco fisso">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.3. Preparazione dei file per l'avvio da chiavetta USB</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Indietro"></a> </td>
+<th width="60%" align="center">Capitolo 4. Recupero dei supporti per l'installazione</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Avanti"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-usb-files"></a>4.3. Preparazione dei file per l'avvio da chiavetta USB</h2></div></div></div>
+<p>Per preparare la chiavetta USB, si raccomanda di utilizzare un sistema GNU/Linux con supporto USB già funzionante. Con gli attuali sistemi GNU/Linux la chiavetta USB dovrebbe essere riconosciuta non appena inserita. Se questo non accade, controllare che sia stato caricato il modulo del kernel usb-storage. All'inserimento, la chiavetta USB viene mappata su un device con nome <code class="filename">/dev/sdX</code>, dove <span class="quote">«<span class="quote">X</span>»</span> è una lettera nell'intervallo a-z. È possibile vedere su quale device è stata mappata la chiavetta USB eseguendo il comando <span class="command"><strong>lsblk</strong></span> prima e dopo averla inserita; un'altra possibilità è consultare l'output di <span class="command"><strong>dmesg</strong></span> (da root). Per scrivere sulla chiavetta potrebbe essere necessario disattivare la protezione dalla scrittura. </p>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Avvertimento]" src="images/warning.png"></td>
+<th align="left">Avvertimento</th>
+</tr>
+<tr><td align="left" valign="top"><p>La procedura descritta in questa sezione distrugge qualunque cosa sia presente sul device, fare attenzione a usare il nome corretto per il device della chiavetta USB. Se si usa il device sbagliato, potrebbe accadere, per esempio, di perdere tutte le informazioni su un disco fisso. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-isohybrid"></a>4.3.1. Preparazione di una chiavetta USB con un'immagine CD/DVD ibrida</h3></div></div></div>
+<p>Le immagini per l'installazione Debian per questa architettura sono create con la tecnologia <span class="command"><strong>isohybrid</strong></span>, ciò vuol dire che possono essere scritte direttamente sulla chiavetta USB, questo è un metodo estremamente semplice per creare un supporto per l'installazione. È sufficiente scegliere un'immagine (netinst, CD oppure DVD-1) di dimensione adatta alla capacità della chiavetta USB. Si veda <a class="xref" href="ch04s01.html" title="4.1. Immagini per l'installazione Debian GNU/Linux ufficiali">Sezione 4.1, «Immagini per l'installazione Debian GNU/Linux ufficiali»</a> per procurarsi l'immagine di un CD o DVD. </p>
+<p>In alternativa, per le chiavette USB estremamente piccole, con capacità di pochi megabyte, è possibile scaricare l'immagine <a class="ulink" href="http://ftp.it.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/netboot/mini.iso" target="_top">mini.iso</a> dalla directory <code class="filename">netboot</code> (nella posizione specificata in <a class="xref" href="ch04s02.html#where-files" title="4.2.1. Dove trovare i file per l'installazione">Sezione 4.2.1, «Dove trovare i file per l'installazione»</a>). </p>
+<p>È possibile scrivere l'immagine per l'installazione direttamente sulla chiavetta USB sovrascrivendone il contenuto attuale. Per esempio, con un sistema GNU/Linux, è possibile scrivere il file con l'immagine sulla chiavetta USB eseguendo, dopo essersi assicurati che la chiavetta non è montata: </p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>cp <em class="replaceable"><code>debian.iso</code></em> /dev/<em class="replaceable"><code>sdX</code></em></code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>sync</code></strong>
+</pre></div>
+<p> È possibile trovare informazioni su come fare questa operazione con altri sistemi operativi nelle <a class="ulink" href="https://www.debian.org/CD/faq/index.en.html#write-usb" target="_top">FAQ di Debian CD</a>. </p>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Importante]" src="images/important.png"></td>
+<th align="left">Importante</th>
+</tr>
+<tr><td align="left" valign="top"><p>L'immagine deve essere scritta sul device del disco e non su una partizione, cioè su /dev/sdb e non su /dev/sdb1. Non usare strumenti come <span class="command"><strong>unetbootin</strong></span> poiché modificano l'immagine. </p></td></tr>
+</table></div>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Importante]" src="images/important.png"></td>
+<th align="left">Importante</th>
+</tr>
+<tr><td align="left" valign="top"><p>La semplice scrittura dell'immagine per l'installazione sulla USB dovrebbe funzionare correttamente per la maggior parte degli utenti. Le altre possibilità descritte in seguito sono più complesse e particolarmente adatte a chi ha necessità particolari. </p></td></tr>
+</table></div>
+<p>L'immagine ibrida sulla chiavetta non occupa tutto lo spazio disponibile quindi potrebbe essere interessante usare lo spazio libero per i file con il firmware, per dei pacchetti oppure per altri file. Questo può essere utile se si dispone di una sola chiavetta USB oppure se si vuole tenere tutto ciò che serve in un solo dispositivo. </p>
+<p>Usando cfdisk o un altro strumento per il partizionamento creare un'altra partizione sulla chiavetta. Poi creare sulla partizione un filesystem FAT, montare la partizione e copiare o spacchettare il firmware al suo interno. Per esempio: </p>
+<div class="informalexample"><pre class="screen">
+# mkdosfs -n FIRMWARE /dev/sdX3
+# mount /dev/<em class="replaceable"><code>sdX3</code></em> /mnt
+# cd /mnt
+# tar zxvf <em class="replaceable"><code>/percorso/di/</code></em>firmware.tar.gz
+# cd /
+# umount /mnt
+</pre></div>
+<p> Fare attenzione a usare il nome di device della chiavetta USB. Il comando <span class="command"><strong>mkdosfs</strong></span> è contenuto nel pacchetto Debian <code class="classname">dosfstools</code>. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>Nel caso si sia scelto di scrivere <code class="filename">mini.iso</code> sulla chiavetta USB, la seconda partizione non deve essere creata perché, molto probabilmente, è già presente. Scollegare e poi ricollegare la chiavetta USB per rendere visibili le due partizioni. </p></td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-easy"></a>4.3.2. Copia manuale dei file sulla chiavetta USB</h3></div></div></div>
+<p>Prima che per le immagini Debian per l'installazione fosse utilizzata la tecnologia isoibrida venivano seguiti i metodi documentati nei prossimi capitoli per preparare l'avvio da dispositivi USB. Questi metodi sono stati superati dalla tecnica descritta in <a class="xref" href="ch04s03.html#usb-copy-isohybrid" title="4.3.1. Preparazione di una chiavetta USB con un'immagine CD/DVD ibrida">Sezione 4.3.1, «Preparazione di una chiavetta USB con un'immagine CD/DVD ibrida»</a> ma sono lasciati per motivi educativi e storici e potrebbero essere di aiuto per qualche utente. </p>
+<p>In alternativa al metodo descritto in <a class="xref" href="ch04s03.html#usb-copy-isohybrid" title="4.3.1. Preparazione di una chiavetta USB con un'immagine CD/DVD ibrida">Sezione 4.3.1, «Preparazione di una chiavetta USB con un'immagine CD/DVD ibrida»</a> copiare manualmente i file dell'installatore e l'immagine per l'installazione sulla chiavetta. Notare che la chiavetta USB deve essere da almeno 1 GB (è possibile fare anche installazioni più piccole seguendo <a class="xref" href="ch04s03.html#usb-copy-flexible" title="4.3.3. Copia manuale dei file sulla chiavetta USB — il modo flessibile">Sezione 4.3.3, «Copia manuale dei file sulla chiavetta USB — il modo flessibile»</a>). </p>
+<p>C'è un file all-in-one <a class="ulink" href="http://ftp.it.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/hd-media/boot.img.gz" target="_top">hd-media/boot.img.gz</a> che contiene non solo tutti i file dell'installatore (kernel compreso)<span class="phrase"> ma anche <code class="classname">syslinux</code> e il suo file di configurazione</span>. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>Notare che, nonostante la sua comodità, questo metodo ha lo svantaggio che la dimensione logica del device è limitata a 1 GB anche quando la capacità della chiavetta USB è superiore. Per poter ripristinare la capacità reale della chiavetta USB è necessario rifare le partizioni e creare dei nuovi filesystem. </p></td></tr>
+</table></div>
+<p>Estrarre questa immagine direttamente sulla chiavetta USB: </p>
+<div class="informalexample"><pre class="screen"># zcat boot.img.gz &gt; /dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p>
+
+</p>
+<p>Poi montare la chiavetta USB <span class="phrase">(<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX</code></em> /mnt</code></strong>),</span>  che adesso avrà <span class="phrase">un filesystem FAT,</span>  e copiarci l'immagine ISO di Debian (netinst o un CD completo; consultare <a class="xref" href="ch04s01.html" title="4.1. Immagini per l'installazione Debian GNU/Linux ufficiali">Sezione 4.1, «Immagini per l'installazione Debian GNU/Linux ufficiali»</a>). Infine smontare la chiavetta (<strong class="userinput"><code>umount /mnt</code></strong>). </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-flexible"></a>4.3.3. Copia manuale dei file sulla chiavetta USB — il modo flessibile</h3></div></div></div>
+<p>Chi preferisce avere più flessibilità o semplicemente vuole capire cosa sta facendo, dovrebbe usare questo metodo per scrivere i file sulla chiavetta. Uno dei vantaggi di questo metodo è quello che se la chiavetta USB è sufficientemente capiente, è possibile copiarci qualsiasi immagine ISO, persino quella di un DVD. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm836"></a>4.3.3.1. Partizionamento e installazione di un boot loader</h4></div></div></div>
+<p>Verrà spiegato come preparare la chiavetta per usare solo la prima partizione anziché l'intero dispositivo. </p>
+<p>Per far partire il kernel dopo aver avviato da un chiavetta USB è necessario mettere un bootloader sulla chiavetta. Nonostante il fatto che qualsiasi bootloader dovrebbe funzionare è più comodo usare <code class="classname">syslinux</code> dato che utilizza una partizione FAT16 e può essere riconfigurato semplicemente modificando un file di testo. Qualsiasi sistema operativo con supporto per il filesystem FAT può essere usato per fare delle modifiche alla configurazione del bootloader. </p>
+<p>È necessario installare i pacchetti <code class="classname">syslinux</code> e <code class="classname">mtools</code> sul proprio sistema. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Poiché la maggior parte delle chiavette USB viene venduta con una singola partizione FAT16 già configurata, probabilmente non sarà necessario partizionare né formattare la chiavetta. Invece, se fosse necessario preparare la chiavetta, usare <span class="command"><strong>cfdisk</strong></span> o un qualsiasi altro programma di partizionamento per creare una partizione FAT16<a href="#ftn.idm847" class="footnote" name="idm847"><sup class="footnote">[3]</sup></a>, installare un MBR con: </p>
+<div class="informalexample"><pre class="screen">
+# cat /usr/lib/syslinux/mbr/mbr.bin 
+&gt;/dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p> Infine creare il filesystem usando: </p>
+<div class="informalexample"><pre class="screen">
+# mkdosfs /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> Fare attenzione a usare il nome di device della chiavetta USB. Il comando <span class="command"><strong>mkdosfs</strong></span> è contenuto nel pacchetto Debian <code class="classname">dosfstools</code>. </p>
+</td></tr>
+</table></div>
+<p>Adesso che la chiavetta USB è correttamente partizionata, è necessario installare <code class="classname">syslinux</code> sulla partizione FAT16 con: </p>
+<div class="informalexample"><pre class="screen">
+# syslinux /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> Di nuovo fare attenzione a usare il nome corretto del device. La partizione non deve essere montata quando si avvia <span class="command"><strong>SYSLINUX</strong></span>, la procedura scrive il settore di avvio sulla partizione e crea il file <code class="filename">ldlinux.sys</code> che contiene il codice del bootloader. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm865"></a>4.3.3.2. Aggiunta dei file dell'installatore</h4></div></div></div>
+<p>Adesso occorre scegliere tra le due diverse varianti dell'installazione: la variante hd-media ha bisogno che sulla chiavetta ci sia un file ISO per l'installazione da cui caricare i moduli dell'installatore e il sistema di base. Invece l'installatore netboot caricherà tutto da un mirror Debian. </p>
+<p>A seconda della propria scelta è necessario scaricare alcuni file dell'installatore dalla sottodirectory hd-media oppure netboot di <a class="ulink" href="http://ftp.it.debian.org/debian/dists/bullseye/main/installer-amd64/current/images" target="_top">debian/dists/bullseye/main/installer-amd64/current/images/</a> da un qualsiasi mirror Debian: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p> <code class="filename">vmlinuz</code> o <code class="filename">linux</code> (kernel) </p></li>
+<li class="listitem"><p> <code class="filename">initrd.gz</code> (immagine del ramdisk iniziale) </p></li>
+</ul></div>
+<p> È possibile sceglie se usare la versione dell'installatore testuale (i file possono essere trovati direttamente in hd-media oppure netboot) o quella grafica (file da cercare nella rispettive sottodirectory <code class="filename">gtk</code>). </p>
+<p>Poi montare la partizione (<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX1</code></em> /mnt</code></strong>) e copiare i file scaricati nella directory principale della chiavetta: </p>
+<p>Poi è necessario un file di testo con nome <code class="filename">syslinux.cfg</code> nella directory principale della chiavetta che è il file di configurazione di syslinux, deve contenere almeno la riga seguente: </p>
+<div class="informalexample"><pre class="screen">
+default vmlinuz initrd=initrd.gz
+</pre></div>
+<p> Modificare il nome del binario del kernel in <span class="quote">«<span class="quote"><code class="filename">linux</code></span>»</span> se si sono utilizzati i file da <code class="filename">netboot</code>. </p>
+<p>Con l'installatore grafico (da <code class="filename">gtk</code>) occorre aggiungere <strong class="userinput"><code>vga=788</code></strong> alla riga; è possibile aggiungere anche altri parametri. </p>
+<p>Per attivare il prompt di avvio e permettere l'inserimento di altri parametri aggiungere una riga con <strong class="userinput"><code>prompt 1</code></strong>. </p>
+<p>Se si sono utilizzati i file da un'immagine <code class="filename">hd-media</code>, adesso si deve copiare il file ISO di un'immagine per l'installazione Debian sulla chiavetta (con la variante <code class="filename">netboot</code> non è necessario). </p>
+<p>È possibile usare una qualsiasi tra le immagini netinst o di un CD/DVD completo (vedere <a class="xref" href="ch04s01.html" title="4.1. Immagini per l'installazione Debian GNU/Linux ufficiali">Sezione 4.1, «Immagini per l'installazione Debian GNU/Linux ufficiali»</a>). Assicurarsi di sceglierne una che entra nella chiavetta. Notare che l'immagine <span class="quote">«<span class="quote">netboot <code class="filename">mini.iso</code></span>»</span> non può essere usata per questo scopo. </p>
+<p>Una volta finita la copia, smontare la chiavetta USB (<strong class="userinput"><code>umount /mnt</code></strong>). </p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div id="ftn.idm847" class="footnote"><p><a href="#idm847" class="para"><sup class="para">[3] </sup></a> Ricordarsi di attivare il flag <span class="quote">«<span class="quote">bootable</span>»</span>. </p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Indietro"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch04.html"><img src="images/up.png" alt="Risali"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Avanti"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.2. Recupero dei file dai mirror Debian </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Partenza"></a></td>
+<td width="40%" align="right" valign="top"> 4.4. Preparazione dei file per l'avvio da disco fisso</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

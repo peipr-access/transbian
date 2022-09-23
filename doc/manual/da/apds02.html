@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>D.2. Diskpladskrævet for opgaver</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Installationsguide for Debian GNU/Linux">
+<link rel="up" href="apd.html" title="Appendiks D. Diverse forklaringer">
+<link rel="prev" href="apds01.html" title="D.1. Linux-enheder">
+<link rel="next" href="apds03.html" title="D.3. Installation af Debian GNU/Linux fra et Unix/Linux-system">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">D.2. Diskpladskrævet for opgaver</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apds01.html"><img src="images/prev.png" alt="forrige"></a> </td>
+<th width="60%" align="center">Appendiks D. Diverse forklaringer</th>
+<td width="20%" align="right"> <a accesskey="n" href="apds03.html"><img src="images/next.png" alt="næste"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="tasksel-size-list"></a>D.2. Diskpladskrævet for opgaver</h2></div></div></div>
+<p>En standardinstallation for amd64-arkitekturen, inklusive alle standardpakker og brug af standardkernen, fylder 971MB diskplads. En minimal basisinstallation, uden <span class="quote">“<span class="quote">Standardsystem</span>”</span>-opgaven valgt, vil benytte 769MB. </p>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Vigtigt]" src="images/important.png"></td>
+<th align="left">Vigtigt</th>
+</tr>
+<tr><td align="left" valign="top"><p>I begge tilfælde er dette det faktiske diskforbrug brugt <span class="emphasis"><em>efter</em></span> installationen er færidg og eventuelle midlertidige filer er slettet. Tallene medtager heller ikke pladsbehov for filsystemet, for eksempel for journalfiler. Dette betyder at signifikant mere diskplads er krævet både <span class="emphasis"><em>under</em></span> installationen og under normal brug. </p></td></tr>
+</table></div>
+<p>Den følgende tabel viser størrelser rapporteret af aptitude for opgaverne vist i tasksel. Bemærk at nogle opgaver har overlappende bestanddele, så at den samlede installerede størrelse for to opgaver sammenlagt kan være mindre end det samlede beløb indhentet ved at lægge tallene sammen. </p>
+<p>By default the installer will install the GNOME desktop environment, but alternative desktop environments can be selected either by using one of the special installation images, or by specifying the desired desktop environment during installation (see <a class="xref" href="ch06s03.html#pkgsel" title="6.3.6.2. Valg af og installation af programmer">Afsnit 6.3.6.2, “Valg af og installation af programmer”</a>). </p>
+<p>Bemærk at du skal tilføje størrelserne vist i tabellen til størrelsen for standardinstallationen når du skal bestemme størrelsen for partitionerne. Det meste af den angivne størrelse vist som <span class="quote">“<span class="quote">Installeret størrelse</span>”</span> vil blive lagt i <code class="filename">/usr</code> og i <code class="filename">/lib</code>; størrelsen vist som <span class="quote">“<span class="quote">Overført størrelse</span>”</span> er (midlertidigt) krævet i <code class="filename">/var</code>. </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Opgave</th>
+<th>Installeret størrelse (MB)</th>
+<th>Størrelse at hente (MB)</th>
+<th>Plads krævet for installation (MB)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Skrivebordsmiljø</td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td>  • GNOME (standard)</td>
+<td>2790</td>
+<td>786</td>
+<td>3576</td>
+</tr>
+<tr>
+<td>  • KDE Plasma</td>
+<td>4122</td>
+<td>1212</td>
+<td>5334</td>
+</tr>
+<tr>
+<td>  • Xfce</td>
+<td>2187</td>
+<td>621</td>
+<td>2808</td>
+</tr>
+<tr>
+<td>  • LXDE</td>
+<td>2271</td>
+<td>653</td>
+<td>2924</td>
+</tr>
+<tr>
+<td>  • MATE</td>
+<td>2574</td>
+<td>711</td>
+<td>3285</td>
+</tr>
+<tr>
+<td>  • Cinnamon</td>
+<td>4197</td>
+<td>1251</td>
+<td>5448</td>
+</tr>
+<tr>
+<td>Internetserver</td>
+<td>44</td>
+<td>11</td>
+<td>55</td>
+</tr>
+<tr>
+<td>SSH-server</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>Hvis du installerer på et sprog forskellig fra engelsk, kan <span class="command"><strong>tasksel</strong></span> selv installere en <em class="firstterm">oversættelsesopgave</em>, hvis en sådan findes for dit sprog. Pladskravet er forskelligt per sprog; du skal forvente op til 350 MB samlet set for overførslen og installationen. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apds01.html"><img src="images/prev.png" alt="forrige"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apd.html"><img src="images/up.png" alt="op"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apds03.html"><img src="images/next.png" alt="næste"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">D.1. Linux-enheder </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="hjem"></a></td>
+<td width="40%" align="right" valign="top"> D.3. Installation af Debian GNU/Linux fra et Unix/Linux-system</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

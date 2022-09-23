@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C.5. Программы разметки в Debian</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Руководство по установке Debian GNU/Linux">
+<link rel="up" href="apc.html" title="Приложение C. Разметка дисков в Debian">
+<link rel="prev" href="apcs04.html" title="C.4. Имена устройств в Linux">
+<link rel="next" href="apd.html" title="Приложение D. Разное">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">C.5. Программы разметки в Debian</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<th width="60%" align="center">Приложение C. Разметка дисков в Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="partition-programs"></a>C.5. Программы разметки в Debian</h2></div></div></div>
+<p>Для работы с различными типами жёстких дисков и компьютерных архитектур разработчиками Debian были адаптированы несколько разновидностей программ разметки. На вашей машине могут работать программы, представленные в списке далее. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term"><span class="command"><strong>partman</strong></span></span></dt>
+<dd><p>Рекомендуемая утилита разметки в Debian. Этот швейцарский армейский нож может также изменять размеры разделов, создавать файловые системы <span class="phrase"> (как <span class="quote">«<span class="quote">format</span>»</span> в Windows)</span> и назначать им точки монтирования. </p></dd>
+<dt><span class="term"><span class="command"><strong>fdisk</strong></span></span></dt>
+<dd>
+<p>Самая первая программа разметки дисков в Linux, хороша для гуру. </p>
+<p>Будьте осторожны, если у вас на машине есть разделы FreeBSD. В устанавливаемые ядра включена поддержка этих разделов, но способ их отображения в <span class="command"><strong>fdisk</strong></span> может отличаться. Смотрите <a class="ulink" href="http://www.tldp.org/HOWTO/Linux+FreeBSD-2.html" target="_top">Linux+FreeBSD HOWTO</a> </p>
+</dd>
+<dt><span class="term"><span class="command"><strong>cfdisk</strong></span></span></dt>
+<dd>
+<p>Простая в использовании, полноэкранная программа разметки дисков для повседневного использования. </p>
+<p>Заметим, что <span class="command"><strong>cfdisk</strong></span> не понимает разделов FreeBSD, и ещё раз, поэтому имена устройств могут различаться. </p>
+</dd>
+</dl></div>
+<p>Одна из этих программ будет запущена по умолчанию, когда вы выберете <span class="guimenuitem">Разметка дисков</span> (или типа того). Возможно использовать другую утилиту разметки из командной строки на VT2, но это не рекомендуется. </p>
+<p>Не забудьте пометить раздел загрузки как <span class="quote">«<span class="quote">Загрузочный</span>»</span>. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4105"></a>C.5.1. Разметка для <span class="phrase">64-bit PC</span>
+</h3></div></div></div>
+<p>If you are using a new harddisk (or want to wipe out the whole partition table of your disk), a new partition table needs to be created. The <span class="quote">«<span class="quote">Guided partitioning</span>»</span> does this automatically, but when partitioning manually, move the selection on the top-level entry of the disk and hit <span class="keycap"><strong>Enter</strong></span>. That will create a new partition table on that disk. In expert mode, you will then be asked for the type of the partition table. Default for UEFI-based systems is <span class="quote">«<span class="quote">gpt</span>»</span>, while for the older BIOS world the default value is <span class="quote">«<span class="quote">msdos</span>»</span>. In a standard priority installation those defaults will be used automatically. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Примечание]" src="images/note.png"></td>
+<th align="left">Примечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>When a partition table with type <span class="quote">«<span class="quote">gpt</span>»</span> was selected (default for UEFI systems), a free space of 1 MB will automatically get created at the beginning of the disk. This is intended and required to embed the GRUB2 bootloader. </p></td></tr>
+</table></div>
+<p>Если у вас есть другие операционные системы, например, DOS или Windows, и вы хотите сохранить их, то может потребоваться изменить размеры их разделов, чтобы освободить больше пространства для Debian. Программа установки может изменять размеры файловых систем FAT и NTFS; на шаге разметки выберите <span class="guimenuitem">Вручную</span> и затем просто выберите имеющийся раздел и измените его размер. </p>
+<p>While modern UEFI systems don't have such limitations as listed below, the old PC BIOS generally adds additional constraints for disk partitioning. There is a limit to how many <span class="quote">«<span class="quote">primary</span>»</span> and <span class="quote">«<span class="quote">logical</span>»</span> partitions a drive can contain. Additionally, with pre 1994–98 BIOSes, there are limits to where on the drive the BIOS can boot from. More information can be found in the <a class="ulink" href="http://www.tldp.org/HOWTO/Partition/" target="_top">Linux Partition HOWTO</a>, but this section will include a brief overview to help you plan most situations. </p>
+<p><span class="quote">«<span class="quote">Первичные</span>»</span> разделы присутствовали в первоначальной схеме разметки дисков на PC. Однако, их может быть только четыре. Чтобы обойти это ограничение, были придуманы <span class="quote">«<span class="quote">расширенные</span>»</span> и <span class="quote">«<span class="quote">логические</span>»</span> разделы. Пометив один из первичных разделов как расширенный, вы можете поделить всё его пространство на логические разделы. Вы можете создать до 60 логических разделов на расширенном разделе; однако, вы можете иметь только один расширенный раздел на диске. </p>
+<p>Linux ограничивает количество разделов до 255 на SCSI дисках (3 первичных раздела, 252 логических разделов), и 63 раздела на IDE дисках (3 первичных раздела, 60 логических разделов). Однако, обычная система Debian GNU/Linux предоставляет только 20 устройств под разделы, поэтому вы не сможете произвести установку на раздел выше чем 20, если только сначала вручную не создадите устройства для этих разделов. </p>
+<p>Если вы имеете большой IDE диск и не используете ни LBA адресацию, ни драйвера поддержки (иногда предоставляемого производителем жёсткого диска), то загрузочный раздел (раздел, содержащий образ ядра) должен располагаться в пределах первых 1024 цилиндров жёсткого диска (обычно, это 524 мегабайта без BIOS трансляции). </p>
+<p>This restriction doesn't apply if you have a BIOS newer than around 1995–98 (depending on the manufacturer) that supports the <span class="quote">«<span class="quote">Enhanced Disk Drive Support Specification</span>»</span>. Debian's Lilo alternative <span class="command"><strong>mbr</strong></span> must use the BIOS to read the kernel from the disk into RAM. If the BIOS int 0x13 large disk access extensions are found to be present, they will be utilized. Otherwise, the legacy disk access interface is used as a fall-back, and it cannot be used to address any location on the disk higher than the 1023rd cylinder. Once Linux is booted, no matter what BIOS your computer has, these restrictions no longer apply, since Linux does not use the BIOS for disk access. </p>
+<p>Если вы имеете большой диск, то можете использовать технологию трансляции цилиндров, которую можно включить в BIOS; она называется LBA (логическая адресация блоков) или режим трансляции CHS (<span class="quote">«<span class="quote">Large</span>»</span>). Подробную информацию о проблемах с большими жёсткими дисками можно найти в <a class="ulink" href="http://www.tldp.org/HOWTO/Large-Disk-HOWTO.html" target="_top">HOWTO по большим дискам</a>. Если вы используете схему трансляции цилиндров, а BIOS не поддерживает расширения доступа к большим жёстким дискам, то ваш загрузочный раздел должен попадать в <span class="emphasis"><em>транслированное</em></span> представление первых 1024-х цилиндров. </p>
+<p>Рекомендуемый путь выполнения этого условия — создать маленький (25–50 МБ должно хватить) раздел в начале диска, для использования в качестве загрузочного раздела, а затем создавать любые нужные разделы в оставшейся области. Загрузочный раздел <span class="emphasis"><em>должен</em></span> быть смонтирован в <code class="filename">/boot</code>, так как в этом каталоге хранятся ядра Linux. Такая конфигурация будет работать на любой системе, независимо используется ли трансляции LBA больших дисков или CHS, и независимо от того поддерживает ли BIOS расширение для доступа к большим дискам. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apc.html"><img src="images/up.png" alt="Наверх"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">C.4. Имена устройств в Linux </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Начало"></a></td>
+<td width="40%" align="right" valign="top"> Приложение D. Разное</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

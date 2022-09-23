@@ -1,0 +1,182 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.3. Preparación de ficheros para el arranque desde un dispositivo de memoria USB</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guía Debian GNU/Linux de instalación">
+<link rel="up" href="ch04.html" title="Capítulo 4. Obtener el soporte de instalación del sistema">
+<link rel="prev" href="ch04s02.html" title="4.2. Descarga de ficheros desde réplicas de Debian">
+<link rel="next" href="ch04s04.html" title="4.4. Preparación de los ficheros para arranque desde el disco duro">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.3. Preparación de ficheros para el arranque desde un dispositivo de memoria USB</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítulo 4. Obtener el soporte de instalación del sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-usb-files"></a>4.3. Preparación de ficheros para el arranque desde un dispositivo de memoria USB</h2></div></div></div>
+<p>Para preparar la memoria USB, recomiendamos utilizar un sistema en el que ya se esté ejecutando GNU/Linux y con soporte USB. Con los sistemas GNU/Linux actuales, debería reconocer automáticamente la memoria USB al insertarla. Si no es así, debes comprobar que el módulo del kernel usb-storage está cargado. Cuando se inserta la memoria USB, se asigna a un dispositivo llamado <code class="filename">/dev/sdX</code>, donde <span class="quote">“<span class="quote">X</span>”</span> es una letra en el rango a-z. Deberías poder ver a qué dispositivo se ha asignado la memoria USB ejecutando el comando <span class="command"><strong>lsblk</strong></span> antes y después de insertarla. (La salida de <span class="command"><strong>dmesg</strong></span> (como root) es otro método posible para ello). Para escribir en tu pendrive, puede que tengas que desactivar su interruptor de protección contra escritura. </p>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Aviso]" src="images/warning.png"></td>
+<th align="left">Aviso</th>
+</tr>
+<tr><td align="left" valign="top"><p>¡Los procedimientos descritos en esta sección destruirán todo el contenido del dispositivo! Asegúrate de elegir correctamente el nombre del dispositivo para tu memoria USB. Si usas el dispositivo incorrecto podrías terminar perdiendo toda la información de, por ejemplo, un disco duro. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-isohybrid"></a>4.3.1. Preparación de una memoria USB utilizando una imagen híbrida de CD/DVD</h3></div></div></div>
+<p>Las imágenes de instalación de Debian para esta arquitectura se crean usando la tecnología <span class="command"><strong>isohybrid</strong></span>; esto significa que pueden escribirse directamente en una memoria USB, lo que es una forma muy fácil de hacer un medio de instalación. Simplemente elige una imagen (como la netinst, CD o DVD-1) que quepa en tu memoria USB. Consulta <a class="xref" href="ch04s01.html" title="4.1. Imágenes oficiales de Debian GNU/Linux de instalación">Sección 4.1, “Imágenes oficiales de Debian GNU/Linux de instalación”</a> para obtener una imagen de instalación. </p>
+<p>Opcionalmente, para memorias USB de muy poca capacidad, puede descargar la imagen <a class="ulink" href="http://ftp.es.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/netboot/mini.iso" target="_top">mini.iso</a> desde el directorio <code class="filename">netboot</code> (en la ubicación mencionada en <a class="xref" href="ch04s02.html#where-files" title="4.2.1. Dónde encontrar los archivos de instalación">Sección 4.2.1, “Dónde encontrar los archivos de instalación”</a>). </p>
+<p>Debe escribir la imagen de instalación seleccionada directamente en la memoria USB, reemplazando la totalidad de su contenido actual. Por ejemplo, si utiliza un sistema GNU/Linux, puede escribir el archivo de la imagen en la memoria USB de la siguiente manera, después de comprobar que se ha desmontado el dispositivo USB: </p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>cp <em class="replaceable"><code>debian.iso</code></em> /dev/<em class="replaceable"><code>sdX</code></em></code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>sync</code></strong>
+</pre></div>
+<p> Puede encontrar más información de cómo hacer esta operación en otros sistemas operativos en las <a class="ulink" href="https://www.debian.org/CD/faq/index.en.html#write-usb" target="_top">PUF Debian CD</a>. </p>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Importante]" src="images/important.png"></td>
+<th align="left">Importante</th>
+</tr>
+<tr><td align="left" valign="top"><p>La imagen debe escribirse en el dispositivo del disco completo y no en una partición, p. ej. /dev/sdb y no /dev/sdb1. No utilice herramientas como <span class="command"><strong>unetbootin</strong></span> que alteran la imagen. </p></td></tr>
+</table></div>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Importante]" src="images/important.png"></td>
+<th align="left">Importante</th>
+</tr>
+<tr><td align="left" valign="top"><p>Simplemente escribiendo una imagen de instalación a un USB como se indica será suficiente para la mayoría de usuarios. Las siguientes opciones son más complejas, generalmente para personas con necesidades especiales. </p></td></tr>
+</table></div>
+<p>La imagen híbrido en el dispositivo no ocupa todo el espacio de almacenamiento, con lo que considere utilizar el espacio libre para almacenar ficheros de «firmware», paquetes o cualquier tipo de fichero que quiera. Puede ser útil si solo se dispone de un dispositivo o simplemente desea almacenar todo en un único dispositivo. </p>
+<p>Para ello, utiliza cfdisk o cualquier otra herramienta de particionado para crear una partición adicional en el stick. A continuación, cree un sistema de archivos (FAT) en la partición, móntala y copia o desempaqueta el firmware en ella, por ejemplo con: </p>
+<div class="informalexample"><pre class="screen">
+# mkdosfs -n FIRMWARE /dev/sdX3
+# mount /dev/<em class="replaceable"><code>sdX3</code></em> /mnt
+# cd /mnt
+# tar zxvf <em class="replaceable"><code>/path/to/</code></em>firmware.tar.gz
+# cd /
+# umount /mnt
+</pre></div>
+<p> Ten cuidado de utilizar el nombre de dispositivo correcto para la memoria USB. El comando <span class="command"><strong>mkdosfs</strong></span> está contenido en el paquete <code class="classname">dosfstools</code> Debian. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>Puede que hayas escrito el fichero <code class="filename">mini.iso</code> en el dispositivo USB. En este caso, la creación de la segunda partición no es necesaria, ya que está presente. Desconectar y reconectar el dispositivo USB debería mostrar las dos particiones. </p></td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-easy"></a>4.3.2. Copia manual de los ficheros a la memoria USB</h3></div></div></div>
+<p>Antes de que se utilizara la tecnología isohybrid para las imágenes de instalación Debian, se utilizaban los métodos documentados en los capítulos siguientes para preparar los medios para arrancar desde dispositivos USB. Estos han sido reemplazados por la técnica en <a class="xref" href="ch04s03.html#usb-copy-isohybrid" title="4.3.1. Preparación de una memoria USB utilizando una imagen híbrida de CD/DVD">Sección 4.3.1, “Preparación de una memoria USB utilizando una imagen híbrida de CD/DVD”</a>, pero se han dejado aquí con fines educativos e históricos y en caso de que sean útiles para algún usuario. </p>
+<p>Una alternativa al método descrito en <a class="xref" href="ch04s03.html#usb-copy-isohybrid" title="4.3.1. Preparación de una memoria USB utilizando una imagen híbrida de CD/DVD">Sección 4.3.1, “Preparación de una memoria USB utilizando una imagen híbrida de CD/DVD”</a> es copiar manualmente los archivos del instalador, y también una imagen de instalación en la memoria USB. Ten en cuenta que la memoria USB debe tener un tamaño mínimo de 1 GB (es posible realizar configuraciones más pequeñas utilizando los archivos de netboot, siguiendo <a class="xref" href="ch04s03.html#usb-copy-flexible" title="4.3.3. Copia manual de los archivos a la memoria USB: la forma flexible">Sección 4.3.3, “Copia manual de los archivos a la memoria USB: la forma flexible”</a>). </p>
+<p>Hay un archivo todo-en-uno <a class="ulink" href="http://ftp.es.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/hd-media/boot.img.gz" target="_top">hd-media/boot.img.gz</a> que contiene todos los archivos del instalador (incluyendo el kernel)<span class="phrase"> así como <code class="classname">syslinux</code> y su archivo de configuración</span>. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>Tenga en cuenta que, aunque es conveniente, este método tiene una gran desventaja: el tamaño lógico del dispositivo se limitará a 1 GB, incluso si la capacidad de la memoria USB es mayor. Si quiere contar con la capacidad completa de la memoria posteriormente para un uso diferente, tendrá que reparticionarla y crear un nuevo sistema de ficheros. </p></td></tr>
+</table></div>
+<p>Simplemente extrae esta imagen directamente a la memoria USB: </p>
+<div class="informalexample"><pre class="screen"># zcat boot.img.gz &gt;/dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p>
+
+</p>
+<p>Después de esto, monta la memoria USB <span class="phrase">(<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX</code></em> /mnt</code></strong>),</span>  que ahora tendrá un sistema de ficheros <span class="phrase">FAT</span>  en ella, y copia una imagen ISO de Debian (instalar por red o CD completo; ver <a class="xref" href="ch04s01.html" title="4.1. Imágenes oficiales de Debian GNU/Linux de instalación">Sección 4.1, “Imágenes oficiales de Debian GNU/Linux de instalación”</a>) en la misma. Desmonta el USB (<strong class="userinput"><code>umount /mnt</code></strong>) y habrás terminado. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-flexible"></a>4.3.3. Copia manual de los archivos a la memoria USB: la forma flexible</h3></div></div></div>
+<p>Si desea más flexibilidad o simplemente le gusta saber que ocurre, podría usar el siguiente método para colocar los ficheros en su dispositivo USB. Una ventaja de este método es que — si la capacidad de su memoria USB es lo suficientemente grande — tendrá la opción de copiar cualquier imagen ISO, incluso una imagen DVD, en dicha memoria. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm837"></a>4.3.3.1. Particionar y añadir un gestor de arranque</h4></div></div></div>
+<p>Le mostraremos como configurar una memoria USB para usar la primera partición en lugar de todo el dispositivo. </p>
+<p>Para iniciar el núcleo después de arrancar desde el dispositivo USB, necesitaremos colocar un gestor de arranque en él. Aunque cualquier gestor de arranque debería funcionar, es conveniente usar <code class="classname">syslinux</code>, puesto que usa una partición FAT16 y puede reconfigurarse con sólo editar un fichero de texto. Puede usar cualquier sistema operativo compatible con el sistema de ficheros FAT para hacer cambios en la configuración del gestor de arranque. </p>
+<p>First, you need to install the <code class="classname">syslinux</code> and <code class="classname">mtools</code> packages on your system. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Dado que la mayoría de las memorias USB vienen preconfiguradas con una única partición FAT16, probablemente no tendrás que reparticionar o reformatear la memoria. Si tienes que hacerlo de todos modos, usa <span class="command"><strong>cfdisk</strong></span> o cualquier otra herramienta de particionado para crear una partición FAT16 ahora<a href="#ftn.idm848" class="footnote" name="idm848"><sup class="footnote">[3]</sup></a>, y luego instalar un MBR usando: </p>
+<div class="informalexample"><pre class="screen">
+# cat /usr/lib/syslinux/mbr/mbr.bin 
+&gt;/dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p> Ahora crea el sistema de archivos usando: </p>
+<div class="informalexample"><pre class="screen">
+# mkdosfs /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> Ten cuidado de utilizar el nombre de dispositivo correcto para la memoria USB. El comando <span class="command"><strong>mkdosfs</strong></span> está contenido en el paquete <code class="classname">dosfstools</code> Debian. </p>
+</td></tr>
+</table></div>
+<p>Teniendo una memoria USB correctamente particionada (ahora), tienes que poner <code class="classname">syslinux</code> en la partición FAT16 con: </p>
+<div class="informalexample"><pre class="screen">
+# syslinux /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> De nuevo, ten cuidado de utilizar el nombre correcto del dispositivo. La partición no debe estar montada al iniciar <span class="command"><strong>syslinux</strong></span>. Este procedimiento escribe un sector de arranque en la partición y crea el archivo <code class="filename">ldlinux.sys</code> que contiene el código del cargador de arranque. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm866"></a>4.3.3.2. Adding the installer files</h4></div></div></div>
+<p>Hay dos variantes de instalación diferentes para elegir aquí: La variante hd-media necesita un archivo ISO de instalación en la memoria, para cargar los módulos del instalador y el sistema base. El instalador netboot, sin embargo, cargará todo eso desde una réplica de Debian . </p>
+<p>Según tu elección, tienes que descargar algunos archivos del instalador desde el subdirectorio hd-media o netboot de <a class="ulink" href="http://ftp.es.debian.org/debian/dists/bullseye/main/installer-amd64/current/images" target="_top">debian/dists/bullseye/main/installer-amd64/current/images/</a> en cualquier espejo de Debian: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p> <code class="filename">vmlinuz</code> o <code class="filename">linux</code> (kernel binario) </p></li>
+<li class="listitem"><p> <code class="filename">initrd.gz</code> (imagen inicial de ramdisk) </p></li>
+</ul></div>
+<p> Puedes elegir entre la versión de texto del instalador (los archivos se encuentran directamente en hd-media o netboot) o la versión gráfica (busca en los respectivos subdirectorios <code class="filename">gtk</code>). </p>
+<p>Then mount the partition (<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX1</code></em> /mnt</code></strong>) and copy the downloaded files to the root directory of the stick. </p>
+<p>A continuación, debes crear un archivo de texto llamado <code class="filename">syslinux.cfg</code> en el directorio raíz del stick como archivo de configuración para syslinux, que como mínimo debe contener la siguiente línea: </p>
+<div class="informalexample"><pre class="screen">
+default vmlinuz initrd=initrd.gz
+</pre></div>
+<p> Cambia el nombre del binario del kernel a <span class="quote">“<span class="quote"><code class="filename">linux</code></span>”</span> si has utilizado archivos de <code class="filename">netboot</code>. </p>
+<p>Para el instalador gráfico (de <code class="filename">gtk</code>) debes añadir <strong class="userinput"><code>vga=788</code></strong> al final de la línea. Se pueden añadir otros parámetros según se desee. </p>
+<p>Para activar la solicitud en el arranque para permitir la suma de más parámetros, añada la línea <strong class="userinput"><code>prompt 1</code></strong>. </p>
+<p>Si usaste archivos de <code class="filename">hd-media</code>, ahora debes copiar el archivo ISO de una imagen de instalación Debian en el stick. (Esto no es necesario para la variante <code class="filename">netboot</code>.) </p>
+<p>Puedes usar un netinst o una imagen completa de CD/DVD (ver <a class="xref" href="ch04s01.html" title="4.1. Imágenes oficiales de Debian GNU/Linux de instalación">Sección 4.1, “Imágenes oficiales de Debian GNU/Linux de instalación”</a>). Asegúreate de seleccionar una que quepa en la memoria. Ten en cuenta que la imagen <span class="quote">“<span class="quote">netboot <code class="filename">mini.iso</code></span>”</span> no es utilizable para este propósito. </p>
+<p>When you are done, unmount the USB memory stick (<strong class="userinput"><code>umount /mnt</code></strong>). </p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div id="ftn.idm848" class="footnote"><p><a href="#idm848" class="para"><sup class="para">[3] </sup></a> No olvides activar el indicador <span class="quote">“<span class="quote">bootable</span>”</span>. </p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch04.html"><img src="images/up.png" alt="Subir"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.2. Descarga de ficheros desde réplicas de Debian </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inicio"></a></td>
+<td width="40%" align="right" valign="top"> 4.4. Preparación de los ficheros para arranque desde el disco duro</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

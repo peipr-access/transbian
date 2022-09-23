@@ -1,0 +1,182 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.3. Förbereda filer för uppstart med USB-minne</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installationsguide">
+<link rel="up" href="ch04.html" title="Kapitel 4. Få tag på installationsmedia">
+<link rel="prev" href="ch04s02.html" title="4.2. Hämta filer från Debian-speglar">
+<link rel="next" href="ch04s04.html" title="4.4. Förbereda filer för uppstart med hårddisk">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.3. Förbereda filer för uppstart med USB-minne</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<th width="60%" align="center">Kapitel 4. Få tag på installationsmedia</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-usb-files"></a>4.3. Förbereda filer för uppstart med USB-minne</h2></div></div></div>
+<p>To prepare the USB stick, we recommend to use a system where GNU/Linux is already running and where USB is supported. With current GNU/Linux systems the USB stick should be automatically recognized when you insert it. If it is not you should check that the usb-storage kernel module is loaded. When the USB stick is inserted, it will be mapped to a device named <code class="filename">/dev/sdX</code>, where the <span class="quote">”<span class="quote">X</span>”</span> is a letter in the range a-z. You should be able to see to which device the USB stick was mapped by running the command <span class="command"><strong>lsblk</strong></span> before and after inserting it. (The output of <span class="command"><strong>dmesg</strong></span> (as root) is another possible method for that.) To write to your stick, you may have to turn off its write protection switch. </p>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Varning]" src="images/warning.png"></td>
+<th align="left">Varning</th>
+</tr>
+<tr><td align="left" valign="top"><p>The procedures described in this section will destroy anything already on the device! Make very sure that you use the correct device name for your USB stick. If you use the wrong device the result could be that all information on, for example, a hard disk is lost. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-isohybrid"></a>4.3.1. Förbereder ett USB-minne med en hybrid CD/DVD-avbildning</h3></div></div></div>
+<p>Debian installation images for this architecture are created using the <span class="command"><strong>isohybrid</strong></span> technology; that means they can be written directly to a USB stick, which is a very easy way to make an installation media. Simply choose an image (such as the netinst, CD or DVD-1) that will fit on your USB stick. See <a class="xref" href="ch04s01.html" title="4.1. Officiella Debian GNU/Linux installationsavbildningar">Avsnitt 4.1, ”Officiella Debian GNU/Linux installationsavbildningar”</a> to get an installation image. </p>
+<p>Alternativt, för mycket små USB-pinnar, bara några få megabyte i storlek, kan du ladda ner <a class="ulink" href="http://ftp.se.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/netboot/mini.iso" target="_top">mini.iso</a> avbildningen från katalogen <code class="filename">netboot</code> (på den plats som nämns i <a class="xref" href="ch04s02.html#where-files" title="4.2.1. Var man får tag på installationsfiler">Avsnitt 4.2.1, ”Var man får tag på installationsfiler”</a>). </p>
+<p>Den installationsbild du väljer ska skrivas direkt till USB-sticken och skriva över dess nuvarande innehåll. När du till exempel använder ett befintligt GNU / Linux-system kan bildfilen skrivas till ett USB-minne på följande sätt, efter att ha säkerställt att sticket är omonterat: </p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt"> # </code> <strong class="userinput"><code> cp <em class="replaceable"><code> debian.iso </code></em> / dev / <em class="replaceable"><code> sdX </code></em> </code></strong>
+<code class="prompt"> # </code> <strong class="userinput"><code> sync </code></strong>
+</pre></div>
+<p> Information om hur du gör detta på andra operativsystem finns i <a class="ulink" href="https://www.debian.org/CD/faq/index.en.html#write-usb" target="_top"> Debian CD FAQ </a>. </p>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Viktigt]" src="images/important.png"></td>
+<th align="left">Viktigt</th>
+</tr>
+<tr><td align="left" valign="top"><p>Bilden måste skrivas till hela diskenheten och inte till en partition, t.ex. / dev / sdb och inte / dev / sdb1. Använd inte verktyg som <span class="command"><strong> unetbootin </strong></span> som ändrar bilden. </p></td></tr>
+</table></div>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Viktigt]" src="images/important.png"></td>
+<th align="left">Viktigt</th>
+</tr>
+<tr><td align="left" valign="top"><p>Att bara skriva installationsbilden till USB så här skulle fungera bra för de flesta användare. De andra alternativen nedan är mer komplexa, främst för personer med specialiserade behov. </p></td></tr>
+</table></div>
+<p>Hybridbilden på pinnen upptar inte allt lagringsutrymme, så det kan vara värt att överväga att använda det fria utrymmet för att hålla firmwarefiler eller paket eller andra filer du väljer. Detta kan vara användbart om du bara har en pinne eller bara vill behålla allt du behöver på en enhet. </p>
+<p>To do so, use cfdisk or any other partitioning tool to create an additional partition on the stick. Then create a (FAT) filesystem on the partition, mount it and copy or unpack the firmware onto it, for example with: </p>
+<div class="informalexample"><pre class="screen">
+# mkdosfs -n FIRMWARE /dev/sdX3
+# mount /dev/<em class="replaceable"><code>sdX3</code></em> /mnt
+# cd /mnt
+# tar zxvf <em class="replaceable"><code>/path/to/</code></em>firmware.tar.gz
+# cd /
+# umount /mnt
+</pre></div>
+<p> Take care that you use the correct device name for your USB stick. The <span class="command"><strong>mkdosfs</strong></span> command is contained in the <code class="classname">dosfstools</code> Debian package. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notera]" src="images/note.png"></td>
+<th align="left">Notera</th>
+</tr>
+<tr><td align="left" valign="top"><p>If you have chosen the <code class="filename">mini.iso</code> to be written to the USB stick, the second partition doesn't have to be created, as - very nicely - it will already be present. Unplugging and replugging the USB stick should make the two partitions visible. </p></td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-easy"></a>4.3.2. Manuell kopiering av filer till USB-minnet</h3></div></div></div>
+<p>Prior to isohybrid technology being used for Debian installation images, the methods documented in the chapters below were used to prepare media for booting from USB devices. These have been superseded by the technique in <a class="xref" href="ch04s03.html#usb-copy-isohybrid" title="4.3.1. Förbereder ett USB-minne med en hybrid CD/DVD-avbildning">Avsnitt 4.3.1, ”Förbereder ett USB-minne med en hybrid CD/DVD-avbildning”</a>, but have been left here for educational and historical purposes and in case they are useful to some user. </p>
+<p>An alternative to the method described in <a class="xref" href="ch04s03.html#usb-copy-isohybrid" title="4.3.1. Förbereder ett USB-minne med en hybrid CD/DVD-avbildning">Avsnitt 4.3.1, ”Förbereder ett USB-minne med en hybrid CD/DVD-avbildning”</a> is to manually copy the installer files, and also an installation image to the stick. Note that the USB stick should be at least 1 GB in size (smaller setups are possible using the files from netboot, following <a class="xref" href="ch04s03.html#usb-copy-flexible" title="4.3.3. Manuellt kopiera filerna till ett USB minne — det flexibla sättet">Avsnitt 4.3.3, ”Manuellt kopiera filerna till ett USB minne — det flexibla sättet”</a>). </p>
+<p>There is an all-in-one file <a class="ulink" href="http://ftp.se.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/hd-media/boot.img.gz" target="_top">hd-media/boot.img.gz</a> which contains all the installer files (including the kernel)<span class="phrase"> as well as <code class="classname">syslinux</code> and its configuration file</span>. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notera]" src="images/note.png"></td>
+<th align="left">Notera</th>
+</tr>
+<tr><td align="left" valign="top"><p>Observera att, även om det är bekvämt, denna metod har en stor nackdel: den logiska storleken för enheten kommer att vara begränsad till 1 GB, även om kapaciteten för USB-minnet är större. Du kommer att behöva partitionera om USB-minnet och skapa nya filsystem för att få dess fullständiga kapacitet tillbaka om du någon gång vill använda det för andra ändamål. </p></td></tr>
+</table></div>
+<p>Simply extract this image directly to your USB stick: </p>
+<div class="informalexample"><pre class="screen"># zcat boot.img.gz &gt; /dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p>
+
+</p>
+<p>After that, mount the USB memory stick <span class="phrase">(<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX</code></em> /mnt</code></strong>),</span>  which will now have <span class="phrase">a FAT filesystem</span>  on it, and copy a Debian ISO image (netinst or full CD; see <a class="xref" href="ch04s01.html" title="4.1. Officiella Debian GNU/Linux installationsavbildningar">Avsnitt 4.1, ”Officiella Debian GNU/Linux installationsavbildningar”</a>) to it. Unmount the stick (<strong class="userinput"><code>umount /mnt</code></strong>) and you are done. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-flexible"></a>4.3.3. Manuellt kopiera filerna till ett USB minne — det flexibla sättet</h3></div></div></div>
+<p>Om du vill ha mer flexibilitet eller bara vill veta vad som händer så bör du använda följande metod att lägga in filerna på ditt minne. En fördel av att använda denna metod är att — om kapaciteten för ditt USB-minne är tillräckligt stort — du har alternativet att kopiera en vilken ISO-avbildning (även en DVD avbildning, till det. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm844"></a>4.3.3.1. Partitioning and adding a boot loader</h4></div></div></div>
+<p>Vi kommer nu att visa hur man ställer in USB-minnet att använda första partitionen, istället för hela enheten. </p>
+<p>För att kunna starta kärnan efter uppstart från USB-minnet så lägger vi på en starthanterare på minnet. Även om valfri starthanterare bör fungera så är det bekvämt att använda <code class="classname">syslinux</code>, eftersom den använder en FAT16-partition och kan konfigureras om genom att redigera en textfil. Alla operativsystem som har stöd för FAT-filsystemet kan användas för att göra ändringar i konfigurationen av starthanteraren. </p>
+<p>First, you need to install the <code class="classname">syslinux</code> and <code class="classname">mtools</code> packages on your system. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notera]" src="images/note.png"></td>
+<th align="left">Notera</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Since most USB sticks come pre-configured with a single FAT16 partition, you probably won't have to repartition or reformat the stick. If you have to do that anyway, use <span class="command"><strong>cfdisk</strong></span> or any other partitioning tool to create a FAT16 partition now<a href="#ftn.idm855" class="footnote" name="idm855"><sup class="footnote">[3]</sup></a>, and then install an MBR using: </p>
+<div class="informalexample"><pre class="screen">
+# cat /usr/lib/syslinux/mbr/mbr.bin 
+&gt;/dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p> Now create the filesystem using: </p>
+<div class="informalexample"><pre class="screen">
+# mkdosfs /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> Take care that you use the correct device name for your USB stick. The <span class="command"><strong>mkdosfs</strong></span> command is contained in the <code class="classname">dosfstools</code> Debian package. </p>
+</td></tr>
+</table></div>
+<p>Having a correctly partitioned USB stick (now), you need to put <code class="classname">syslinux</code> on the FAT16 partition with: </p>
+<div class="informalexample"><pre class="screen">
+# syslinux /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> Again, take care that you use the correct device name. The partition must not be mounted when starting <span class="command"><strong>syslinux</strong></span>. This procedure writes a boot sector to the partition and creates the file <code class="filename">ldlinux.sys</code> which contains the boot loader code. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm873"></a>4.3.3.2. Adding the installer files</h4></div></div></div>
+<p>There are two different installation variants to choose here: The hd-media variant needs an installation ISO file on the stick, to load installer modules and the base system from. The netboot installer however will load all that from a Debian mirror. </p>
+<p>According to your choice, you have to download some installer files from the hd-media or netboot subdirectory of <a class="ulink" href="http://ftp.se.debian.org/debian/dists/bullseye/main/installer-amd64/current/images" target="_top">debian/dists/bullseye/main/installer-amd64/current/images/</a> on any Debian mirror: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p> <code class="filename">vmlinuz</code> or <code class="filename">linux</code> (kernel binary) </p></li>
+<li class="listitem"><p> <code class="filename">initrd.gz</code> (initial ramdisk image) </p></li>
+</ul></div>
+<p> You can choose between either the text-based version of the installer (the files can be found directly in hd-media or netboot) or the graphical version (look in the respective <code class="filename">gtk</code> subdirectories). </p>
+<p>Then mount the partition (<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX1</code></em> /mnt</code></strong>) and copy the downloaded files to the root directory of the stick. </p>
+<p>Next you should create a text file named <code class="filename">syslinux.cfg</code> in the root directory of the stick as configuration file for syslinux, which at a bare minimum should contain the following line: </p>
+<div class="informalexample"><pre class="screen">
+default vmlinuz initrd=initrd.gz
+</pre></div>
+<p> Change the name of the kernel binary to <span class="quote">”<span class="quote"><code class="filename">linux</code></span>”</span> if you used files from <code class="filename">netboot</code>. </p>
+<p>For the graphical installer (from <code class="filename">gtk</code>) you should add <strong class="userinput"><code>vga=788</code></strong> at the end of the line. Other parameters can be appended as desired. </p>
+<p>Lägg till en <strong class="userinput"><code>prompt 1</code></strong>-rad för att aktivera startprompt för att tillåta ytterligare parametertillägg. </p>
+<p>If you used files from <code class="filename">hd-media</code>, you should now copy the ISO file of a Debian installation image onto the stick. (For the <code class="filename">netboot</code> variant this is not needed.) </p>
+<p>You can use either a netinst or a full CD/DVD image (see <a class="xref" href="ch04s01.html" title="4.1. Officiella Debian GNU/Linux installationsavbildningar">Avsnitt 4.1, ”Officiella Debian GNU/Linux installationsavbildningar”</a>). Be sure to select one that fits on your stick. Note that the <span class="quote">”<span class="quote">netboot <code class="filename">mini.iso</code></span>”</span> image is not usable for this purpose. </p>
+<p>When you are done, unmount the USB memory stick (<strong class="userinput"><code>umount /mnt</code></strong>). </p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div id="ftn.idm855" class="footnote"><p><a href="#idm855" class="para"><sup class="para">[3] </sup></a> Don't forget to activate the <span class="quote">”<span class="quote">bootable</span>”</span> flag. </p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch04.html"><img src="images/up.png" alt="Upp"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.2. Hämta filer från Debian-speglar </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Hem"></a></td>
+<td width="40%" align="right" valign="top"> 4.4. Förbereda filer för uppstart med hårddisk</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

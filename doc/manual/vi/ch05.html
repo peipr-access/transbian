@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chương 5. Khởi động Hệ thống Cài đặt</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Sổ tay Cài đặt Debian GNU/Linux">
+<link rel="up" href="index.html" title="Sổ tay Cài đặt Debian GNU/Linux">
+<link rel="prev" href="ch04s07.html" title="4.7. Verifying the integrity of installation files">
+<link rel="next" href="ch05s01.html" title="5.1. Khởi động trình cài đặt trên 64-bit PC">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chương 5. Khởi động Hệ thống Cài đặt</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s07.html"><img src="images/prev.png" alt="Trước đó"></a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s01.html"><img src="images/next.png" alt="Kế tiếp"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h1 class="title">
+<a name="boot-installer"></a>Chương 5. Khởi động Hệ thống Cài đặt</h1></div></div></div>
+<div class="toc">
+<p><b>Mục lục</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="ch05s01.html">5.1. Khởi động trình cài đặt trên <span class="phrase">64-bit PC</span></a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s01.html#usb-boot-x86">5.1.1. Khởi động từ thanh bộ nhớ USB</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#idm1109">5.1.2. Booting from optical disc (CD/DVD)</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#boot-win32">5.1.3. Khởi động từ Windows</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#install-from-dos">5.1.4. Booting from DOS using loadlin</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#boot-initrd">5.1.5. Booting from Linux using <span class="command"><strong>GRUB</strong></span></a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#boot-tftp-x86">5.1.6. Khởi động bằng TFTP</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#boot-screen">5.1.7. Màn hình khởi động</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#graphical">5.1.8. The Graphical Installer</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s02.html">5.2. Khả năng truy cập</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s02.html#idm1260">5.2.1. Installer front-end</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1282">5.2.2. Thiết bị chữ nổi USB</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1289">5.2.3. Thiết bị chữ nổi nối tiếp</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1305">5.2.4. Phần mềm tổng hợp giọng nói</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1331">5.2.5. Phần cứng tổng hợp giọng nói</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1341">5.2.6. Thiết bị bảng</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1349">5.2.7. Sắc thái cao tương phản</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1355">5.2.8. Zoom</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1364">5.2.9. Expert install, rescue mode, automated install</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1378">5.2.10. Accessibility of the installed system</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s03.html">5.3. Tham số khởi động</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s03.html#boot-console">5.3.1. Boot console</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#installer-args">5.3.2. Tham số trình cài đặt Debian</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#preseed-args">5.3.3. Dùng tham số khởi động để trả lời câu hỏi</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#module-parms">5.3.4. Gửi tham số cho mô-đun hạt nhân</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#module-blacklist">5.3.5. Cấm mô-đun hạt nhân</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s04.html">5.4. Giải đáp thắc mắc trong tiến trình cài đặt</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s04.html#unreliable-cd">5.4.1. Reliability of optical media</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#idm1721">5.4.2. Cấu hình khởi động</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#idm1728">5.4.3. Phần mềm tổng hợp giọng nói</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#i386-boot-problems">5.4.4. Vấn đề cài đặt <span class="phrase">64-bit PC</span> thường</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#kernel-msgs">5.4.5. Giải thích thông điệp khởi chạy hạt nhân</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#problem-report">5.4.6. Thông báo vấn đề cài đặt</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#submit-bug">5.4.7. Đệ trình báo cáo cài đặt</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s07.html"><img src="images/prev.png" alt="Trước đó"></a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s01.html"><img src="images/next.png" alt="Kế tiếp"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.7. Verifying the integrity of installation files </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Đầu"></a></td>
+<td width="40%" align="right" valign="top"> 5.1. Khởi động trình cài đặt trên <span class="phrase">64-bit PC</span>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

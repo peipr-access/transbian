@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.2. Устройства, которым требуются микропрограммы</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Руководство по установке Debian GNU/Linux">
+<link rel="up" href="ch02.html" title="Глава 2. Системные требования">
+<link rel="prev" href="ch02s01.html" title="2.1. Поддерживаемое оборудование">
+<link rel="next" href="ch02s03.html" title="2.3. Покупка аппаратного обеспечения специально для GNU/Linux">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.2. Устройства, которым требуются микропрограммы</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02s01.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<th width="60%" align="center">Глава 2. Системные требования</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s03.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-firmware"></a>2.2. Устройства, которым требуются микропрограммы</h2></div></div></div>
+<p>Besides the availability of a device driver, some hardware also requires so-called <em class="firstterm">firmware</em> or <em class="firstterm">microcode</em> to be loaded into the device before it can become operational. This is most common for network interface cards (especially wireless NICs), but for example some USB devices and even some hard disk controllers also require firmware. </p>
+<p>With many graphics cards, basic functionality is available without additional firmware, but the use of advanced features requires an appropriate firmware file to be installed in the system. In some cases, a successful installation can still end up in a black screen or garbled display when rebooting into the installed system. If that happens, some workarounds can be tried to log in anyway (see <a class="xref" href="ch06s04.html#completing-installed-system" title="6.4.3. Completing the Installed System">Раздел 6.4.3, «Completing the Installed System»</a>). </p>
+<p>Во многих старых устройствах, которым для работы требовалась микропрограмма, данные файла микропрограммы постоянно хранились в EEPROM/чипе Flash на самом устройстве. В настоящее время в новые устройства микропрограмма больше не встраивается; её код загружается в устройство операционной системой при каждом запуске. </p>
+<p>В большинстве случаев микропрограмма является несвободной, если исходить из критериев, используемых проектом Debian GNU/Linux, и поэтому не может быть включена в основной дистрибутив или в систему установки. Если сам драйвер устройства включён в дистрибутив и если для Debian GNU/Linux разрешено легально распространять микропрограмму, то а, чаще всего, доступна в виде отдельного пакета в архиве в разделе non-free. </p>
+<p>Однако, это не означает, что такое аппаратное обеспечение не может использоваться во время установки. Начиная с Debian GNU/Linux 5.0, <code class="classname">debian-installer</code> поддерживает загрузку файлов микропрограмм или пакетов с микропрограммами со сменных носителей, таких как USB-накопители. Подробней о том, как загружать файлы микропрограмм и пакеты во время установки см. <a class="xref" href="ch06s04.html" title="6.4. Загрузка отсутствующих микропрограмм">Раздел 6.4, «Загрузка отсутствующих микропрограмм»</a>. </p>
+<p>Если <code class="classname">debian-installer</code> просит файл с микропрограммой, а у вас этого файла нет или вы не хотите его устанавливать в систему из non-free, то вы можете попробовать продолжить установку без загрузки микропрограммы. Иногда драйвер просит дополнительную микропрограмму, так как она может ему понадобиться в определённых ситуациях, но в большинстве систем устройство всё равно будет работать без неё (например, это происходит с некоторыми сетевыми картами, использующими драйвер tg3). </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02s01.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="Наверх"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s03.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">2.1. Поддерживаемое оборудование </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Начало"></a></td>
+<td width="40%" align="right" valign="top"> 2.3. Покупка аппаратного обеспечения специально для GNU/Linux</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

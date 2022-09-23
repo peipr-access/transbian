@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>6.4. Carga de Firmware adicional</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guía Debian GNU/Linux de instalación">
+<link rel="up" href="ch06.html" title="Capítulo 6. Usar el instalador de Debian">
+<link rel="prev" href="ch06s03.html" title="6.3. Uso de componentes individuales">
+<link rel="next" href="ch06s05.html" title="6.5. Personalización">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">6.4. Carga de Firmware adicional</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch06s03.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítulo 6. Usar el instalador de Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch06s05.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="loading-firmware"></a>6.4. Carga de Firmware adicional</h2></div></div></div>
+<p>Como se indicó en <a class="xref" href="ch02s02.html" title="2.2. Dispositivos que requieren firmware">Sección 2.2, “Dispositivos que requieren firmware”</a>, ciertos dispositivos requieren la carga de firmware. La mayoría de veces el dispositivo no funcionará sin el firmware; en ciertas ocasiones estará disponible cierta funcionalidad básica sin que esté cargado el firmware, pero con este se podría contar con características adicionales. </p>
+<p>Si un controlador de un dispositivo solicita firmware que no está disponible, el <code class="classname">debian-installer</code> mostrará un diálogo ofreciéndole la oportunidad de cargar el firmware faltante. Si selecciona esta opción, <code class="classname">debian-installer</code> buscará ficheros o paquetes que puedan contener el firmware en los dispositivos disponibles. Si los encuentra, copiará el firmware al lugar correcto(<code class="filename">/lib/firmware</code>) y se recargará el módulo del controlador. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>De acuerdo con la arquitectura, el método de instalación y la etapa de instalación se buscará en los dispositivos y en los sistemas de ficheros. Especialmente en los primeros pasos de la instalación, la carga del firmware podría cargarse con mayor éxito desde una memoria USB con formato FAT. <span class="phrase">El firmware también puede cargarse desde tarjetas MMC o SD en arquitecturas i386 y amd64.</span> </p></td></tr>
+</table></div>
+<p>Tenga en cuenta que es posible obviar la carga del firmware si sabe que el dispositivo funciona sin él, o si el dispositivo no se necesita durante la instalación. </p>
+<p><code class="classname">debian-installer</code> solo solicita el firmware necesario para los módulos del núcleo que se cargan durante la instalación. No se incluyen todos los controladores en <code class="classname">debian-installer</code>, en particular, no se incluye radeon, lo que implica que algunos dispositivos se comportarán de la misma forma tras finalizar la instalación. Asimismo, algunos de los dispositivos de hardware no se utilizarán con el máximo rendimiento. Si cree que es así, o tiene curiosidad, es una buena idea comprobar la salida de la orden <span class="command"><strong>dmesg</strong></span> en el sistema recién iniciado, y busque <span class="quote">“<span class="quote">firmware</span>”</span>. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm2847"></a>6.4.1. Preparación del medio</h3></div></div></div>
+<p>Las imágenes de instalación oficiales no incluyen firmware propietario. El método más común para cargar ese tipo de firmware es desde un dispositivo extraíble como una memoria USB. De forma alternativa, puede encontrar imágenes de instalación no oficiales que contienen firmware propietario en <a class="ulink" href="https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/" target="_top">https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/</a>. Para preparar una memoria USB (u otro medio como una partición del disco duro), los ficheros o paquetes de firmware se deben colocar en el directorio raíz o un directorio llamado <code class="filename">/firmware</code> en el sistema de ficheros del dispositivo. El sistema de ficheros recomendado es FAT, dado que es probable que sea compatible durante los primeros pasos de la instalación. </p>
+<p>Los archivos tar y zip que contienen los ficheros de firmware más comunes están disponibles en: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p> <a class="ulink" href="https://cdimage.debian.org/cdimage/unofficial/non-free/firmware/" target="_top">https://cdimage.debian.org/cdimage/unofficial/non-free/firmware/</a> </p></li></ul></div>
+<p> Descargue el archivo tar o zip para la versión correcta y desempaquételo en el sistema de ficheros o en el dispositivo de almacenamiento. </p>
+<p>Si el firmware que necesita no está incluido en el paquete de archivos, puede descargar paquetes de firmware específico (de la sección no-libre) del archivo. La siguiente lista debería mostrar la mayoría de paquetes de firmware disponibles, pero no se garantiza que esté completa y puede contener paquetes que no son de firmware: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p> <a class="ulink" href="https://packages.debian.org/search?keywords=firmware" target="_top">https://packages.debian.org/search?keywords=firmware</a>
+</p></li></ul></div>
+<p>
+
+</p>
+<p>También es posible copiar ficheros individuales de firmware. Otro firmware puede obtenerse por ejemplo de un sistema previamente instalado o de un proveedor de hardware. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm2863"></a>6.4.2. Firmware y el Sistema Instalado</h3></div></div></div>
+<p>Cualquier firmware que se cargue durante la instalación se copiará automáticamente al sistema instalado. La mayoría de veces esto garantizará que los dispositivos que requieren el firmware también funcionarán correctamente después de que se ha reiniciado al sistema instalado. Sin embargo, si el sistema instalado se ejecuta con un núcleo diferente del núcleo del instalador, es probable que el firmware no pueda cargarse debido a la diferencia de versiones. </p>
+<p>Si el firmware se cargó de un paquete de firmware, el <code class="classname">debian-installer</code> también instalará este paquete para el sistema instalado y añadirá automáticamente la sección non-free del archivo de paquetes en <code class="filename">sources.list</code> de APT. La ventaja de esto es que el firmware debería actualizarse automáticamente si está disponible una nueva versión. </p>
+<p>Si se obvió la carga del firmware durante la instalación, los dispositivos en cuestión probablemente no funcionarán en el sistema instalado hasta que el (paquete de) firmware sea instalado manualmente. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>Si el firmware se cargó desde ficheros adicionales, el firmware copiado al sistema instalado <span class="emphasis"><em>no</em></span> se actualizará automáticamente a menos que el correspondiente paquete de firmware (en caso de estar disponible) se instale después de finalizada la instalación. </p></td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="completing-installed-system"></a>6.4.3. Completando el Sistema Instalado</h3></div></div></div>
+<p>Dependiendo de cómo se haya realizado la instalación, puede ser que no se haya detectado la necesidad de algún firmware durante la instalación, que el firmware correspondiente no esté disponible, o que se haya optado por no instalar algún firmware en ese momento. En algunos casos, una instalación exitosa puede terminar con una pantalla negra o una pantalla confusa al reiniciar el sistema instalado. Cuando esto ocurre, se pueden probar las siguientes soluciones: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Agrega la opción <code class="code">nomodeset</code> en la línea de comandos del kernel. Esto puede ayudar a arrancar en modo <span class="quote">“<span class="quote">fallback graphics</span>”</span> .</p></li>
+<li class="listitem"><p>Usa la conbimación de teclas <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>Alt</strong></span>+<span class="keycap"><strong>F2</strong></span> para cambiar a VT2, que podría ofrecer un aviso de inicio de sesión funcional.</p></li>
+</ul></div>
+<p>Una vez iniciada la sesión en el sistema instalado, es posible automatizar la detección del firmware que falta, y dar los pasos necesarios para habilitarlos siguiendo este procedimiento: </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem"><p>Instalar el paquete <code class="classname">isenkram-cli</code>.</p></li>
+<li class="listitem"><p>Ejecutar el comando <span class="command"><strong>isenkram-autoinstall-firmware</strong></span> como <span class="quote">“<span class="quote">root</span>”</span>.</p></li>
+</ol></div>
+<p>Normalmente, reiniciar es la forma más sencilla de asegurarse de que todos los módulos del kernel están correctamente inicializados; esto es especialmente importante cuando uno ha arrancado el sistema con la opción <code class="code">nomodeset</code> como medida provisional. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>La instalación de paquetes de firmware es muy probable que requiera habilitar la sección no libre del archivo de paquetes. A partir de Debian GNU/Linux 11.0, ejecutar el comando <span class="command"><strong>isenkram-autoinstall-firmware</strong></span> lo hará automáticamente creando un archivo dedicado (<code class="filename">/etc/apt/sources.list.d/isenkram-autoinstall-firmware.list</code>), apuntando a un espejo genérico. </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch06s03.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch06.html"><img src="images/up.png" alt="Subir"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch06s05.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">6.3. Uso de componentes individuales </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inicio"></a></td>
+<td width="40%" align="right" valign="top"> 6.5. Personalización</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

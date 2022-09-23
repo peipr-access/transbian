@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C.5. Chương trình tạo phân vùng Debian</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Sổ tay Cài đặt Debian GNU/Linux">
+<link rel="up" href="apc.html" title="Phụ lục C. Phân vùng cho Debian">
+<link rel="prev" href="apcs04.html" title="C.4. Tên thiết bị dưới Linux">
+<link rel="next" href="apd.html" title="Phụ lục D. Thông Tin Linh Tinh">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">C.5. Chương trình tạo phân vùng Debian</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Trước đó"></a> </td>
+<th width="60%" align="center">Phụ lục C. Phân vùng cho Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="Kế tiếp"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="partition-programs"></a>C.5. Chương trình tạo phân vùng Debian</h2></div></div></div>
+<p>Vài kiểu chương trình tạo phân vùng đã được làm thích nghi bởi nhà phát triển Debian để hoạt động được trên nhiều kiểu đĩa cứng và kiến trúc máy tính khác nhau. Sau đây có danh sách các chương trình thích hợp với kiến trúc của máy tính này. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term"><span class="command"><strong>partman</strong></span></span></dt>
+<dd><p>Công cụ tạo phân vùng khuyến khích trong Debian. Chương trình này có nhiều khả năng có ích: nó cũng có thể thay đổi kích cỡ của phân vùng, tạo hệ thống tập tin <span class="phrase"> (<span class="quote">“<span class="quote">format</span>”</span> [định dạng] trên hệ điều hành Windows)</span> và gán nó vào điểm lắp. </p></dd>
+<dt><span class="term"><span class="command"><strong>fdisk</strong></span></span></dt>
+<dd>
+<p>Bộ tạo phân vùng Linux gốc, thích hợp với người dùng rất kinh nghiệm. </p>
+<p>Hãy cẩn thận nếu bạn có phân vùng kiểu FreeBSD tồn tại trên máy tính. Những hạt nhân cài đặt chứa khả năng hỗ trợ những phân vùng này, nhưng cách đại diện (hay không) của <span class="command"><strong>fdisk</strong></span> có thể làm cho tên thiết bị khác biệt. Xem tài liệu Linux và FreeBSD Thế Nào <a class="ulink" href="http://www.tldp.org/HOWTO/Linux+FreeBSD-2.html" target="_top">Linux+FreeBSD HOWTO</a>. </p>
+</dd>
+<dt><span class="term"><span class="command"><strong>cfdisk</strong></span></span></dt>
+<dd>
+<p>Bộ tạo phân vùng đĩa toàn màn hình dễ dàng, thích hợp với phần lớn người. </p>
+<p>Ghi chú rằng chương trình <span class="command"><strong>cfdisk</strong></span> không hiểu phân vùng kiểu FreeBSD bằng cách nào cả, lại có kết quả là tên thiết bị có thể khác biệt. </p>
+</dd>
+</dl></div>
+<p>Một của những chương trình này sẽ được chạy theo mặc định khi bạn chọn mục trình đơn <span class="guimenuitem">Phân vùng đĩa</span> (hay tương tự). Có thể sử dụng công cụ tạo phân vùng khác từ dòng lệnh trên VT2, nhưng không khuyên bạn làm như thế. </p>
+<p>Hãy ghi nhớ cần phải đánh dấu phân vùng khởi động như là <span class="quote">“<span class="quote">Khởi động được</span>”</span> (Bootable). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4152"></a>C.5.1. Phân vùng cho <span class="phrase">64-bit PC</span>
+</h3></div></div></div>
+<p>If you are using a new harddisk (or want to wipe out the whole partition table of your disk), a new partition table needs to be created. The <span class="quote">“<span class="quote">Guided partitioning</span>”</span> does this automatically, but when partitioning manually, move the selection on the top-level entry of the disk and hit <span class="keycap"><strong>Enter</strong></span>. That will create a new partition table on that disk. In expert mode, you will then be asked for the type of the partition table. Default for UEFI-based systems is <span class="quote">“<span class="quote">gpt</span>”</span>, while for the older BIOS world the default value is <span class="quote">“<span class="quote">msdos</span>”</span>. In a standard priority installation those defaults will be used automatically. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Ghi chú]" src="images/note.png"></td>
+<th align="left">Ghi chú</th>
+</tr>
+<tr><td align="left" valign="top"><p>When a partition table with type <span class="quote">“<span class="quote">gpt</span>”</span> was selected (default for UEFI systems), a free space of 1 MB will automatically get created at the beginning of the disk. This is intended and required to embed the GRUB2 bootloader. </p></td></tr>
+</table></div>
+<p>Nếu bạn có một hệ điều hành khác đã có, v.d. DOS, Windows hay Mac OSX, và bạn muốn giữ lại hệ điều hành đó trong khi cài đặt Debian, có thể là bạn cần phải thay đổi kích cỡ của phân vùng chứa nó để giải phóng thêm sức chứa trống trên đĩa cho bản cài đặt Debian. Trình cài đặt hỗ trợ chức năng thay đổi kích cỡ của hệ thống tập tin kiểu cả hai FAT và NTFS; khi bạn tới bước phân vùng của tiến trình cài đặt, hãy bật tùy chọn <span class="guimenuitem">Bằng tay</span>, sau đó đơn giản chọn một phân vùng tồn tại và thay đổi kích cỡ của nó. </p>
+<p>While modern UEFI systems don't have such limitations as listed below, the old PC BIOS generally adds additional constraints for disk partitioning. There is a limit to how many <span class="quote">“<span class="quote">primary</span>”</span> and <span class="quote">“<span class="quote">logical</span>”</span> partitions a drive can contain. Additionally, with pre 1994–98 BIOSes, there are limits to where on the drive the BIOS can boot from. More information can be found in the <a class="ulink" href="http://www.tldp.org/HOWTO/Partition/" target="_top">Linux Partition HOWTO</a>, but this section will include a brief overview to help you plan most situations. </p>
+<p>Phân vùng <span class="quote">“<span class="quote">chính</span>”</span> (primary) là lược đồ phân vùng gốc cho đĩa kiểu PC. Tuy nhiên, có thể tạo chỉ bốn phân vùng chính. Để vượt qua sự hạn chế này, phân vùng kiểu <span class="quote">“<span class="quote">đã mở rộng</span>”</span> (extended) và <span class="quote">“<span class="quote">hợp lý</span>”</span> (logical) đã được phát minh. Bằng cách đặt một của những phân vùng chính là phân vùng đã mở rộng, bạn có khả năng chia nhỏ toàn bộ sức chứa được cấp phát cho phân vùng đó ra nhiều phân vùng hợp lý. Bạn có thể tạo đến 60 phân vùng hợp lý trong mỗi phân vùng đã mở rộng; nhưng mà, mỗi đĩa có thể chứa chỉ một phân vùng đã mở rộng thôi. </p>
+<p>Linux hạn chế số phân vùng trên mỗi đĩa thành 255 phân vùng trên đĩa kiểu SCSI (3 phân vùng chính có thể dùng, 252 phân vùng hợp lý) và 63 phân vùng trên đĩa IDE (3 phân vùng chính có thể dùng, 60 phân vùng hợp lý). Tuy nhiên, hệ thống Debian GNU/Linux chuẩn cung cấp chỉ 20 thiết bị cho phân vùng, vì vậy bạn không thể cài đặt trên hơn 20 phân vùng nếu bạn chưa tự tạo một thiết bị dành cho mỗi phân vùng đó. </p>
+<p>Trên một đĩa IDE lớn, nếu bạn không sử dụng khả năng đặt địa chỉ LBA (LBA addressing), cũng không sử dụng trình điều khiển phủ (overlay drivers, đôi khi được cung cấp bởi hãng chế tạo đĩa cứng), bạn cần phải để phân vùng khởi động (phân vùng chứa ảnh hạt nhân) trong 1024 hình trụ đầu của đĩa cứng đó (thường là vùng khoảng 524 MB, không có khả năng dịch BIOS). </p>
+<p>This restriction doesn't apply if you have a BIOS newer than around 1995–98 (depending on the manufacturer) that supports the <span class="quote">“<span class="quote">Enhanced Disk Drive Support Specification</span>”</span>. Debian's Lilo alternative <span class="command"><strong>mbr</strong></span> must use the BIOS to read the kernel from the disk into RAM. If the BIOS int 0x13 large disk access extensions are found to be present, they will be utilized. Otherwise, the legacy disk access interface is used as a fall-back, and it cannot be used to address any location on the disk higher than the 1023rd cylinder. Once Linux is booted, no matter what BIOS your computer has, these restrictions no longer apply, since Linux does not use the BIOS for disk access. </p>
+<p>Trên đĩa lớn, bạn có thể cần phải sử dụng kỹ xảo dịch hình trụ, mà bạn có thể đặt trong chương trình thiết lập BIOS, như LBA (Logical Block Addressing: định vị khối hợp lý) hay chế độ dịch CHS (<span class="quote">“<span class="quote">Lớn</span>”</span>). Thông tin thêm về vấn đề đối với đĩa lớn nằm trong tài liệu đĩa lớn Thế Nào <a class="ulink" href="http://www.tldp.org/HOWTO/Large-Disk-HOWTO.html" target="_top">Large Disk HOWTO</a>. Nếu bạn sử dụng lược đồ dịch hình trụ mà BIOS không hỗ trợ các phần mở rộng truy cập đĩa lớn, phân vùng khởi động phải nằm trong vùng đại diện <span class="emphasis"><em>đã dịch</em></span> của hình trụ thứ 1024. </p>
+<p>Phương pháp khuyến khích để đạt cấu hình này là tạo một phân vùng nhỏ (25–50 MB nên là đủ) tại đầu của đĩa, để được dùng là phân vùng khởi động, rồi tạo các phân vùng khác được muốn trong vùng còn lại. Phân vùng khởi động này <span class="emphasis"><em>cần phải</em></span> được gắn kết vào <code class="filename">/boot</code>, vì đó là thư mục nơi (các) hạt nhân Linux sẽ được cất giữ. Cấu hình này sẽ hoạt động được trên mọi hệ thống, bất chấp dùng LBA hay khả năng dịch CHS đĩa lớn, và bất chấp BIOS hỗ trợ các phần mở rộng truy cấp đĩa lớn. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Trước đó"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apc.html"><img src="images/up.png" alt="Lên"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="Kế tiếp"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">C.4. Tên thiết bị dưới Linux </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Đầu"></a></td>
+<td width="40%" align="right" valign="top"> Phụ lục D. Thông Tin Linh Tinh</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

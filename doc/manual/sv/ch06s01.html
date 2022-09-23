@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>6.1. Hur installationsprogrammet fungerar</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installationsguide">
+<link rel="up" href="ch06.html" title="Kapitel 6. Användning av Debian Installer">
+<link rel="prev" href="ch06.html" title="Kapitel 6. Användning av Debian Installer">
+<link rel="next" href="ch06s02.html" title="6.2. Introduktion till komponenter">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">6.1. Hur installationsprogrammet fungerar</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch06.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<th width="60%" align="center">Kapitel 6. Användning av Debian Installer</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch06s02.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm1797"></a>6.1. Hur installationsprogrammet fungerar</h2></div></div></div>
+<p>For this architecture the <code class="classname">debian-installer</code> supports two different user interfaces: a graphical one and a text-based one. The graphical interface is used by default unless you select an <span class="quote">”<span class="quote">Install</span>”</span> option in the boot menu. For more information about booting the graphical installer, please refer to <a class="xref" href="ch05s01.html#graphical" title="5.1.8. Det grafiska installationsprogrammet">Avsnitt 5.1.8, ”Det grafiska installationsprogrammet”</a>. </p>
+<p>Debians installationsprogram innehåller ett antal komponenter för speciella ändamål för att genomföra varje funktion i installationen. Varje komponent gör sin funktion och ställer frågor till användaren vars svar behövs för att utföra jobbet. Själva frågorna ger olika prioriteringar och prioriteten för frågorna som kommer att ställas ställs in när installationsprogrammet startas. </p>
+<p>När en standardinstallation är genomförd kommer endast viktiga (hög prioritet) frågor att ställas. Det här resulterar i en mycket automatiserad installationsprocess med liten interaktivitet för användaren. Komponenter körs automatiskt i sekvens; vilka komponenter som körs beror huvudsakligen på installationsmetoden du använder och på din maskinvara. Installationsprogrammet kommer att använda förvalda värden för frågor som inte ställs. </p>
+<p>Om problem uppstår kommer användaren att se ett felmeddelande och installationsmenyn kan visas för att välja en alternativ åtgärd. Om det inte uppstår problem kommer användaren aldrig att se installationsmenyn utan kommer helt enkelt svara på frågor för varje komponent i turordning. Meddelanden om allvarliga fel har <span class="quote">”<span class="quote">kritisk</span>”</span> prioritet så att användaren alltid blir notifierad. </p>
+<p>Några av de förvalda värden som installationsprogrammet använder kan ges genom att skicka med uppstartsargument när <code class="classname">debian-installer</code> startas. Om, till exempel du önskar att tvinga fram statisk nätverkskonfiguration (IPv6-autokonfiguration och DHCP används som standard om tillgänglig) kan du lägga till uppstartsparametern <strong class="userinput"><code>netcfg/disable_autoconfig=true</code></strong>. Se <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Parametrar för Debian Installer">Avsnitt 5.3.2, ”Parametrar för Debian Installer”</a> för tillgängliga flaggor. </p>
+<p>Erfarna användare kan känna sig mer komfortabla med ett menydrivet gränssnitt där varje steg kontrolleras av användaren i stället för att installationsprogrammet genomför varje steg automatiskt i sekvens. För att använda installationsprogrammet på ett manuellt menydrivet sätt kan du lägga till uppstartsargumentet <strong class="userinput"><code>priority=medium</code></strong>. </p>
+<p>Om din maskinvara kräver att du skickar med flaggor till kärnmodulerna när de installeras behöver du starta upp installationsprogrammet i <span class="quote">”<span class="quote">expert</span>”</span>läget. Det här kan göras genom att antingen använda kommandot <span class="command"><strong>expert</strong></span> för att starta installationsprogrammet eller genom att lägga till uppstartsargumentet <strong class="userinput"><code>priority=low</code></strong>. Expertläget ger dig full kontroll över <code class="classname">debian-installer</code>. </p>
+<p>In the text-based environment the use of a mouse is not supported. Here are the keys you can use to navigate within the various dialogs. The <span class="keycap"><strong>Tab</strong></span> or <span class="keycap"><strong>right</strong></span> arrow keys move <span class="quote">”<span class="quote">forward</span>”</span>, and the <span class="keycap"><strong>Shift</strong></span>+<span class="keycap"><strong>Tab</strong></span> or <span class="keycap"><strong>left</strong></span> arrow keys move <span class="quote">”<span class="quote">backward</span>”</span> between displayed buttons and selections. The <span class="keycap"><strong>up</strong></span> and <span class="keycap"><strong>down</strong></span> arrow select different items within a scrollable list, and also scroll the list itself. In addition, in long lists, you can type a letter to cause the list to scroll directly to the section with items starting with the letter you typed and use <span class="keycap"><strong>Pg-Up</strong></span> and <span class="keycap"><strong>Pg-Down</strong></span> to scroll the list in sections. The <span class="keycap"><strong>space bar</strong></span> selects an item such as a checkbox. Use <span class="keycap"><strong>Enter</strong></span> to activate choices. </p>
+<p>Vissa dialogrutor kan erbjuda ytterligare hjälp. Om hjälp finns så kommer det att indikeras på nedre raden i skärmen och den hjälpinformationen kan kommas åt genom att trycka på <span class="keycap"><strong>F1</strong></span>-tangenten. </p>
+<p>Felmeddelanden omdirigeras till den tredje konsollen. Du kan tillgå den här konsollen genom att trycka <span class="keycap"><strong>Vänster Alt</strong></span>+<span class="keycap"><strong>F3</strong></span> (håll nere vänster <span class="keycap"><strong>Alt</strong></span>-tangent när du trycker ned funktionstangenten <span class="keycap"><strong>F3</strong></span>); gå tillbaka till huvudkonsollen för installationsprogrammet med <span class="keycap"><strong>Vänster Alt</strong></span>+<span class="keycap"><strong>F1</strong></span>. </p>
+<p>Dessa meddelanden kan också hittas i <code class="filename">/var/log/syslog</code>. Efter installation blir den här loggen kopierad till <code class="filename">/var/log/installer/syslog</code> på ditt nya system. Andra installationsmeddelanden kan hittas i <code class="filename">/var/log/</code> under installationen och <code class="filename">/var/log/installer/</code> efter att datorn har startats om till det nya systemet. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gtk-using"></a>6.1.1. Användning av det grafiska installationsprogrammet</h3></div></div></div>
+<p>Det grafiska installationsprogrammet fungerar i princip på samma sätt som det textbaserade installationsprogrammet och resten av denna handbok kan därmed användas för att vägleda dig genom installationsprocessen. </p>
+<p>If you prefer using the keyboard over the mouse, there are two things you need to know. To expand a collapsed list (used for example for the selection of countries within continents), you can use the <span class="keycap"><strong>+</strong></span> and <span class="keycap"><strong>-</strong></span> keys. For questions where more than one item can be selected (e.g. task selection), you first need to tab to the <span class="guibutton">Fortsätt</span> button after making your selections; hitting enter will toggle a selection, not activate <span class="guibutton">Fortsätt</span>. </p>
+<p>If a dialog offers additional help information, a <span class="guibutton">Help</span> button will be displayed. The help information can be accessed either by activating the button or by pressing the <span class="keycap"><strong>F1</strong></span> key. </p>
+<p>To switch to another console, you will also need to use the <span class="keycap"><strong>Ctrl</strong></span> key, just as with the X Window System. For example, to switch to VT2 (the first debug shell) you would use: <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>Left Alt</strong></span>+<span class="keycap"><strong>F2</strong></span>. The graphical installer itself runs on VT5, so you can use <span class="keycap"><strong>Left Alt</strong></span>+<span class="keycap"><strong>F5</strong></span> to switch back. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch06.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch06.html"><img src="images/up.png" alt="Upp"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch06s02.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Kapitel 6. Användning av Debian Installer </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Hem"></a></td>
+<td width="40%" align="right" valign="top"> 6.2. Introduktion till komponenter</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

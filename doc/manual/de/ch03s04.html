@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.4. Minimale Hardware-Anforderungen</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux – Installationsanleitung">
+<link rel="up" href="ch03.html" title="Kapitel 3. Bevor Sie Debian GNU/Linux installieren">
+<link rel="prev" href="ch03s03.html" title="3.3. Benötigte Informationen">
+<link rel="next" href="ch03s05.html" title="3.5. Im Voraus partitionieren für eine Multiboot-Installation">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.4. Minimale Hardware-Anforderungen</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s03.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<th width="60%" align="center">Kapitel 3. Bevor Sie Debian GNU/Linux installieren</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch03s05.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="minimum-hardware-reqts"></a>3.4. Minimale Hardware-Anforderungen</h2></div></div></div>
+<p>Sobald Sie Informationen über die Hardware Ihres Computers gefunden haben, überprüfen Sie, ob diese Hardware die Art der Installation zulässt, die Sie durchführen wollen. </p>
+<p>Abhängig von Ihren Bedürfnissen können Sie auch mit weniger als der unten aufgelisteten Hardware auskommen. Die meisten Benutzer riskieren jedoch, im Nachhinein frustriert zu sein, wenn Sie diese Empfehlungen ignorieren. </p>
+<p>Für Desktop-Systeme wird mindestens ein Pentium 4 mit 1 GHz empfohlen. </p>
+<div class="table">
+<a name="idm610"></a><p class="title"><b>Tabelle 3.2. Empfohlene minimale Systemanforderungen</b></p>
+<div class="table-contents"><table class="table" summary="Empfohlene minimale Systemanforderungen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Art der Installation</th>
+<th>Arbeitsspeicher (minimal)</th>
+<th>Arbeitsspeicher (empfohlen)</th>
+<th>Festplatte</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Ohne Desktop</td>
+<td>256 Megabyte</td>
+<td>512 Megabyte</td>
+<td>2 Gigabyte</td>
+</tr>
+<tr>
+<td>Mit Desktop</td>
+<td>1 Gigabyte</td>
+<td>2 Gigabyte</td>
+<td>10 Gigabyte</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break"><p>Bei den Minimalwerten gehen wir davon aus, dass Swap-Speicher aktiviert wird und dass Sie kein Live-CD-Image verwenden. Der Wert für <span class="quote">„<span class="quote">Ohne Desktop</span>“</span> setzt voraus, dass nicht der grafische, sondern der textbasierte Installer verwendet wird. </p>
+<p>Die absoluten Minimalanforderungen an den Arbeitsspeicher sind um einiges geringer als in der Tabelle angegeben. Bei aktiviertem Swap (Auslagerungsspeicher) ist es möglich, Debian auf Systemen mit extrem wenig Arbeitsspeicher zu installieren, es sind minimum 350MB erforderlich. Dasselbe gilt für die Anforderungen an den freien Platz auf der Festplatte, speziell wenn Sie die Anwendungen, die Sie installieren, einzeln auswählen; siehe <a class="xref" href="apds02.html" title="D.2. Festplattenplatz, der für die Programmgruppen benötigt wird">Abschnitt D.2, „Festplattenplatz, der für die Programmgruppen benötigt wird“</a> für zusätzliche Informationen über benötigten Festplattenplatz. </p>
+<p>Es ist möglich, eine grafische Desktop-Umgebung auch auf älteren oder Low-End-Systemen laufen zu lassen, aber in diesem Fall wird empfohlen, einen Window-Manager zu installieren, der weniger ressourcen-hungrig ist als die GNOME- oder KDE-Plasma-Desktop-Umgebung; Sie könnten zum Beispiel <code class="classname">xfce4</code>, <code class="classname">icewm</code> oder <code class="classname">wmaker</code> verwenden, aber es gibt auch noch weitere. </p>
+<p>Es ist praktisch unmöglich, für Server-Installationen generelle Speicher- oder Festplattenplatzanforderungen anzugeben, da dies sehr davon abhängt, wozu der Server verwendet wird. </p>
+<p>Bedenken Sie, dass diese Angaben nicht die anderen Daten enthalten, die normalerweise auf solchen Systemen vorhanden sind, wie die Dateien der Benutzer, E-Mails und Daten. Es ist immer ratsam, bei der Erwägung des für Ihre eigenen Dateien benötigten Platzes großzügig zu sein. </p>
+<p>Der zum reibungslosen Betrieb des Debian GNU/Linux-Systems selbst nötige Festplattenplatz ist bereits in die Empfehlungen mit eingerechnet. Erwähnt werden muss hier das Verzeichnis/die Partition <code class="filename">/var</code>, das viele Debian-spezifische Statusinformationen wie Protokolldateien enthält, zusätzlich zu dem regulären Inhalt. Die <span class="command"><strong>dpkg</strong></span>-spezifischen Dateien (mit Informationen über alle installierten Pakete) können z.B leicht 40MB beanspruchen. Auch legt <span class="command"><strong>apt</strong></span>/<span class="command"><strong>apt-get</strong></span> heruntergeladene Pakete dort ab, bevor Sie installiert werden. Sie sollten immer mindestens 200MB für <code class="filename">/var</code> bereithalten bzw. sogar erheblich mehr, wenn Sie eine grafische Desktop-Umgebung installieren. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s03.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Nach oben"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch03s05.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.3. Benötigte Informationen </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Zum Anfang"></a></td>
+<td width="40%" align="right" valign="top"> 3.5. Im Voraus partitionieren für eine Multiboot-Installation</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

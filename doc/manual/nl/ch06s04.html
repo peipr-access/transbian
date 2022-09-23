@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>6.4. Ontbrekende firmware laden</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installatiehandleiding">
+<link rel="up" href="ch06.html" title="Hoofdstuk 6. Het Debian installatiesysteem gebruiken">
+<link rel="prev" href="ch06s03.html" title="6.3. Individuele componenten gebruiken">
+<link rel="next" href="ch06s05.html" title="6.5. Aanpassingen maken">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">6.4. Ontbrekende firmware laden</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch06s03.html"><img src="images/prev.png" alt="Terug"></a> </td>
+<th width="60%" align="center">Hoofdstuk 6. Het Debian installatiesysteem gebruiken</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch06s05.html"><img src="images/next.png" alt="Volgende"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="loading-firmware"></a>6.4. Ontbrekende firmware laden</h2></div></div></div>
+<p>Zoals beschreven wordt in <a class="xref" href="ch02s02.html" title="2.2. Apparaten waarvoor firmware vereist is">Paragraaf 2.2, “Apparaten waarvoor firmware vereist is”</a>, is het voor sommige apparaten noodzakelijk dat er firmware geladen wordt. In de meeste gevallen zal het apparaat zonder firmware helemaal niet werken. Soms heeft het ontbreken van firmware geen gevolgen voor de basisfuncties, maar is de firmware enkel nodig om geavanceerde functies te kunnen gebruiken. </p>
+<p>Indien een stuurprogramma voor een apparaat firmware nodig heeft die niet beschikbaar is, zal <code class="classname">debian-installer</code> met een dialoogvenster u aanbieden om de ontbrekende firmware te laden. Indien u deze optie selecteert, zal <code class="classname">debian-installer</code> op beschikbare opslagapparaten zoeken naar afzonderlijke firmwarebestanden of naar pakketten met firmware. Indien de firmware gevonden wordt, zal ze naar de juiste plaats (<code class="filename">/lib/firmware</code>) gekopieerd worden en zal de stuurprogrammamodule opnieuw geladen worden. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>Welke apparaten doorzocht worden en welke bestandssystemen ondersteund worden is afhankelijk van de architectuur, de installatiemethode en de fase van de installatie. In het bijzonder tijdens de vroege fases van de installatie, is de kans het grootst dat het laden van de firmware slaagt als dat gebeurt vanaf een voor FAT geformatteerde USB-stick. <span class="phrase">Op i386 en amd64 kan firmware ook geladen worden vanaf een MMC- of SD-kaart.</span> </p></td></tr>
+</table></div>
+<p>Merk op dat het mogelijk is om het laden van de firmware over te slaan als u weet dat het apparaat ook zonder die firmware zal functioneren of als het apparaat niet nodig is tijdens de installatie. </p>
+<p><code class="classname">debian-installer</code> vraagt enkel naar firmware die nodig is voor kernelmodules die tijdens de installatie geladen worden. Niet alle stuurprogramma's werden opgenomen in <code class="classname">debian-installer</code>. In het bijzonder is dat voor radeon het geval. Dit houdt in dat de mogelijkheden van sommige apparaten op het einde van de installatie niet verschillen van aan het begin van de installatie. Als gevolg daarvan kan het zijn dat van sommige onderdelen van uw hardware niet alle mogelijkheden benut worden. Indien u vermoedt dat dit het geval is, of indien u gewoon nieuwsgierig bent, is het geen kwaad idee om op het vers opgestart systeem de uitvoer van het commando <span class="command"><strong>dmesg</strong></span> na te kijken en te zoeken naar <span class="quote">“<span class="quote">firmware</span>”</span>. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm2844"></a>6.4.1. Een medium voorbereiden</h3></div></div></div>
+<p>Officiële installatie-images bevatten geen niet-vrije firmware. De meest gebruikelijke methode om dergelijke firmware te laden, is van een verwijderbaar medium zoals een USB-stick. Een alternatieve mogelijkheid zijn niet-officiële installatie-images met niet-vrije firmware die u kunt vinden op <a class="ulink" href="https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/" target="_top">https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/</a>. Wilt u een USB-stick (of een ander medium zoals een partitie van een harde schijf) klaar maken, dan moet u de firmware-bestanden of -pakketten plaatsen in de basismap (root) ofwel in een map die <code class="filename">/firmware</code> heet. Het wordt aanbevolen om FAT als bestandssysteem te gebruiken omdat tijdens de vroege stadia van het installatieproces dat bestandssysteem de grootste kans maakt om ondersteund te worden. </p>
+<p>Tar-archieven en zip-bestanden met de huidige pakketten voor de meest courante firmware zijn te vinden op: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p> <a class="ulink" href="https://cdimage.debian.org/cdimage/unofficial/non-free/firmware/" target="_top">https://cdimage.debian.org/cdimage/unofficial/non-free/firmware/</a> </p></li></ul></div>
+<p> Download gewoon het tar-archief of het zip-bestand voor de juiste release en pak het op het bestandssysteem van het medium uit. </p>
+<p>Indien de firmware die u nodig heeft zich niet in het tar-archief bevindt, kunt u ook specifieke firmware-pakketten downloaden van (de sectie non-free van) het archief. Het volgende overzicht vermeldt de meeste van de beschikbare firmware-pakketten, maar het overzicht is niet gegarandeerd volledig en kan ook pakketten bevatten die geen firmware zijn: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p> <a class="ulink" href="https://packages.debian.org/search?keywords=firmware" target="_top">https://packages.debian.org/search?keywords=firmware</a>
+</p></li></ul></div>
+<p>
+
+</p>
+<p>U kunt ook individuele firmwarebestanden kopiëren naar het medium. Aparte firmware is bijvoorbeeld te vinden op een reeds geïnstalleerd systeem of bij de leverancier van de hardware. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm2860"></a>6.4.2. Firmware en een geïnstalleerd systeem</h3></div></div></div>
+<p>Alle firmware die tijdens de installatie geladen wordt, zal automatisch gekopieerd worden naar het geïnstalleerde systeem. In de meeste gevallen zal dit ervoor zorgen dat het apparaat dat de firmware nodig heeft, ook correct zal werken nadat de computer opnieuw opgestart werd met het geïnstalleerde systeem. Indien het geïnstalleerde systeem een andere kernelversie gebruikt dan het installatiesysteem, is er een kleine kans dat de firmware niet geladen kan worden wegens een versieverschil. </p>
+<p>Indien de firmware van een firmwarepakket geladen werd, zal <code class="classname">debian-installer</code> dit pakket ook installeren op het geïnstalleerde systeem en zal het de sectie non-free van het pakketarchief ook automatisch toevoegen in het bestand <code class="filename">sources.list</code> van APT. Dit heeft het voordeel dat de firmware automatisch opgewaardeerd zal worden als een meer recente versie beschikbaar wordt. </p>
+<p>Indien het laden van de firmware overgeslagen werd tijdens de installatie, zal het betrokken apparaat wellicht niet werken op het geïnstalleerde systeem totdat de firmware (of het firmware-pakket) handmatig geïnstalleerd werd. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>Indien de firmware geladen werd aan de hand van losse firmwarebestanden, zal de naar het geïnstalleerde systeem gekopieerde firmware <span class="emphasis"><em>niet</em></span> automatisch opgewaardeerd worden, tenzij het overeenkomstige firmware-pakket (als dat bestaat) geïnstalleerd wordt nadat de installatie afgerond is. </p></td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="completing-installed-system"></a>6.4.3. Het geïnstalleerde systeem voltooien</h3></div></div></div>
+<p>Afhankelijk van hoe de installatie is uitgevoerd, kan het zijn dat de behoefte aan bepaalde firmware niet werd gedetecteerd tijdens de installatie, dat de betreffende firmware niet beschikbaar was, of dat men ervoor koos om bepaalde firmware op dat moment niet te installeren. In sommige gevallen kan een succesvolle installatie nog steeds eindigen in een zwart scherm of een vervormd scherm bij het opnieuw opstarten van het geïnstalleerde systeem. Wanneer dat gebeurt, kunnen de volgende tijdelijke oplossingen worden geprobeerd: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Aan de opdrachtregel van de kernel de optie <code class="code">nomodeset</code> opgeven. Dit kan helpen om op te starten in een <span class="quote">“<span class="quote">grafische nood</span>”</span>-modus.</p></li>
+<li class="listitem"><p>De toetsencombinatie <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>Alt</strong></span>+<span class="keycap"><strong>F2</strong></span> gebruiken om over te schakelen naar VT2, die een functionele login-prompt kan bieden.</p></li>
+</ul></div>
+<p>Eens u ingelogd bent op het geïnstalleerde systeem, is het mogelijk om de detectie van ontbrekende firmware te automatiseren evenals het uitvoeren van de vereiste stappen om deze te activeren door deze procedure toe te passen: </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem"><p>Het pakket <code class="classname">isenkram-cli</code> installeren.</p></li>
+<li class="listitem"><p>Het commando <span class="command"><strong>isenkram-autoinstall-firmware</strong></span> uitvoeren als <span class="quote">“<span class="quote">root</span>”</span>-gebruiker.</p></li>
+</ol></div>
+<p>Meestal is herstarten de eenvoudigste manier om er zeker van te zijn dat alle kernelmodules juist geïnitialiseerd zijn; dat is vooral belangrijk wanneer men het systeem heeft opgestart met de optie <code class="code">nomodeset</code> als tussentijdse maatregel. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>Het installeren van firmwarepakketten vereist zeer waarschijnlijk het inschakelen van de sectie non-free van het pakketarchief. Vanaf Debian GNU/Linux 11.0, zal het uitvoeren van het commando <span class="command"><strong>isenkram-autoinstall-firmware</strong></span> dat automatisch doen door een speciaal bestand (<code class="filename">/etc/apt/sources.list.d/isenkram-autoinstall-firmware.list</code>) aan te maken dat verwijst naar een generieke spiegelserver. </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch06s03.html"><img src="images/prev.png" alt="Terug"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch06.html"><img src="images/up.png" alt="Omhoog"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch06s05.html"><img src="images/next.png" alt="Volgende"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">6.3. Individuele componenten gebruiken </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Begin"></a></td>
+<td width="40%" align="right" valign="top"> 6.5. Aanpassingen maken</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.2. Montaje de volúmenes cifrados</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guía Debian GNU/Linux de instalación">
+<link rel="up" href="ch07.html" title="Capítulo 7. Arrancar desde su nuevo sistema Debian">
+<link rel="prev" href="ch07s01.html" title="7.1. El momento de la verdad">
+<link rel="next" href="ch07s03.html" title="7.3. Acceso">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.2. Montaje de volúmenes cifrados</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch07s01.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítulo 7. Arrancar desde su nuevo sistema Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch07s03.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="mount-encrypted-volumes"></a>7.2. Montaje de volúmenes cifrados</h2></div></div></div>
+<p>Se le solicitará la contraseña para cada uno de los volúmenes cifrados durante el arranque si ha creado volúmenes cifrados durante la instalación y los ha asociado a puntos de montaje. </p>
+<p>Se mostrará la siguiente indicación durante el arranque para las particiones que están cifradas con «dm-crypt»: </p>
+<div class="informalexample"><pre class="screen">
+Starting early crypto disks... <em class="replaceable"><code>part</code></em>_crypt(starting)
+Enter LUKS passphrase:
+</pre></div>
+<p> En la primera línea del indicador, <em class="replaceable"><code>part</code></em> es el nombre de la partición subyacente, p.ej. sda2 o md0. La pregunta que puede hacerse es ¿<span class="emphasis"><em>para qué volumen</em></span> está introduciendo la contraseña? ¿Se trata de <code class="filename">/home</code> o de <code class="filename">/var</code>? Por supuesto, si tiene solamente un volumen cifrado es muy sencillo y sólo tendrá que introducir la clave que utilizó cuando definía esta volumen. Las notas que escribió tras el último paso en <a class="xref" href="ch06s03.html#partman-crypto" title="6.3.4.6. Configurar volúmenes cifrados">Sección 6.3.4.6, “Configurar volúmenes cifrados”</a> le serán ahora de utilidad si configuró más de un volumen cifrado durante la instalación. Si no tomo nota de la relación entre <code class="filename"><em class="replaceable"><code>part</code></em>_crypt</code> y los puntos de montaje anteriormente aún podrá encontrarla en los ficheros <code class="filename">/etc/crypttab</code> y <code class="filename">/etc/fstab</code> de su nuevo sistema. </p>
+<p>El indicador puede ser un poco distinto cuando lo que se monta es el sistema de ficheros raíz. El mensaje exacto dependerá del generador de initramfs que se utilizó para generar el initrd utilizado para el arranque del sistema. El ejemplo que se muestra a continuación corresponde al mensaje del initrd generado con <code class="classname">initramfs-tools</code>: </p>
+<div class="informalexample"><pre class="screen">Begin: Mounting <span class="emphasis"><em>root file system</em></span>... ...
+Begin: Running /scripts/local-top ...
+Enter LUKS passphrase:
+</pre></div>
+<p>
+
+</p>
+<p>No se mostrará ningún carácter (ni siquiera asteriscos) mientras vd. introduce la clave. Si introduce mal la clave tendrá dos intentos más para corregirla. Después del tercer intento erróneo el proceso de arranque saltará ese volumen y continuará intentando montar el siguiente sistemas de ficheros. Para más información consulte <a class="xref" href="ch07s02.html#crypto-troubleshooting" title="7.2.1. Resolución de problemas">Sección 7.2.1, “Resolución de problemas”</a>. </p>
+<p>El proceso de arranque debería continuar normalmente una vez haya introducido todas las claves. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="crypto-troubleshooting"></a>7.2.1. Resolución de problemas</h3></div></div></div>
+<p>Tendrá que montar manualmente los volúmenes cifrados si no se pudieron montar porque no introdujo bien la clave. Aquí se dan ciertos casos distintos: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>El primer caso está asociado a la partición raíz. El proceso de arranque no podrá continuar y se parará si no se monta ésta correctamente, con lo que tendrá que reiniciar el equipo e intentarlo de nuevo. </p></li>
+<li class="listitem">
+<p>El caso más sencillo es para los volúmenes cifrados que almacenan datos como <code class="filename">/home</code> o <code class="filename">/srv</code>. Puede montarlos manualmente justo después de arrancar. </p>
+<p>Es un poco más complicado para el caso de «dm-crypt». Primero tendrá que registrar los volúmenes con el <span class="application">device mapper</span> ejecutando: </p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>/etc/init.d/cryptdisks start</code></strong>
+</pre></div>
+<p> Esto hará que se sondeen todos los volúmenes descritos en <code class="filename">/etc/crypttab</code> y se crearán todos los dispositivos necesarios en el directorio <code class="filename">/dev</code> tras introducir la contraseña correctamente. Se omitirán los volúmenes que ya estén registrados por lo que puede repetir esta orden tantas veces como necesite. Una vez que haya registrado con éxito el dispositivo sólo tiene que montarlos de la forma habitual: </p>
+<div class="informalexample"><pre class="screen"><code class="prompt">#</code> <strong class="userinput"><code>mount <em class="replaceable"><code>/punto_de_montaje</code></em></code></strong>
+</pre></div>
+<p>
+
+</p>
+</li>
+<li class="listitem"><p>El sistema debería arrancar aún cuando no se puedan montar los sistemas de ficheros que no contengan ficheros del sistema críticos (<code class="filename">/usr</code> o <code class="filename">/var</code>). Por lo que debería poder montar los volúmenes manualmente como se ha descrito anteriormente. Sin embargo, tendrá que arrancar o reiniciar los servicios que se ejecutan en su nivel de ejecución normal porque es muy probable que no se hayan podido arrancar. La forma más fácil de conseguir esto simplemente reiniciar el ordenador. </p></li>
+</ul></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch07s01.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch07.html"><img src="images/up.png" alt="Subir"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch07s03.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.1. El momento de la verdad </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inicio"></a></td>
+<td width="40%" align="right" valign="top"> 7.3. Acceso</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

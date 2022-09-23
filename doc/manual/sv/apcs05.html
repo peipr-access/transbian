@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C.5. Debians partitioneringsprogram</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installationsguide">
+<link rel="up" href="apc.html" title="Appendix C. Partitionera för Debian">
+<link rel="prev" href="apcs04.html" title="C.4. Enhetsnamn i Linux">
+<link rel="next" href="apd.html" title="Appendix D. Diverse bitar">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">C.5. Debians partitioneringsprogram</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<th width="60%" align="center">Appendix C. Partitionera för Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="partition-programs"></a>C.5. Debians partitioneringsprogram</h2></div></div></div>
+<p>Flera varianter av partitioneringsprogram har anpassats av Debians utvecklare för att fungera på olika typer av hårddiskar och datorarkitekturer. Följande är en listan på de program som lämpar sig för din arkitektur. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term"><span class="command"><strong>partman</strong></span></span></dt>
+<dd><p>Rekommenderat partitioneringsverktyg i Debian. Den här schweiziska armékniven kan också ändra storlek på partitioner, skapa filsystem <span class="phrase"> (<span class="quote">”<span class="quote">formatera</span>”</span> på Windows-språk)</span> och tilldela dem monteringspunkter. </p></dd>
+<dt><span class="term"><span class="command"><strong>fdisk</strong></span></span></dt>
+<dd>
+<p>Den originella diskpartitioneraren för Linux, bra för experter. </p>
+<p>Var försiktig om du har befintliga FreeBSD-partitioner på din maskin. Installationskärnorna inkluderar stöd för dessa partitioner, men sättet som <span class="command"><strong>fdisk</strong></span> representerar dem på (eller inte) kan göra att enhetsnamnen skiljer sig. Se <a class="ulink" href="http://www.tldp.org/HOWTO/Linux+FreeBSD-2.html" target="_top">Linux+FreeBSD HOWTO</a>. </p>
+</dd>
+<dt><span class="term"><span class="command"><strong>cfdisk</strong></span></span></dt>
+<dd>
+<p>En diskpartitionerare i helskärm som är enkel att använda för resten av oss. </p>
+<p>Observera att <span class="command"><strong>cfdisk</strong></span> inte förstår FreeBSD-partitioner alls, och, igen, som ett resultat av det kan enhetsnamnen skilja sig. </p>
+</dd>
+</dl></div>
+<p>Ett av dessa program kommer att köras som standard när du väljer <span class="guimenuitem">Partitionera diskar</span> (eller liknande). Det kan vara möjligt att använda ett annat partitioneringsverktyg från kommandoraden på VT2, men det är inte rekommenderat. </p>
+<p>Kom ihåg att märka din uppstartspartition som <span class="quote">”<span class="quote">Startbar</span>”</span>. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4116"></a>C.5.1. Partitionera för <span class="phrase">64-bit PC</span>
+</h3></div></div></div>
+<p>If you are using a new harddisk (or want to wipe out the whole partition table of your disk), a new partition table needs to be created. The <span class="quote">”<span class="quote">Guided partitioning</span>”</span> does this automatically, but when partitioning manually, move the selection on the top-level entry of the disk and hit <span class="keycap"><strong>Enter</strong></span>. That will create a new partition table on that disk. In expert mode, you will then be asked for the type of the partition table. Default for UEFI-based systems is <span class="quote">”<span class="quote">gpt</span>”</span>, while for the older BIOS world the default value is <span class="quote">”<span class="quote">msdos</span>”</span>. In a standard priority installation those defaults will be used automatically. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notera]" src="images/note.png"></td>
+<th align="left">Notera</th>
+</tr>
+<tr><td align="left" valign="top"><p>När en partitionstabell med typ <span class="quote">”<span class="quote">gpt</span>”</span> valdes (standard för UEFI system), ett ledigt utrymme på 1 MB kommer automatiskt skapas i början av disken. Detta är avsett och krävs för att bädda in starthanteraren GRUB2. </p></td></tr>
+</table></div>
+<p>Om du redan har ett befintligt operativsystem såsom DOS eller Windows installerat och du vill behålla det efter installationen av Debian, kan du behöva förändra partitionsstorleken för att få mer ledigt diskutrymme för Debian-installationen. Installationsprogrammet har stöd för att förändra storleken på både FAT- och NTFS-filsystem; när du kommer till installationsprogrammets partitioneringssteg, välj alternativet <span class="guimenuitem">Manuell</span> och välj sedan helt enkelt en existerande partition och ändra dess storlek. </p>
+<p>Även om moderna UEFI -system inte har sådana begränsningar som anges nedan, är det gamla PC BIOS lägger generellt till ytterligare begränsningar för diskpartitionering. Det finns en gräns för hur många <span class="quote">”<span class="quote">primära</span>”</span> och <span class="quote">”<span class="quote">logiska</span>”</span> partitioner en enhet kan innehålla. Dessutom, med BIOS före 1994–98, finns det gränser för var på enheten som BIOS kan starta från. Mer information kan hittas i <a class="ulink" href="http://www.tldp.org/HOWTO/Partition/" target="_top">Linux Partition HOWTO</a>, men det här avsnittet kommer att inkludera en enkel översikt för att hjälpa dig att planera de flesta situationer. </p>
+<p><span class="quote">”<span class="quote">Primära</span>”</span> partitioner är den originella partitioneringsplanen för PC-diskar. Dock, det kan endast finnas fyra av dem. För att komma runt den här begränsningen, uppfanns <span class="quote">”<span class="quote">utökade</span>”</span> och <span class="quote">”<span class="quote">logiska</span>”</span> partitioner. Genom att ställa in en av dina primära partitioner som en utökad partition, kan du dela upp utrymmet som allokerats till den partitionen in i logiska partitioner. Du kan skapa upp till 60 logiska partitioner per utökad partition; dock, kan du endast ha en utökad partition per enhet. </p>
+<p>Linux begränsar antalet partitioner per disk till 255 partitioner för SCSI-diskar (3 användbara primära partitioner, 252 logiska partitioner), och 63 partitioner på en IDE-disk (3 användbara primära partitioner, 60 logiska partitioner). Dock ger det normala Debian GNU/Linux-systemet endast 20 enheter för partitioner, så du kan inte installera på partitioner högre än 20 om du inte manuellt skapar enheterna för dessa partitioner först. </p>
+<p>Om du har en stor IDE-disk, och varken använder LBA-adressering eller överliggande drivrutiner (kommer ibland från hårddisktillverkarna), måste uppstartspartition (den partition som innehåller din kärnavbildning) placeras inom de första 1024 cylindrarna på din hårddisk (normalt sett runt 524 megabyte, utan BIOS-översättning). </p>
+<p>Den här begränsningen gäller inte om du har ett BIOS som är nyare än runt 1995–98 (beroende på tillverkaren) som har stöd för <span class="quote">”<span class="quote">Enhanced Disk Drive Support Specification</span>”</span>. Debians Lilo alternativa <span class="command"><strong>mbr</strong></span> måste använda BIOS för att läsa kärnan från disken till RAM-minnet. Om BIOS int 0x13, utökningar för åtkomst till stora diskar, hittas, kommer de att användas. Annars kommer det gamla diskåtkomstgränssnittet att fallas tillbaka på och användas, och det kan inte användas för att adressera en plats på disken högre än 1023:e cylindern. När Linux har startats upp, oavsett vilket BIOS din dator har, gäller dessa begränsningar inte längre, eftersom Linux inte använder BIOS för diskåtkomst. </p>
+<p>Om du har en stor disk, måste du kanske använda tekniker för cylinderöversättning, som du kan ställa in från ditt BIOS-konfigurationsprogram, såsom LBA (Logisk blockadressering) eller CHS-översättningsläget (<span class="quote">”<span class="quote">Large</span>”</span>). Mer information om problem med stora diskar kan hittas i <a class="ulink" href="http://www.tldp.org/HOWTO/Large-Disk-HOWTO.html" target="_top">Large Disk HOWTO</a>. Om du använder ett cylinderöversättningsschema, och BIOS inte har stöd för utökningar för åtkomst till stora diskar, måste din uppstartspartition passa inom den <span class="emphasis"><em>översatta</em></span> representationen av 1024:de cylindern. </p>
+<p>Det rekommenderade sättet att göra det här på är att skapa en liten (25–50 MB bör räcka) partition i början av disken för att användas som uppstartspartition, och sedan skapa de andra partitioner som du önskar att ha, på återstående plats. Den här uppstartspartitionen <span class="emphasis"><em>måste</em></span> monteras på <code class="filename">/boot</code>, eftersom den här är katalogen där Linux kärna/kärnor kommer att lagras. Denna konfiguration kommer att fungera på alla system, oavsett om LBA eller CHS-översättning för stora diskar används, och oavsett om ditt BIOS har stöd för utökningar för åtkomst till stora diskar. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apc.html"><img src="images/up.png" alt="Upp"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">C.4. Enhetsnamn i Linux </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Hem"></a></td>
+<td width="40%" align="right" valign="top"> Appendix D. Diverse bitar</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

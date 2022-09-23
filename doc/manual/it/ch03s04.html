@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.4. Requisiti hardware minimi</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guida all'installazione di Debian GNU/Linux">
+<link rel="up" href="ch03.html" title="Capitolo 3. Preparazione dell'installazione di Debian GNU/Linux">
+<link rel="prev" href="ch03s03.html" title="3.3. Informazioni necessarie">
+<link rel="next" href="ch03s05.html" title="3.5. Prepartizionamento per sistemi ad avvio multiplo">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.4. Requisiti hardware minimi</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s03.html"><img src="images/prev.png" alt="Indietro"></a> </td>
+<th width="60%" align="center">Capitolo 3. Preparazione dell'installazione di Debian GNU/Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch03s05.html"><img src="images/next.png" alt="Avanti"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="minimum-hardware-reqts"></a>3.4. Requisiti hardware minimi</h2></div></div></div>
+<p>Dopo aver raccolto le informazioni sull'hardware del proprio computer verificare che l'hardware sia compatibile con il tipo d'installazione che si ha in mente. </p>
+<p>A seconda delle proprie necessità si potrebbe aver a che fare con qualcosa meno di quanto raccomandato nella tabella seguente. Comunque, la maggior parte degli utenti diventa frustrata se ignora questi suggerimenti. </p>
+<p>Un Pentium 4, 1 GHz è il sistema minimo raccomandato per un sistema desktop. </p>
+<div class="table">
+<a name="idm607"></a><p class="title"><b>Tabella 3.2. Requisiti minimi del sistema raccomandati</b></p>
+<div class="table-contents"><table class="table" summary="Requisiti minimi del sistema raccomandati" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Tipologia d'installazione</th>
+<th>RAM (minima)</th>
+<th>RAM (raccomandata)</th>
+<th>Spazio su disco</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Senza desktop</td>
+<td>256 megabyte</td>
+<td>512 megabyte</td>
+<td>2 gigabyte</td>
+</tr>
+<tr>
+<td>Con desktop</td>
+<td>1 gigabyte</td>
+<td>2 gigabyte</td>
+<td>10 gigabyte</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break"><p>I valori minimi presuppongono che lo swap sia attivo e che non si utilizzi l'immagine di un liveCD. La voce <span class="quote">«<span class="quote">Senza desktop</span>»</span> assume che si utilizzi la versione testuale dell'installatore. </p>
+<p>I reali requisiti minimi di memoria sono molto inferiori rispetto ai valori riportati nella tabella. Con lo swap attivo, è possibile installare Debian con meno di 350MB. Lo stesso vale per i requisiti di spazio su disco, in particolare se si sceglie una per una le applicazioni da installare; si veda <a class="xref" href="apds02.html" title="D.2. Spazio su disco necessario per i task">Sezione D.2, «Spazio su disco necessario per i task»</a> per ulteriori informazioni sui requisiti di spazio su disco. </p>
+<p>Si può usare un ambiente desktop grafico su sistemi più vecchi o meno performanti ma in questo caso si raccomanda l'installazione di un gestore di finestre meno avido di risorse rispetto a quelli degli ambienti desktop GNOME o KDE Plasma; delle alternative sono <code class="classname">xfce4</code>, <code class="classname">icewm</code> e <code class="classname">wmaker</code>, ma ne esistono anche altre. </p>
+<p>È praticamente impossibile dare dei requisiti di memoria e spazio su disco per le installazioni server dato che questi valori sono molto legati all'uso finale del server. </p>
+<p>Ricordarsi che le dimensioni specificate non includono tutto ciò che si può trovare di solito su un sistema, come per esempio i file degli utenti, la posta e dati vari. La cosa migliore è tenersi larghi, pensando allo spazio necessario per i propri dati. </p>
+<p>Nei seguenti requisiti di sistema è compreso lo spazio su disco richiesto dalle normali operazioni del sistema operativo Debian GNU/Linux. In particolare, la partizione <code class="filename">/var</code> contiene un sacco di informazioni sullo stato specifiche per Debian oltre ai normali file con i log. I file di <span class="command"><strong>dpkg</strong></span> (che contengono informazioni su tutti i pacchetti installati) possono facilmente occupare 40 MB. Inoltre <span class="command"><strong>apt</strong></span> mette i pacchetti scaricati in questa directory prima di installarli. Di solito si deve assegnare almeno 200 MB a <code class="filename">/var</code>, un po' di più se si installa anche un ambiente desktop grafico. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s03.html"><img src="images/prev.png" alt="Indietro"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Risali"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch03s05.html"><img src="images/next.png" alt="Avanti"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.3. Informazioni necessarie </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Partenza"></a></td>
+<td width="40%" align="right" valign="top"> 3.5. Prepartizionamento per sistemi ad avvio multiplo</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

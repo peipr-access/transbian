@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.4. Matcha minimikrav för maskinvara</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installationsguide">
+<link rel="up" href="ch03.html" title="Kapitel 3. Före installation av Debian GNU/Linux">
+<link rel="prev" href="ch03s03.html" title="3.3. Information du behöver">
+<link rel="next" href="ch03s05.html" title="3.5. Förpartionering för system med flera operativsystem">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.4. Matcha minimikrav för maskinvara</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s03.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<th width="60%" align="center">Kapitel 3. Före installation av Debian GNU/Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch03s05.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="minimum-hardware-reqts"></a>3.4. Matcha minimikrav för maskinvara</h2></div></div></div>
+<p>När du har samlat in information om maskinvaran i din dator, kontrollera att din maskinvara låter dig göra den typ av installation som du vill göra. </p>
+<p>Beroende på dina behov, kan du klara dig med mindre än vad som rekommenderas av maskinvaran listad i tabellen nedan. Många användare riskerar dock troligen att bli frustrerade om de ignorerar de här förslagen. </p>
+<p>En Pentium 4 med 1 GHz-processor är minsta rekommenderade datorn för ett skrivbordssystem. </p>
+<div class="table">
+<a name="idm613"></a><p class="title"><b>Tabell 3.2. Rekommenderade minimala systemkrav</b></p>
+<div class="table-contents"><table class="table" summary="Rekommenderade minimala systemkrav" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Installationstyp</th>
+<th>RAM (minimum)</th>
+<th>RAM (rekommenderat)</th>
+<th>hårddisk</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Ingen skrivbordsmiljö</td>
+<td>256 megabyte</td>
+<td>512 megabyte</td>
+<td>2 gigabyte</td>
+</tr>
+<tr>
+<td>Med skrivbordsmiljö</td>
+<td>1 gigabyte</td>
+<td>2 gigabyte</td>
+<td>10 gigabyte</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break"><p>The minimum values assumes that swap will be enabled and a non-liveCD image is used. The <span class="quote">”<span class="quote">No desktop</span>”</span> value assumes that the non-graphical (text-based) installer is used. </p>
+<p>The actual minimum memory requirements are a lot less than the numbers listed in this table. With swap enabled, it is possible to install Debian with as little as 350MB. The same goes for the disk space requirements, especially if you pick and choose which applications to install; see <a class="xref" href="apds02.html" title="D.2. Nödvändig diskplats för funktioner">Avsnitt D.2, ”Nödvändig diskplats för funktioner”</a> for additional information on disk space requirements. </p>
+<p>Det är möjligt att köra en grafisk skrivbordsmiljö på äldre eller mindre kraftfulla system, men i det fallet rekommenderas det att installera en fönsterhanterare som är mindre resurshungrig än skrivbordsmiljöerna GNOME eller KDE Plasma; tänkbara alternativ är <code class="classname">xfce4</code>, <code class="classname">icewm</code> och <code class="classname">wmaker</code>, men det finns även andra att välja bland. </p>
+<p>Det är praktiskt omöjligt att ge allmänna krav för minne eller diskutrymme för serverinstallationer eftersom det beror mycket på vad servern kommer att användas till. </p>
+<p>Kom ihåg att dessa storlekar inte inkluderar alla de andra material som vanligtvis hittas på ett system, såsom användarfiler, e-post och data. Det är alltid bäst att vara generös när du uppskattar utrymmet för dina egna filer och data. </p>
+<p>Diskutrymmet som krävs för oproblematisk körning av själva Debian GNU/Linux-systemet är inkluderat i dessa rekommenderade systemkrav. Noterbart är att partitionen <code class="filename">/var</code> innehåller en hel del tillståndsinformation som är specifik för Debian i tillägg till dess vanliga innehåll, som loggfiler. Filerna för <span class="command"><strong>dpkg</strong></span> (med information om alla installerade paket) kan enkelt konsumera 40 MB. Även <span class="command"><strong>apt</strong></span> lägger hämtade paket här innan de installeras. Du bör vanligtvis allokera åtminstone 200 MB för <code class="filename">/var</code>, och en hel del mer om du installerar en grafisk skrivbordsmiljö. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s03.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Upp"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch03s05.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.3. Information du behöver </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Hem"></a></td>
+<td width="40%" align="right" valign="top"> 3.5. Förpartionering för system med flera operativsystem</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

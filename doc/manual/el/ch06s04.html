@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>6.4. Φόρτωση λογισμικού firmware που απουσιάζει</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Οδηγός Εγκατάστασης Debian GNU/Linux">
+<link rel="up" href="ch06.html" title="Κεφάλαιο 6. Χρησιμοποιώντας τον Εγκαταστάτη του Debian">
+<link rel="prev" href="ch06s03.html" title="6.3. Χρήση επιμέρους συστατικών">
+<link rel="next" href="ch06s05.html" title="6.5. Customization">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">6.4. Φόρτωση λογισμικού firmware που απουσιάζει</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch06s03.html"><img src="images/prev.png" alt="Προηγ"></a> </td>
+<th width="60%" align="center">Κεφάλαιο 6. Χρησιμοποιώντας τον Εγκαταστάτη του Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch06s05.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="loading-firmware"></a>6.4. Φόρτωση λογισμικού firmware που απουσιάζει</h2></div></div></div>
+<p>Όπως περιγράφηκε στην ενότητα <a class="xref" href="ch02s02.html" title="2.2. Συσκευές που απαιτούν firmware">Τμήμα 2.2, «Συσκευές που απαιτούν firmware»</a>, μερικές συσκευές απαιτούν την φόρτωση λογισμικού firmware. Στις περισσότερες περιπτώσεις η συσκευή δεν θα λειτουργεί καθόλου αν το λογισμικό αυτό δεν είναι διαθέσιμο. Μερικές φορές η βασική λειτουργικότητα της συσκευής δεν προσβάλλεται σημαντικά από μια τέτοια απουσία και το λογισμικό firmwareχρειάζεται μόνο για την ενεργοποίηση επιπρόσθετων χαρακτηριστικών. </p>
+<p>Αν ο οδηγός μιας συσκευής απαιτεί λογισμικό firmware που δεν είναι διαθέσιμο, ο <code class="classname">debian-installer</code> θα εμφανίσει έναν διάλογο που θα προσφέρει τη δυνατότητα φόρτωσης αυτού του λογισμικού. Αν κάνετε αυτή την επιλογή, ο  <code class="classname">debian-installer</code> θα ανιχνεύσει τις διαθέσιμες συσκευές είτε για "χύμα" αρχεία λογισμικού firmware είτε για πακέτα που να περιέχουν τέτοιο λογισμικό. Αν βρεθεί, το firmware θα αντιγραφεί στην σωστή τοποθεσία (<code class="filename">/lib/firmware</code>) και το άρθρωμα του οδηγού της συσκευής θα ξαναφορτωθεί. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Σημείωση]" src="images/note.png"></td>
+<th align="left">Σημείωση</th>
+</tr>
+<tr><td align="left" valign="top"><p>Ποιες συσκευές ανιχνεύονται και ποια συστήματα αρχείων υποστηρίζονται εξαρτάται από την αρχιτεκτονική, την μέθοδο εγκατάστασης και το στάδιο της εγκατάστασης. Ειδικά κατά τα πρώτα στάδια της εγκατάστασης είναι πιο πιθανό η φόρτωση του λογισμικού firmware να πετύχει από ένα κλειδί USB με μορφοποίηση FAT. <span class="phrase">Στις αρχιτεκτονικές i386 και amd64 υλισμικό μπορεί επίσης να φορτωθεί και από μια κάρτα MMC ή SD.</span> </p></td></tr>
+</table></div>
+<p>Σημειώστε ότι μπορείτε να παραλείψετε την φόρτωση του firmware αν γνωρίζετε ότι η συσκευή θα δουλέψει και χωρίς αυτό ή αν η συσκευή δεν είναι απαραίτητη κατά την εγκατάσταση. </p>
+<p>Ο <code class="classname">debian-installer</code> προτρέπει μόνο σχετικά με firmware που απαιτείται από αρθρώματα του πυρήνα που φορτώνονται στη διάρκεια της εγκατάστασης. Ο <code class="classname">debian-installer</code> δεν περιλαμβάνει όλους τους οδηγούς, ειδικότερα δεν περιλαβάνει οδηγούς για κάρτες radeon, κι αυτό συνεπάγεται ότι οι δυνατότητες μερικών συσκευών πιθανόν να μην διαφέρουν στο τέλος της εγκατάστασης από αυτό που ήταν στην αρχή. Συνεπώς, κάποιο υλικό του συστήματος πιθανόν να μην μπορούν να χρησιμοποιηθούν με το πλήρες δυναμικό τους. Αν υποψιάζεστε ότι συμβαίνει κάτι τέτοιο ή είστε απλά περίεργοι, δεν είναι κακή ιδέα να ελέγξετε το αποτέλεσμα της εντολής  <span class="command"><strong>dmesg</strong></span> στο σύστημα μόλις εκκινήσει και να αναζητήσετε για το <span class="quote">«<span class="quote">firmware</span>»</span>. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm2826"></a>6.4.1. Προετοιμασία ενός μέσου</h3></div></div></div>
+<p>Οι επίσημες εικόνες εγκατάστασης δεν συμπεριλαμβάνουν οποιοδήποτε μη-ελεύθερο υλισμικό. H πιο κοινή μέθοδος φόρτωσης τέτοιου υλισμικού είναι με τη χρήση κάποιου αφαιρέσιμου μέσου όπως ένα κλειδί USB. Εναλλακτικά, ανεπίσημες εικόνες εγκατάστασης που περιέχουν μη-ελεύθερο υλισμικό μπορούν να βρεθούν στο <a class="ulink" href="https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/" target="_top">https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/</a>. Για να προετοιμάσετε ένα τέτοιο κλειδί USB (ή κάποιο άλλο μέσο όπως μια κατάτμηση ενός σκληρού δίσκου) τα αρχεία του υλισμικού ή τα σχετικά πακέτα θα πρέπει να τοποθετηθούν ή στον ριζικό κατάλογο ή σε έναν κατάλογο με το όνομα <code class="filename">/firmware</code> του συστήματος αρχείων του μέσου. Το συνιστώμενο σύστημα αρχείων για χρήση είναι το FAT καθώς είναι αυτό που είναι πιθανότερο να υποστηρίζεται στα αρχικά στάδια της εγκατάστασης. </p>
+<p>Συμπιεσμένα αρχεία tar και zip που περιέχουν τρέχοντα πακέτα για τα πιο κοινά είδη firmware είναι διαθέσιμα στο: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p> <a class="ulink" href="https://cdimage.debian.org/cdimage/unofficial/non-free/firmware/" target="_top">https://cdimage.debian.org/cdimage/unofficial/non-free/firmware/</a> </p></li></ul></div>
+<p>. Απλά κατεβάστε το αρχείο tar ή zip για την σωστή έκδοση και αποσυμπιέστε τα στο σύστημα αρχείων του μέσου. </p>
+<p>Αν το λογισμικό firmware που χρειάζεστε δεν συμπεριλαμβάνεται στο συμπιεσμένο αρχείο, μπορείτε επίσης να κατεβάσετε συγκεκριμένα πακέτα firmware από την ενότητα μη-ελεύθερου λογισμικού (non-free) της αρχειοθήκης. H ακόλουθη περίληψη θα πρέπει να αναφέρει τα περισσότερα πακέτα διαθέσιμου firmware αλλά δεν είναι εγγυημένα πλήρης και πιθανόν να περιέχει και πακέτα λογισμικού που δεν αφορούν firmware: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p> <a class="ulink" href="https://packages.debian.org/search?keywords=firmware" target="_top">https://packages.debian.org/search?keywords=firmware</a>
+</p></li></ul></div>
+<p>
+
+</p>
+<p>Είναι ακόμα δυνατόν να αντιγράψετε μεμονωμένα αρχεία firmware στο μέσο. Τέτοια "αταξινόμητα" (loose) αρχεία firmware μπορούν να ληφθούν για παράδειγμα από ένα ήδη εγκατεστημένο σύστημα ή από έναν κατασκευαστή. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm2842"></a>6.4.2. Λογισμικό firmware και το Εγκατεστημένο Σύστημα</h3></div></div></div>
+<p>Οποιοδήποτε λογισμικό firmware φορτώνεται κατά την εγκατάσταση θα αντιγραφεί αυτόματα στο εγκατεστημένο σύστημα. Στις περισσότερες περιπτώσεις αυτό εξασφαλίζει ότι η συσκευή που χρειάζεται αυτό το λογισμικό θα δουλέψει κανονικά μετά την επανεκκίνηση στο εγκατεστημένο σύστημα. Παρόλα αυτά, αν το εγκατεστημένο σύστημα χρησιμοποιεί μια έκδοση πυρήνα διαφορετική από αυτήν του εγκαταστάτη, υπάρχει μια μικρή πιθανότητα το firmware να μην μπορεί να φορτωθεί εξαιτίας της αλλαγής (skew) του πυρήνα. </p>
+<p>Αν το firmware φορτώθηκε από ένα πακέτο, ο <code class="classname">debian-installer</code> θα εγκαταστήσει επίσης το πακέτο αυτό για το εγκατεστημένο σύστημα και θα προσθέσει αυτόματα την ενότητα μη-ελεύθερου λογισμικού της αρχειοθήκης στο αρχείο πηγών του APT <code class="filename">sources.list</code>. Αυτό έχει το πλεονέκτημα ότι το λογισμικό του firmware θα ενημερωθεί αυτόματα αν γίνει διαθέσιμη μια καινούρια έκδοσή του. </p>
+<p>Αν η φόρτωση του firmware παραλείφθηκε στη διάρκεια της εγκατάστασης, η αντίστοιχη συσκευή πιθανόν να μην λειτουργήσει με το εγκατεστημένο σύστημα μέχρι το πακέτο (του λογισμικού) εγκατασταθεί με το χέρι. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Σημείωση]" src="images/note.png"></td>
+<th align="left">Σημείωση</th>
+</tr>
+<tr><td align="left" valign="top"><p>Αν το λογισμικό firmware φορτώθηκε από "αταξινόμητα" (loose) αρχεία, το firmware που αντιγράφηκε στο εγκατεστημένο σύστημα <span class="emphasis"><em>δεν</em></span> θα ενημερωθεί αυτόματα αν δεν εγκατασταθεί το αντίστοιχο πακέτο λογισμικού (εφόσον είναι διαθέσιμο) μετά την ολοκλήρωση της εγκατάστασης. </p></td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="completing-installed-system"></a>6.4.3. Ολοκλήρωση του εγκατεστημένου συστήματος</h3></div></div></div>
+<p>Depending on how the installation was performed, it might be that the need for some firmware was not detected during installation, that the relevant firmware was not available, or that one chose not to install some firmware at that time. In some cases, a successful installation can still end up in a black screen or a garbled display when rebooting into the installed system. When that happens, the following workarounds can be tried: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Περάστε την επιλογή <code class="code">nomodeset</code> στη γραμμή εντολών του πυρήνα. Αυτό ίσως βοηθήσει στην εκκίνηση σε μια <span class="quote">«<span class="quote">εφεδρική (fallback) κατάσταση γραφικών</span>»</span>.</p></li>
+<li class="listitem"><p>Χρησιμοποιήστε τον συνδυασμό πλήκτρων <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>Alt</strong></span>+<span class="keycap"><strong>F2</strong></span> για να μεταβείτε στο τερματικό VT2, το οποίο  μπορεί να προσφέρει ένα λειτουργικό προτρεπτικό εισόδου.</p></li>
+</ul></div>
+<p>Αφότου έχετε μπει στο εγκατεστημένο σύστημα, είναι εφικτό να αυτοματοποιήσετε την ανίχνευση υλισμικού που λείπει, και να πραγματοποιήσετε τα απαιτούμενα βήματα για την ενεργοποίησή τους με αυτή τη διαδικασία: </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem"><p>Εγκαταστήστε το πακέτο <code class="classname">isenkram-cli</code>.</p></li>
+<li class="listitem"><p>Εκτελέστε την εντολή <span class="command"><strong>isenkram-autoinstall-firmware</strong></span> ως χρήστης<span class="quote">«<span class="quote">root</span>»</span>.</p></li>
+</ol></div>
+<p>Συνήθως, η επανεκκίνηση είναι ο απλούστερος τρόπος για να βεβαιωθείτε ότι όλα τα αρθρώματα του πυρήνα έχουν αρχικοποιηθεί κανονικά· αυτό είναι ιδιαίτερα σημαντικό όταν έχει κανείς εκκινήσει το σύστημα με την επιλογή<code class="code">nomodeset</code> σαν ένα προσωρινό μέτρο. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Σημείωση]" src="images/note.png"></td>
+<th align="left">Σημείωση</th>
+</tr>
+<tr><td align="left" valign="top"><p>Η εγκατάσταση πακέτων υλισμικού είναι πολύ πιθανόν να απαιτεί την ενεργοποίηση της ενότητας των μη-ελεύθερων πακέτων της αρχειοθήκης. Με την έκδοση Debian GNU/Linux 11.0, η εκτέλεση της εντολής <span class="command"><strong>isenkram-autoinstall-firmware</strong></span> θα το κάνει αυτό αυτόματα δημιουργώντας ένα ειδικό αρχείο (<code class="filename">/etc/apt/sources.list.d/isenkram-autoinstall-firmware.list</code>), που θα δείχνει ένα γενικό καθρέφτη της αρχειοθήκης. </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch06s03.html"><img src="images/prev.png" alt="Προηγ"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch06.html"><img src="images/up.png" alt="Πάνω"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch06s05.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">6.3. Χρήση επιμέρους συστατικών </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Αρχή"></a></td>
+<td width="40%" align="right" valign="top"> 6.5. Customization</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

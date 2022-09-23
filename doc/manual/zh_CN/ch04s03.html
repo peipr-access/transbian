@@ -1,0 +1,182 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.3. 为从 U 盘引导准备文件</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux 安装手册">
+<link rel="up" href="ch04.html" title="第 4 章 获取系统安装介质">
+<link rel="prev" href="ch04s02.html" title="4.2. 从 Debian 镜像服务器下载文件">
+<link rel="next" href="ch04s04.html" title="4.4. 为从硬盘引导准备文件">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.3. 为从 U 盘引导准备文件</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="上一页"></a> </td>
+<th width="60%" align="center">第 4 章 获取系统安装介质</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="下一页"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-usb-files"></a>4.3. 为从 U 盘引导准备文件</h2></div></div></div>
+<p>为了准备 U 盘，推荐使用一台正在运行的支持 USB 的 GNU/Linux 系统。当前的 GNU/Linux 系统会在您插入 U 盘的时候自动识别。如果没有，您应该确认 usb-storage 内核模块是否已经被加载。U 盘插入后，它将被映射到名为 <code class="filename">/dev/sdX</code> 的设备，其中的 <span class="quote">“<span class="quote">X</span>”</span> 是 a-z 的字母。您可以通过在插入 U 盘前后运行 <span class="command"><strong>lsblk</strong></span> 命令来查看 U 盘被映射到哪个设备名。（查看 <span class="command"><strong>dmesg</strong></span> 命令的输出（以 root 用户运行）也是一种方法。）要写入信息，您需要先关闭 U 盘的写保护开关。 </p>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[警告]" src="images/warning.png"></td>
+<th align="left">警告</th>
+</tr>
+<tr><td align="left" valign="top"><p>采用这种方法将销毁设备上已有的任何内容！请确认您使用了正确的 U 盘设备名。如果搞错，比如写成硬盘，将造成该设备上的所有信息丢失。 </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-isohybrid"></a>4.3.1. 使用混合 CD/DVD 映像制作 U 盘</h3></div></div></div>
+<p>针对此架构的 Debian安装映像是采用 <span class="command"><strong>isohybrid</strong></span> 技术创建的，这意味着它们可以被直接写入 U 盘，这是非常简单的制作安装介质的方法。只需为 U 盘选择一个大小合适的映像（如 netint、CD 或 DVD-1）。参阅 <a class="xref" href="ch04s01.html" title="4.1. 官方的 Debian GNU/Linux 安装映像">第 4.1 节 “官方的 Debian GNU/Linux 安装映像”</a> 获取安装映像。 </p>
+<p>另外，对于只有几 M 的小容量 U 盘，您可以从 <code class="filename">netboot</code> 目录下载 <a class="ulink" href="http://http.us.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/netboot/mini.iso" target="_top">mini.iso</a> 映像(位于 <a class="xref" href="ch04s02.html#where-files" title="4.2.1. 在哪里能找到安装文件">第 4.2.1 节 “在哪里能找到安装文件”</a>)。 </p>
+<p>您选中的安装映像应该被直接写入 U 盘，覆盖它当前的内容。例如，使用已有的 GNU/Linux 系统，映像文件可以参照下面方法写入 U 盘，写之前请确认 U 盘已经卸载： </p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>cp <em class="replaceable"><code>debian.iso</code></em> /dev/<em class="replaceable"><code>sdX</code></em></code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>sync</code></strong>
+</pre></div>
+<p>在其它操作系统上如何做的信息可以在<a class="ulink" href="https://www.debian.org/CD/faq/index.en.html#write-usb" target="_top">Debian CD FAQ</a>中找到。 </p>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[重要]" src="images/important.png"></td>
+<th align="left">重要</th>
+</tr>
+<tr><td align="left" valign="top"><p>映像必须写入整个盘设备上而不是分区上，例如 /dev/sdb 而不是 /dev/sdb1。不要使用 <span class="command"><strong>unetbootin</strong></span> 的工具，它会更改映像。 </p></td></tr>
+</table></div>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[重要]" src="images/important.png"></td>
+<th align="left">重要</th>
+</tr>
+<tr><td align="left" valign="top"><p>对大多数用户来说，简单地把安装映像写入 U 盘已经够用。下面更为复杂的选项主要提供给有特殊需要的用户。 </p></td></tr>
+</table></div>
+<p>U 盘上的混合映像不占据所有的存储空间，所以可以考虑使用空余的空间来保存您需要保存的固件文件、软件包或任何其它文件。如果您只有一块 U 盘或者想将所有东西保存在同一个设备上，这会很有用。 </p>
+<p>要如此做，请使用 cfdisk 或者任何其他的分区工具在 U 盘上创建额外的分区。然后，在分区上创建一个（FAT）文件系统，挂载它，并将固件复制或者解压进分区，例如：</p>
+<div class="informalexample"><pre class="screen">
+# mkdosfs -n FIRMWARE /dev/sdX3
+# mount /dev/<em class="replaceable"><code>sdX3</code></em> /mnt
+# cd /mnt
+# tar zxvf <em class="replaceable"><code>/path/to/</code></em>firmware.tar.gz
+# cd /
+# umount /mnt
+</pre></div>
+<p> 注意使用符合您的 U 盘的正确的分区名。<span class="command"><strong>mkdosfs</strong></span> 命令包含于 <code class="classname">dosfstools</code> Debian 软件包。 </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>如果您选择将 <code class="filename">mini.iso</code> 写到 U 盘上，则不必建立第二个分区，因为很棒的是，它将已经存在。拔下再插上 U 盘就可以看到两个分区。 </p></td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-easy"></a>4.3.2. 手动复制文件到 U 盘</h3></div></div></div>
+<p>在 isohybrid 技术用于 Debian 安装介质之前，下面章节描述的方法曾用于准备安装介质以从 USB 设备启动。这些方法已经被 <a class="xref" href="ch04s03.html#usb-copy-isohybrid" title="4.3.1. 使用混合 CD/DVD 映像制作 U 盘">第 4.3.1 节 “使用混合 CD/DVD 映像制作 U 盘”</a> 描述的技术取代，但本文档仍保留这部分内容，以供教学和存档目的，并且某些用户也可能需要它们。 </p>
+<p>和 <a class="xref" href="ch04s03.html#usb-copy-isohybrid" title="4.3.1. 使用混合 CD/DVD 映像制作 U 盘">第 4.3.1 节 “使用混合 CD/DVD 映像制作 U 盘”</a> 不同的另一种方法是手动将安装文件和安装映像复制到 U 盘。注意 U 盘的最小容量为 1 GB（如果您使用 netboot 的文件，则也可以使用更小的容量，请参考 <a class="xref" href="ch04s03.html#usb-copy-flexible" title="4.3.3. 手动复制文件到 U 盘 — 灵活的方法">第 4.3.3 节 “手动复制文件到 U 盘 — 灵活的方法”</a>）。 </p>
+<p>有一个文件合集 <a class="ulink" href="http://http.us.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/hd-media/boot.img.gz" target="_top">hd-media/boot.img.gz</a> 包含所有的安装程序文件（包括内核）<span class="phrase">以及 <code class="classname">syslinux</code> 和对应的配置文件</span> 。 </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>需要注意的是，虽然方便，但该方法有一个主要缺点：即使 U 盘容量更大，该设备的逻辑尺寸还是限制在 1 GB。如果您要该 U 盘作其他用途，需要为它重新分区，为剩余容量创建一个新的文件系统。 </p></td></tr>
+</table></div>
+<p>只需简单地将该映像直接解压到 U 盘： </p>
+<div class="informalexample"><pre class="screen"># zcat boot.img.gz &gt; /dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p>
+
+</p>
+<p>然后，挂载 U 盘<span class="phrase">（<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX</code></em> /mnt</code></strong>），</span> 现在上面有了<span class="phrase">一个 FAT 文件系统</span> ，然后复制 Debian ISO 映像（netinst 或完整的 CD；参见 <a class="xref" href="ch04s01.html" title="4.1. 官方的 Debian GNU/Linux 安装映像">第 4.1 节 “官方的 Debian GNU/Linux 安装映像”</a>）到里面。卸载 U 盘 (<strong class="userinput"><code>umount /mnt</code></strong>) 就完成了。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-flexible"></a>4.3.3. 手动复制文件到 U 盘 — 灵活的方法</h3></div></div></div>
+<p>如果您需要更多的灵活性，或者只是想了解其间发生了什么，应该使用如下的方法来把文件放到 U 盘。使用这个方法的一个优点是，— 如果 U 盘的足够大—，那么可以选择将任何 ISO 映像复制到上面，甚至是 DVD 映像。 </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm834"></a>4.3.3.1. 分区和添加 boot loader</h4></div></div></div>
+<p>我们将展示如何使用 U 盘的第一个分区，而不是整个设备。 </p>
+<p>为了在 U 盘引导后启动内核，我们要在 U 盘上放入一个 boot loader。尽管任何 boot loader 都应该可以胜任，不过还是使用 <code class="classname">syslinux</code> 更方便。主要原因是它可以使用 FAT16 分区，而且只需要编辑一个文本文件就能对其进行配置。任何支持 FAT 文件系统的操作系统都可以用来改变 boot loader 的配置文件。 </p>
+<p>首先，您需要在您的系统上安装 <code class="classname">syslinux</code> 和 <code class="classname">mtools</code> 软件包。 </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>由于大多数 U 盘预先设置了一个单独的 FAT16 分区，您可能不需要重新分区或者格式化 U 盘。如果必须要做，请现在使用 <span class="command"><strong>cfdisk</strong></span> 或者其他的分区工具来创建一个 FAT16 分区<a href="#ftn.idm845" class="footnote" name="idm845"><sup class="footnote">[3]</sup></a>，然后使用以下命令安装 MBR：</p>
+<div class="informalexample"><pre class="screen">
+# cat /usr/lib/syslinux/mbr/mbr.bin 
+&gt;/dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p> 现在，使用以下命令创建文件系统：</p>
+<div class="informalexample"><pre class="screen">
+# mkdosfs /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> 注意，请使用正确的 U 盘设备名称。<span class="command"><strong>mkdosfs</strong></span> 命令包含在 <code class="classname">dosfstools</code> Debian 软件包内。 </p>
+</td></tr>
+</table></div>
+<p>现在，既然已经有了正确分区的 U 盘，您需要使用以下命令来在 FAT16 分区上安装 <code class="classname">syslinux</code>：</p>
+<div class="informalexample"><pre class="screen">
+# syslinux /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> 再提醒一次，请确认您使用的是正确的设备名称。启动 <span class="command"><strong>syslinux</strong></span> 的时候该分区不能被挂载，因为该过程会向分区的引导扇区写入数据，并且创建包含 boot loader 代码的 <code class="filename">ldlinux.sys</code> 文件。 </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm863"></a>4.3.3.2. 添加安装程序文件</h4></div></div></div>
+<p>这里可以选择两种不同的安装方式：hd-media 方式需要 U 盘上有 ISO 安装映像，以加载安装程序模块和基本系统。netboot 安装程序则会从 Debian 镜像站点加载上述文件。 </p>
+<p>根据您的选择，您需要从任意 Debian 镜像站点的 <a class="ulink" href="http://http.us.debian.org/debian/dists/bullseye/main/installer-amd64/current/images" target="_top">debian/dists/bullseye/main/installer-amd64/current/images/</a> 目录的 hd-media 或者 netboot 子目录下载一些安装程序文件：</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p> <code class="filename">vmlinuz</code> 或 <code class="filename">linux</code>（内核二进制文件）</p></li>
+<li class="listitem"><p> <code class="filename">initrd.gz</code>（初始化 ramdisk 映像）</p></li>
+</ul></div>
+<p> 您可以选择安装程序的文本版本（直接能在 hd-media 或 netboot 下找到的文件）或者图形版本（在对应的 <code class="filename">gtk</code> 子目录寻找）。 </p>
+<p>接下来就是挂载分区（<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX1</code></em> /mnt</code></strong>），然后复制下载的文件到 U 盘的根目录。 </p>
+<p>接下来需要在 U 盘根目录创建一个名为 <code class="filename">syslinux.cfg</code> 的纯文本 syslinux 配置文件，里面最少要包含下面的行：</p>
+<div class="informalexample"><pre class="screen">
+default vmlinuz initrd=initrd.gz
+</pre></div>
+<p> 如果您使用了来自 <code class="filename">netboot</code> 的文件，请将内核二进制文件的名称改为 <span class="quote">“<span class="quote"><code class="filename">linux</code></span>”</span>。 </p>
+<p>对于图形安装程序（来自 <code class="filename">gtk</code>），您需要在行末添加 <strong class="userinput"><code>vga=788</code></strong>。您还可以添加您想添加的其他参数。 </p>
+<p>添加 <strong class="userinput"><code>prompt 1</code></strong> 一行，使得引导提示符可以允许附加参数。 </p>
+<p>如果您使用了来自 <code class="filename">hd-media</code> 的文件，您需要现在将 Debian 安装映像 ISO 文件复制到 U 盘上。（对于 <code class="filename">netboot</code> 方法，则不需要这一步。） </p>
+<p>您可以选择 netinst 或完整 CD/DVD 映像（参阅 <a class="xref" href="ch04s01.html" title="4.1. 官方的 Debian GNU/Linux 安装映像">第 4.1 节 “官方的 Debian GNU/Linux 安装映像”</a>）。请选择适合您 U 盘大小的映像。注意 <span class="quote">“<span class="quote">netboot <code class="filename">mini.iso</code></span>”</span> 映象在这里并不适用。 </p>
+<p>完成后，卸载 U 盘（<strong class="userinput"><code>umount /mnt</code></strong>）。 </p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div id="ftn.idm845" class="footnote"><p><a href="#idm845" class="para"><sup class="para">[3] </sup></a> 别忘记激活 <span class="quote">“<span class="quote">bootable</span>”</span> 标记。</p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="上一页"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch04.html"><img src="images/up.png" alt="上一级"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="下一页"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.2. 从 Debian 镜像服务器下载文件 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="起始页"></a></td>
+<td width="40%" align="right" valign="top"> 4.4. 为从硬盘引导准备文件</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

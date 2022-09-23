@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>6.4. Carregar microprogramari no inclòs a l'instal·lador</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guia d'instal·lació de Debian GNU/Linux">
+<link rel="up" href="ch06.html" title="Capítol 6. Utilització de l'instal·lador de Debian">
+<link rel="prev" href="ch06s03.html" title="6.3. Utilització dels elements individualment">
+<link rel="next" href="ch06s05.html" title="6.5. Personalització">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">6.4. Carregar microprogramari no inclòs a l'instal·lador</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch06s03.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítol 6. Utilització de l'instal·lador de Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch06s05.html"><img src="images/next.png" alt="Següent"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="loading-firmware"></a>6.4. Carregar microprogramari no inclòs a l'instal·lador</h2></div></div></div>
+<p>Tal i com es descriu a <a class="xref" href="ch02s02.html" title="2.2. Dispositius que requereixen microprogramari">Secció 2.2, «Dispositius que requereixen microprogramari»</a>, alguns dispositius necessiten carregar un determinat microprogramari. En la majoria de casos el dispositiu no funcionarà si el microprogramari no està disponible; en altres, la funcionalitat bàsica no es veurà afectada i només serà necessari carregar el microprogramari per activar funcions addicionals. </p>
+<p>Si un controlador de dispositiu sol·licita un microprogramari que no està disponible, el <code class="classname">debian-installer</code> mostrarà un diàleg que us oferirà la possibilitat de carregar-lo. Si seleccioneu aquesta opció, l'instal·lador analitzarà els dispositius disponibles buscant possibles fitxers o paquets de microprogramari. Si es troba el microprogramari, aquest es copiarà a la ubicació pertinent (<code class="filename">/lib/firmware</code>) i es tornarà a carregar el controlador de dispositiu corresponent. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>Es podran analitzar uns dispositius i sistemes de fitxers o uns altres depenent de l'arquitectura, el mètode d'instal·lació i la fase en què us trobeu. És més fàcil carregar microprogramari des d'un llapis USB formatat amb FAT, especialment durant les etapes inicials de la instal·lació. <span class="phrase">En i386 i amd64 el microprogramari també es pot carregar des de targetes MMC o SD.</span> </p></td></tr>
+</table></div>
+<p>Tingueu en compte que és possible ometre aquest pas si sabeu que el dispositiu pot funcionar sense el microprogramari, o si el dispositiu no és necessari durant la instal·lació. </p>
+<p><code class="classname">debian-installer</code> només demana pel microprogramari («firmware») necessari pels mòduls del nucli carregats en el procès d'instal·lació. No estan inclosos tots els dispositius en el <code class="classname">debian-installer</code>, en particular les targetes i processadors gràfics («radeon»), la qual cosa implica que les capacitats d'alguns dispositius no siguin les mateixes al final i al principi de la instal·lació. Com a conseqüència, pot ésser que algun dispositiu no es faci servir al cent per cent de les seves possibilitats. Si pensau que això és el cas, o només per curiositat, no és una mala idea comprovar la sortida de l'ordre <span class="command"><strong>dmesg</strong></span> en un sistema arrencat per primera vegada i cercar la paraula «firmware». </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm2836"></a>6.4.1. Preparar un dispositiu</h3></div></div></div>
+<p>Les imatges d'instal·lació oficials no inclouen microprogramari que no sigui lliure. El mètode més freqüent per a carregar el microprogramari és des de mitjans extraïbles com una memòria USB. Com a alternativa, hi ha preparades imatges d'instal·lació no oficials que contenen microprogramari privatiu a <a class="ulink" href="https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/" target="_top">https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/</a>. Per a preparar una memòria USB (o un altre tipus de mitjà com una partició a un disc dur), els fitxers de microprogramari s'han d'ubicar o bé al directori arrel o bé en un directori anomenat <code class="filename">/firmware</code> dins el sistema de fitxers del dispositiu. El sistema de fitxers recomanat és FAT, ja que és més probable que funcioni durant les etapes inicials de la instal·lació. </p>
+<p>Podeu trobar arxius tar i fitxers zip amb els paquets actuals per als microprogramaris més habituals a la URL següent: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p> <a class="ulink" href="https://cdimage.debian.org/cdimage/unofficial/non-free/firmware/" target="_top">https://cdimage.debian.org/cdimage/unofficial/non-free/firmware/</a> </p></li></ul></div>
+<p> Simplement descarregueu l'arxiu tar o el fitxer zip per a la versió corresponent i descomprimiu-lo al sistema de fitxers del dispositiu desitjat. </p>
+<p>Si el microprogramari que us cal no està inclòs a l'arxiu tar, també podeu descarregar-vos paquets específics de l'arxiu (secció privativa, «non-free»). La llista que hi ha a continuació mostra la major part dels paquets de microprogramari, però no es garanteix que el seu funcionament sigui complet i a més pot contenir paquets que no siguin exclusivament de microprogramari: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p> <a class="ulink" href="https://packages.debian.org/search?keywords=firmware" target="_top">https://packages.debian.org/search?keywords=firmware</a>
+</p></li></ul></div>
+<p>
+
+</p>
+<p>També és possible copiar els fitxers de microprogramari per separat directament al dispositiu. Aquests fitxers els podeu obtenir, per exemple, d'altres sistemes ja instal·lats o del fabricant del maquinari. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm2852"></a>6.4.2. Microprogramari i el sistema ja instal·lat</h3></div></div></div>
+<p>Qualsevol microprogramari carregat durant el procés d'instal·lació serà copiat automàticament al sistema instal·lat. En la majoria de casos això assegurarà que aquells dispositius que requereixen el microprogramari també funcionin després de tornar a arrencar utilitzant el sistema que acabeu d'instal·lar. Tanmateix, si el sistema instal·lat utilitza una versió del nucli diferent a la de l'instal·lador, hi ha la possibilitat que el microprogramari no es pugui carregar per problemes de versions. </p>
+<p>Si el microprogramari havia estat carregat utilitzant un paquet, el <code class="classname">debian-installer</code> també instal·larà aquest paquet al sistema i afegirà automàticament la secció «non-free» de l'arxiu de paquets al fitxer <code class="filename">sources.list</code> de l'APT. Això té l'avantatge que el microprogramari s'actualitzarà automàticament si hi ha disponible una nova versió. </p>
+<p>Si ometeu la càrrega de microprogramari durant la instal·lació, el dispositiu afectat segurament no funcionarà fins que instal·leu manualment el microprogramari (o el seu paquet). </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>Si la càrrega del microprogramari es va dur a terme utilitzant fitxers, el microprogramari copiat <span class="emphasis"><em>no</em></span> s'actualitzarà automàticament a menys que instal·leu el paquet de microprogramari corresponent (si està disponible) després de completar la instal·lació. </p></td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="completing-installed-system"></a>6.4.3. Completar el sistema ja instal·lat</h3></div></div></div>
+<p>Depenent de com es va dur a terme la instal·lació, podria ser que la necessitat d'algun microprogramari no es detectés durant la instal·lació, que el microprogramari pertinent no estés disponible, o que es decidís no instal·lar algun microprogramari en aquell moment. En alguns casos, una instal·lació amb èxit encara pot acabar en una pantalla negra o “desgarbada” quan es reinicia al sistema instal·lat. Quan això passa, es poden provar les següents solucions: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Afegiu l'opció <code class="code">nomodeset</code> a la línia de comandes del nucli. Això pot facilitar l'arrencada en mode <span class="quote">«<span class="quote">gràfic alternatiu</span>»</span>.</p></li>
+<li class="listitem"><p>Useu la combinació de tecles <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>Alt</strong></span>+<span class="keycap"><strong>F2</strong></span> per saltar al VT2, que podria oferir una entrada funcional de sessió.</p></li>
+</ul></div>
+<p>Un cop iniciada la sessió al sistema instal·lat, és possible automatitzar la detecció del microprogramari que manca, i realitzar els passos necessaris per habilitar-los, seguint aquest procediment: </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem"><p>Instal·leu del paquet <code class="classname">isenkram-cli</code>.</p></li>
+<li class="listitem"><p>Executeu la comanda <span class="command"><strong>isenkram-autoinstall-firmware</strong></span> com a usuari <span class="quote">«<span class="quote">root</span>»</span>.</p></li>
+</ol></div>
+<p>Normalment, el fet de reiniciar és la manera més senzilla d'assegurar que tots els mòduls del nucli estan correctament inicialitzats; això és particularment important quan s'ha arrencat el sistema amb l'opció <code class="code">nomodeset</code> com a mesura provisional. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>És molt probable que la instal·lació de paquets de microprogramari requereixi habilitar la secció no lliure de l'arxiu de paquets. A partir de Debian GNU/Linux 11.0, executar l'ordre <span class="command"><strong>isenkram-autoinstall-firmware</strong></span> ho farà automàticament creant un fitxer dedicat (<code class="filename">/etc/apt/sources.list.d/isenkram-autoinstall-firmware.list</code>), apuntant a una rèplica de paquets genèrica. </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch06s03.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch06.html"><img src="images/up.png" alt="Pujar"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch06s05.html"><img src="images/next.png" alt="Següent"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">6.3. Utilització dels elements individualment </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inici"></a></td>
+<td width="40%" align="right" valign="top"> 6.5. Personalització</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

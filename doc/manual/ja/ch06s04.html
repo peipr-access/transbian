@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>6.4. 見つからないファームウェアの読み込み</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux インストールガイド">
+<link rel="up" href="ch06.html" title="第6章 Debian インストーラーの使用法">
+<link rel="prev" href="ch06s03.html" title="6.3. それぞれのコンポーネントの使用法">
+<link rel="next" href="ch06s05.html" title="6.5. カスタム化">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">6.4. 見つからないファームウェアの読み込み</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch06s03.html"><img src="images/prev.png" alt="戻る"></a> </td>
+<th width="60%" align="center">第6章 Debian インストーラーの使用法</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch06s05.html"><img src="images/next.png" alt="次へ"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="loading-firmware"></a>6.4. 見つからないファームウェアの読み込み</h2></div></div></div>
+<p><a class="xref" href="ch02s02.html" title="2.2. ファームウェアが必要なデバイス">「ファームウェアが必要なデバイス」</a> で述べたように、ある種のデバイスはファームウェアを読み込む必要があります。多くの場合、ファームウェアが有効でないとデバイスはまったく動作しません。場合によっては、ファームウェアがない場合、基本機能は損なわれませんが、追加機能を有効にするためだけにファームウェアが必要になります。 </p>
+<p>利用できないファームウェアをデバイスドライバが要求する場合、<code class="classname">debian-installer</code> は見つからないファームウェアを要求するダイアログを表示します。このオプションが選択されると、<code class="classname">debian-installer</code> はルーズなファームウェアファイルと、ファームウェアのあるパッケージの両方を、利用できるデバイスについて検索します。見つかると、ファームウェアを正しい場所 (<code class="filename">/lib/firmware</code>) にコピーし、ドライバモジュールを再読込します。 </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注記]" src="images/note.png"></td>
+<th align="left">注記</th>
+</tr>
+<tr><td align="left" valign="top"><p>どのデバイスがスキャンされるか、どのファイルシステムをサポートしているかは、アーキテクチャやインストール方法、インストールの段階に依存します。特にインストールの初期段階では、ファームウェアの読み込みには、FAT フォーマットの USB メモリがもっとも成功の可能性が高いでしょう。<span class="phrase">i386 や amd64 のファームウェアは、MMC や SD カードからも読み込めます。</span> </p></td></tr>
+</table></div>
+<p>ファームウェアがなくてもデバイスが動作することを知っていたり、インストール中にそのデバイスが必要ない場合は、ファームウェアの読み込みをスキップできることにご注意ください。 </p>
+<p><code class="classname">debian-installer</code> は、インストール中に読み込んだカーネルモジュールが必要とする場合にのみ、ファームウェアのプロンプトを表示します。<code class="classname">debian-installer</code> にすべてのドライバが含まれるわけでなく (特に radeon はありません)、そのため、いくつかのデバイスの機能は、はじめからインストールの終わりまで、まったく変わらないこともあります。その結果として、ハードウェアの能力を引き出せないかもしれません。この場合に該当するのかどうか疑わしく、興味を持たれたのでしたら、新しくブートしたシステムで <span class="command"><strong>dmesg</strong></span> コマンドの出力をチェックし、<span class="quote">「<span class="quote">firmware</span>」</span> を検索してみるのもよいでしょう。 </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm2842"></a>6.4.1. メディアの準備</h3></div></div></div>
+<p>公式インストールイメージには non-free のファームウェアが含まれません。そのようなファームウェアを読み込むもっとも一般的な方法は、USB メモリのようなリムーバブルメディアから読み込むことです。また、<a class="ulink" href="https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/" target="_top">https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/</a> に、non-free のファームウェアを含む非公式インストールイメージがあります。USB メモリ (ないし、ハードディスクのパーティションのような他のメディア) を準備するために、ファームウェアのファイルやパッケージを、メディアのファイルシステムのルートディレクトリか、<code class="filename">/firmware</code> というディレクトリのどちらかに配置しなければなりません。ファイルシステムには、インストールの初期段階でも間違いなくサポートされている、FAT を使用するのをお勧めします。 </p>
+<p>よくある一般的なファームウェアの最新パッケージを、tar や zip で固めたものが、以下のサイトで利用できます。</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p> <a class="ulink" href="https://cdimage.debian.org/cdimage/unofficial/non-free/firmware/" target="_top">https://cdimage.debian.org/cdimage/unofficial/non-free/firmware/</a> </p></li></ul></div>
+<p> 正しいリリースの tarball か zip ファイルをダウンロードし、メディアのファイルシステムに展開するだけです。 </p>
+<p>必要なファームウェアが tarball に含まれていない場合、特定のファームウェアパッケージを、アーカイブ (の non-free セクション) からダウンロードすることもできます。以下の概観では、利用できるほとんどのファームウェアパッケージを網羅できると思いますが、完全であることを保証できませんし、ファームウェアではないパッケージを含むかもしれません。 </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p> <a class="ulink" href="https://packages.debian.org/search?keywords=firmware" target="_top">https://packages.debian.org/search?keywords=firmware</a>
+</p></li></ul></div>
+<p>
+
+</p>
+<p>また、個々のファームウェアファイルを、メディアにコピーもできます。ルーズなファームウェアを、例えばすでにインストールしたシステムや、ハードウェアベンダから入手できます。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm2858"></a>6.4.2. ファームウェアとインストールしたシステム</h3></div></div></div>
+<p>インストール中に読み込んだファームウェアは、いずれもインストールしたシステムに、自動的にコピーされます。多くの場合、これによりシステムをリブートして新しいシステムにしても、ファームウェアが必要なデバイスが確実に動作するでしょう。しかし、インストールしたシステムが、インストーラーと異なるバージョンのカーネルで動作している場合、バージョンのずれによりファームウェアが読み込めない可能性がわずかにあります。 </p>
+<p>ファームウェアパッケージからファームウェアをロードした場合、<code class="classname">debian-installer</code> はインストールしたシステム向けにも、このパッケージをインストールし、APT の <code class="filename">sources.list</code> に、パッケージアーカイブの non-free セクションを自動的に追加します。これには、ファームウェアの新しいバージョンが利用できるようになると、自動的に更新するという利点があります。 </p>
+<p>インストール中に、ファームウェアの読み込みをスキップした場合、おそらくファームウェア (パッケージ) を手動でインストールするまで、関連するデバイスがインストールしたシステムで動作しないでしょう。 </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注記]" src="images/note.png"></td>
+<th align="left">注記</th>
+</tr>
+<tr><td align="left" valign="top"><p>ファームウェアをルーズなファームウェアファイルから読み込んだ場合、インストール完了後に対応したファームウェアパッケージをインストールするまで、インストールしたシステムにコピーしたファームウェアは、自動的に<span class="emphasis"><em>更新されません</em></span>。 </p></td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="completing-installed-system"></a>6.4.3. インストールしたシステムの設定を完了する</h3></div></div></div>
+<p>関連するファームウェアが取得できなかった、その時点ではファームウェアをインストールしないという選択をした等、どのようにインストールが実施されたかに応じて、インストール作業中では検出されなかったファームウェアが必要になる可能性があります。いくつかのケースでは、インストールが成功したにも関わらずシステム再起動後にブランクあるいは文字化けした画面が表示される可能性があります。このような場合、以下の回避策を試みることが出来ます: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>カーネルコマンドラインに <code class="code">nomodeset</code> を渡す。<span class="quote">「<span class="quote">fallback graphics</span>」</span> モードでの起動ができる可能性があります</p></li>
+<li class="listitem"><p><span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>Alt</strong></span>+<span class="keycap"><strong>F2</strong></span> の組み合わせを使って、動作しているログインプロンプトが表示される VT2 (仮想端末2) にスイッチする</p></li>
+</ul></div>
+<p>インストール後のシステムに一旦ログインできたら、見つけられていなかったファームウェアの自動検出が実施可能となります。以下の手順に従って必要な手順を実施することで自動検出を有効化できます: </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem"><p><code class="classname">isenkram-cli</code> パッケージをインストールする</p></li>
+<li class="listitem"><p><span class="quote">「<span class="quote">root</span>」</span> ユーザーで <span class="command"><strong>isenkram-autoinstall-firmware</strong></span> コマンドを実行する</p></li>
+</ol></div>
+<p>一般的に、すべてのカーネルモジュールが正しく初期化されるのを担保するには再起動するのが最もお手軽な方法です。暫定的な処置として <code class="code">nomodeset</code> オプションを指定して起動していた場合に、これは特に重要な部分です。 </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注記]" src="images/note.png"></td>
+<th align="left">注記</th>
+</tr>
+<tr><td align="left" valign="top"><p>ファームウェアパッケージのインストールには、パッケージアーカイブの non-free セクションを有効化する必要が生じる可能性が非常に高いです。 Debian GNU/Linux 11.0 では、<span class="command"><strong>isenkram-autoinstall-firmware</strong></span> コマンドの実行によって汎用的なミラーサイトを指定した専用ファイル (<code class="filename">/etc/apt/sources.list.d/isenkram-autoinstall-firmware.list</code>) を自動的に生成します。 </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch06s03.html"><img src="images/prev.png" alt="戻る"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch06.html"><img src="images/up.png" alt="上に戻る"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch06s05.html"><img src="images/next.png" alt="次へ"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">6.3. それぞれのコンポーネントの使用法 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="ホーム"></a></td>
+<td width="40%" align="right" valign="top"> 6.5. カスタム化</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
